@@ -1,0 +1,128 @@
+.sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 440px;
+    background-color: #fff;
+    z-index: 50;
+    transform: translateX(100%);
+    transition: all .6s;
+}
+.sidebar--open {
+    transform: none;
+}
+.sidebar__inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-top: 45px;
+    padding-right: 35px;
+    padding-left: 35px;
+    border-right: 6px solid $sidebarBorderColor;
+    border-left: 6px solid $sidebarBorderColor;
+}
+.sidebar__close {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.sidebar__close-btn {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    width: 35px;
+    height: 35px;
+    margin-left: auto;
+    padding: 5px;
+    background-image: url('../img/closeIcon.svg');
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    &:focus {
+        outline-color: $inputButtonOutlineColor;
+    }
+}
+.sidebar__close-text {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 10px;
+    font-size: 20px;
+}
+.sidebar__profile {
+    flex-direction: row;
+}
+.sidebar__profile-image {
+    margin-right: 20px;
+}
+.sidebar__list {
+    margin-top: 50px;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+.sidebar__list--disable {
+    display: none;
+}
+.sidebar__link {
+    display: inline-block;
+    margin-bottom: 13px;
+    font-size: 23px;
+    font-weight: 400;
+}
+.sidebar__new {
+    display: none;
+    margin-top: 35px;
+}
+.sidebar__new--active {
+    display: block;
+}
+.sidebar__new-title {
+    margin-top: 35px;
+    margin-bottom: 0;
+    font-size: 1.5625rem;
+    font-weight: 400;
+}
+.sidebar__form {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 45px;
+    justify-content: space-between;
+}
+.sidebar__date-label {
+    width: 45%;
+}
+.sidebar__date-button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    background-size: 25px;
+    background-image: url('../img/calendar.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: all .3s;
+    &:focus {
+        outline-color: $inputButtonOutlineColor;
+    }
+}
+.sidebar__textarea {
+    width: 100%;
+    min-height: 100px;
+}
+.sidebar__new-submit {
+    margin-top: 22px;
+    width: 100%;
+}
+.sidebar__bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    margin-top: auto;
+}

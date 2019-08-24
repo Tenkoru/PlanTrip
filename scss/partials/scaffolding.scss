@@ -18,6 +18,10 @@ body {
 * {
     box-sizing: border-box;
 }
+.body--overflowHidden {
+    overflow: hidden;
+    padding-right: 17px;
+}
 .container {
     max-width: $containerMaxWidth;
     margin-left: auto;
@@ -42,4 +46,19 @@ body {
     margin-bottom: 0;
     font-size: 2.5rem;
     font-weight: 400;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+}
+.overlay--active {
+    opacity: 0.8;
+    pointer-events: auto;
 }

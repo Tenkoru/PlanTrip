@@ -41,25 +41,34 @@
 	}
 }
 .label {
+    width: 100%;
 	position: relative;
 	margin-bottom: 35px;
 	&:last-child {
 		margin-bottom: 0;
 	}
 }
+.label--nomb {
+    margin-bottom: 0;
+}
 .button {
 	height: 41px;
 	padding: 0 15px;
 	border: none;
 	border-radius: 4px;
-	font-family: $mainFont;
+    font-family: $mainFont;
+    background-color: $buttonBgColor;
 	font-size: 1.25rem;
 	line-height: 41px;
 	font-weight: bold;
 	text-align: center;
 	color: #fff;
 	text-transform: lowercase;
-	cursor: pointer;
+    cursor: pointer;
+    transition: all .3s;
+    &:hover {
+        background-color: $buttonBgHoverColor;
+    }
 }
 .select {
     font-family: $mainFont;
@@ -137,5 +146,31 @@
         &::after {
             opacity: 1;
         }
+    }
+}
+.textarea {
+    font-family: $mainFont;
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid $inputBorderColor;
+    border-radius: 4px;
+    resize: none;
+    & + .input__placeholder {
+        transform: none;
+        top: 15px;
+    }
+    &:hover {
+        outline-color: $inputButtonOutlineColor;
+    }
+    &:focus {
+		& + .input__placeholder {
+			transform: translate(-15px, -40px);
+			cursor: auto;
+		}
+		outline-color: $inputBorderColor;
+    }
+    &.input--filled + .input__placeholder {
+        transform: translate(-15px, -40px);
+        cursor: auto;
     }
 }
