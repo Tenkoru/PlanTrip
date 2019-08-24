@@ -115,12 +115,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%; }
+  height: 100%;
+  padding-top: 2%; }
 
 .main-title {
   margin-top: 0;
-  margin-bottom: 110px;
+  margin-bottom: 100px;
   font-size: 4.68rem;
   text-align: center;
   font-weight: 300; }
@@ -178,14 +178,67 @@ body {
   text-transform: lowercase;
   cursor: pointer; }
 
+.back-arrow {
+  padding-left: 30px;
+  position: relative;
+  text-decoration: none; }
+  .back-arrow .back-arrow__svg {
+    position: absolute;
+    content: "";
+    width: 25px;
+    height: 25px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all .3s;
+    fill: #435A59; }
+  .back-arrow:focus .back-arrow__text {
+    outline: none; }
+    .back-arrow:focus .back-arrow__text::after {
+      opacity: 1; }
+  .back-arrow:hover .back-arrow__text {
+    opacity: 1; }
+    .back-arrow:hover .back-arrow__text::after {
+      opacity: 1; }
+  .back-arrow:hover .back-arrow__svg {
+    transform: translate(-5px, -50%); }
+
+.back-arrow__text {
+  line-height: 1.25;
+  font-weight: 400;
+  color: #435A59;
+  transition: all 0.3s;
+  opacity: 0.8;
+  text-decoration: none;
+  position: relative;
+  text-transform: lowercase;
+  white-space: nowrap; }
+  .back-arrow__text::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    height: 1px;
+    background-color: #435A59;
+    transform: translate(-50%, 0);
+    transition: all 0.3s;
+    opacity: 0; }
+
 .auth__form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 15px 0px;
   width: 335px;
   position: relative; }
+
+.auth__wrapper {
+  display: none;
+  position: relative; }
+
+.auth__wrapper--active {
+  display: block; }
 
 .auth__label {
   width: 100%; }
@@ -223,7 +276,7 @@ body {
     content: "";
     left: 50%;
     top: 50%;
-    width: 1px;
+    width: 2px;
     height: 70%;
     background-color: #000;
     transform: translate(-50%, -50%) rotate(45deg);
@@ -240,6 +293,11 @@ body {
   .auth__button:hover {
     background-color: #800457;
     transform: translateY(2px); }
+
+.auth__button--fade {
+  background-color: #601D4A; }
+  .auth__button--fade:hover {
+    background-color: #4d163a; }
 
 .auth__forgot-links {
   display: flex;
@@ -334,3 +392,22 @@ body {
 
 .auth__social--g {
   background-image: url("../img/google-plus.svg"); }
+
+.auth__title {
+  margin-top: 0;
+  margin-bottom: 55px;
+  font-size: 1.875rem;
+  text-transform: uppercase;
+  font-weight: 600; }
+
+.auth__title--smaller {
+  margin-bottom: 50px;
+  font-size: 20px; }
+
+.auth__back-arrow {
+  position: absolute;
+  top: 0;
+  right: 120%; }
+
+.auth__form--marginTop {
+  margin-top: 30px; }
