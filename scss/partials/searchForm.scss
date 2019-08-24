@@ -1,0 +1,25 @@
+.searchForm__submit {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    &:focus {
+        outline-color: $inputButtonOutlineColor;
+    }
+    background-image: url('../img/searchIcon.svg');
+    background-size: 25px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.searchForm__input {
+    padding-left: 40px;
+    min-width: 340px;
+}
+.searchForm__input-placeholder {
+    left: 40px;
+}

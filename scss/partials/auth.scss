@@ -22,7 +22,10 @@
     width: 100%;
 }
 .auth__input {
-	border-color: $authInputBorderColor;
+    border-color: $authInputBorderColor;
+    &:focus {
+        outline-color: $authInputBorderColor;
+    }
 }
 .auth__input--password {
     padding-right: 45px;
@@ -84,40 +87,7 @@
     width: 100%;
     margin-top: 25px;
 }
-.auth__link {
-    font-size: 1rem;
-    line-height: 1.25;
-    font-weight: 400;
-    color: #000;
-    transition: all .3s;
-    opacity: 0.8;
-    text-decoration: none;
-    position: relative;
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 100%;
-        height: 1px;
-        background-color: #000;
-        transform: translate(-50%, 0);
-        transition: all .3s;
-        opacity: 0;
-    }
-    &:focus {
-        outline: none;
-        &::after {
-            opacity: 1;
-        }
-    }
-    &:hover {
-        opacity: 1;
-        &::after {
-            opacity: 1;
-        }
-    }
-}
+
 .auth__divider {
     width: 100%;
     display: flex;

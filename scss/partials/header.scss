@@ -1,0 +1,9 @@
+.header {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 6px solid $headerBorderColor;
+}
+.header__top {
+    display: flex;
+    justify-content: space-between;
+}
