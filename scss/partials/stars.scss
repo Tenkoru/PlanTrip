@@ -14,47 +14,48 @@
 	margin-right: 3px;
 	margin-left: 3px;
 	fill: $starEmptyColor;
+	transition: all .3s;
 }
-.stars--1 .stars__svg:nth-child(1)  {
+.stars[data-stars="1"] .stars__svg:nth-child(1)  {
 	fill: $starColor;
 }
 
-.stars--2 .stars__svg:nth-child(1)  {
+.stars[data-stars="2"] .stars__svg:nth-child(1)  {
 	fill: $starColor;
 }
 
-.stars--2 .stars__svg:nth-child(2)  {
+.stars[data-stars="2"] .stars__svg:nth-child(2)  {
 	fill: $starColor;
 }
 
-.stars--3 .stars__svg:nth-child(1)  {
+.stars[data-stars="3"] .stars__svg:nth-child(1)  {
 	fill: $starColor;
 }
 
-.stars--3 .stars__svg:nth-child(2)  {
+.stars[data-stars="3"] .stars__svg:nth-child(2)  {
 	fill: $starColor;
 }
 
-.stars--3 .stars__svg:nth-child(3)  {
+.stars[data-stars="3"] .stars__svg:nth-child(3)  {
 	fill: $starColor;
 }
 
-.stars--4 .stars__svg:nth-child(1)  {
+.stars[data-stars="4"] .stars__svg:nth-child(1)  {
 	fill: $starColor;
 }
 
-.stars--4 .stars__svg:nth-child(2)  {
+.stars[data-stars="4"] .stars__svg:nth-child(2)  {
 	fill: $starColor;
 }
 
-.stars--4 .stars__svg:nth-child(3)  {
+.stars[data-stars="4"] .stars__svg:nth-child(3)  {
 	fill: $starColor;
 }
 
-.stars--4 .stars__svg:nth-child(4)  {
+.stars[data-stars="4"] .stars__svg:nth-child(4)  {
 	fill: $starColor;
 }
 
-.stars--5 .stars__svg  {
+.stars[data-stars="5"] .stars__svg  {
 	fill: $starColor;
 }

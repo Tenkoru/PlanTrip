@@ -70,6 +70,16 @@
         width: 100%;
     }
 }
+.details__stars {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 15px;
+    svg {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+}
 .details__form {
     display: flex;
 }
@@ -86,6 +96,8 @@
 }
 .details__input {
     width: 100%;
+    max-width: 100%;
+    text-overflow: ellipsis;
     padding-right: 35px;
     font-family: $mainFont;
     border: none;
@@ -97,6 +109,15 @@
 .details__subtitle {
     font-weight: 600;
     font-size: 35px;
+}
+.details__search-form {
+    display: flex;
+    @media (max-width: $screenMobileS) {
+        width: 100%;
+    }
+    .label {
+        margin-bottom: 0;
+    }
 }
 .details__edit {
     pointer-events: none;

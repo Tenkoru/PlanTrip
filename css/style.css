@@ -773,6 +773,10 @@ option {
   @media (max-width: 767px) {
     .searchForm__input {
       min-width: 290px; } }
+  @media (max-width: 640px) {
+    .searchForm__input {
+      min-width: 0;
+      width: 100%; } }
 
 .input--filled + .searchForm__input-placeholder {
   transform: translate(-40px, -45px); }
@@ -839,39 +843,40 @@ option {
   height: 15px;
   margin-right: 3px;
   margin-left: 3px;
-  fill: #02332f; }
+  fill: #02332f;
+  transition: all .3s; }
 
-.stars--1 .stars__svg:nth-child(1) {
+.stars[data-stars="1"] .stars__svg:nth-child(1) {
   fill: #019287; }
 
-.stars--2 .stars__svg:nth-child(1) {
+.stars[data-stars="2"] .stars__svg:nth-child(1) {
   fill: #019287; }
 
-.stars--2 .stars__svg:nth-child(2) {
+.stars[data-stars="2"] .stars__svg:nth-child(2) {
   fill: #019287; }
 
-.stars--3 .stars__svg:nth-child(1) {
+.stars[data-stars="3"] .stars__svg:nth-child(1) {
   fill: #019287; }
 
-.stars--3 .stars__svg:nth-child(2) {
+.stars[data-stars="3"] .stars__svg:nth-child(2) {
   fill: #019287; }
 
-.stars--3 .stars__svg:nth-child(3) {
+.stars[data-stars="3"] .stars__svg:nth-child(3) {
   fill: #019287; }
 
-.stars--4 .stars__svg:nth-child(1) {
+.stars[data-stars="4"] .stars__svg:nth-child(1) {
   fill: #019287; }
 
-.stars--4 .stars__svg:nth-child(2) {
+.stars[data-stars="4"] .stars__svg:nth-child(2) {
   fill: #019287; }
 
-.stars--4 .stars__svg:nth-child(3) {
+.stars[data-stars="4"] .stars__svg:nth-child(3) {
   fill: #019287; }
 
-.stars--4 .stars__svg:nth-child(4) {
+.stars[data-stars="4"] .stars__svg:nth-child(4) {
   fill: #019287; }
 
-.stars--5 .stars__svg {
+.stars[data-stars="5"] .stars__svg {
   fill: #019287; }
 
 .card {
@@ -1105,6 +1110,15 @@ option {
     .details__button {
       width: 100%; } }
 
+.details__stars {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 15px; }
+  .details__stars svg {
+    width: 30px;
+    height: 30px;
+    cursor: pointer; }
+
 .details__form {
   display: flex; }
 
@@ -1121,6 +1135,8 @@ option {
 
 .details__input {
   width: 100%;
+  max-width: 100%;
+  text-overflow: ellipsis;
   padding-right: 35px;
   font-family: "Montserrat", sans-serif;
   border: none;
@@ -1131,6 +1147,14 @@ option {
 .details__subtitle {
   font-weight: 600;
   font-size: 35px; }
+
+.details__search-form {
+  display: flex; }
+  @media (max-width: 640px) {
+    .details__search-form {
+      width: 100%; } }
+  .details__search-form .label {
+    margin-bottom: 0; }
 
 .details__edit {
   pointer-events: none;

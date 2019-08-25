@@ -7,6 +7,7 @@ const listSortArrow = document.querySelector(`.list__sort-arrow`);
 const menuButton = document.querySelector(`#menuButton`);
 const createNewButton = document.querySelector(`#createNew`);
 const destinations = document.querySelector(`.destinations`);
+const starsDetails = document.querySelector(`.details__stars`);
 
 function debounce(func, wait, immediate) {
 	setTimeout(function() {
@@ -189,4 +190,18 @@ if(destinations) {
 	}
 
 	destinations.addEventListener(`click`, closeList)
+}
+
+if (starsDetails) {
+	function changeRating(event) {
+		const curTarget = event.target;
+		const starsArr = [].slice.call(starsDetails.querySelectorAll('.stars__svg'));
+		let closestStarIcon = curTarget.closest('.stars__svg');
+
+		if (closestStarIcon) {
+			starsDetails.dataset.stars = starsArr.indexOf(closestStarIcon) + 1;
+		}
+	}
+
+	starsDetails.addEventListener(`click`, changeRating);
 }
