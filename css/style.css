@@ -100,17 +100,15 @@
     :root {
       font-size: 12px; } }
 
-html,
-main {
-  min-height: 100%; }
-
 body {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   font-family: "Montserrat", sans-serif;
   line-height: 1.15;
   color: #3F3E3C;
   background-color: #fff;
-  height: 100%; }
+  min-height: 100vh; }
 
 * {
   box-sizing: border-box; }
@@ -653,6 +651,7 @@ option {
       display: none; } }
 
 .footer {
+  margin-top: auto;
   min-height: 100px;
   border-top: 6px solid #048BA8; }
 
