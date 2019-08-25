@@ -207,7 +207,7 @@ body {
   background-color: #3C9891;
   font-size: 1.25rem;
   line-height: 41px;
-  font-weight: bold;
+  font-weight: 400;
   text-align: center;
   color: #fff;
   text-transform: lowercase;
@@ -953,8 +953,122 @@ option {
     background-color: #000; }
 
 .deatils__bottom {
+  width: 100%;
   margin-top: 65px;
   margin-bottom: 120px; }
+
+.destinations {
+  width: 100%;
+  margin-top: 60px;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+  background-color: #FBFBFB;
+  border: 1px solid #019287;
+  border-bottom: none;
+  border-radius: 3px; }
+
+.destinations__place-info {
+  display: flex;
+  min-height: 70px;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-bottom: 1px solid #019287;
+  border-radius: 3px; }
+
+.destinations__name {
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+.destinations__date {
+  min-width: 215px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 20px;
+  font-weight: 200; }
+
+.destinations__place--country .destinations__name {
+  font-size: 1.875rem;
+  font-weight: 500; }
+
+.destinations__controls {
+  min-width: 160px;
+  margin-left: 20px; }
+
+.destinations__button {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  border: none;
+  background-color: transparent;
+  background-size: 30px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all .3s; }
+  .destinations__button:focus {
+    outline-color: rgba(1, 146, 135, 0.3); }
+
+.destinations__button--calendar {
+  background-image: url("../img/calendar.svg"); }
+
+.destinations__button--delete {
+  background-image: url("../img/closeIcon.svg"); }
+
+.destinations__button--dropdown {
+  background-image: url("../img/down-chevron.svg");
+  transform: rotate(180deg);
+  transition: all .3s; }
+
+.destinations__button--dropdown--active {
+  transform: rotate(0deg); }
+
+.destinations__cities,
+.destinations__places {
+  padding-left: 0;
+  list-style: none; }
+
+.destinations__place--city .destinations__name {
+  font-size: 1.5625rem;
+  font-weight: 400; }
+.destinations__place--city .destinations__place-info {
+  padding-left: 40px; }
+
+.destinations__place--place .destinations__place-info {
+  padding-left: 60px; }
+.destinations__place--place .destinations__name {
+  font-size: 1.25rem; }
+
+.destinations__place-description {
+  display: flex;
+  border-bottom: 1px solid #019287;
+  border-radius: 3px; }
+
+.destinations__place-title {
+  min-width: 120px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 15px 10px;
+  font-weight: 600;
+  font-size: 18px; }
+
+.destinations__place-text {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 15px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  font-size: 1.25rem;
+  line-height: 1.2; }
+
+.destinations--hide {
+  display: none; }
 
 .sidebar {
   position: fixed;
@@ -1081,3 +1195,82 @@ option {
   justify-content: space-between;
   margin-bottom: 30px;
   margin-top: auto; }
+
+.friends__search-form {
+  display: flex; }
+
+.friends__label {
+  max-width: 340px;
+  min-width: 340px; }
+
+.friends__submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 41px;
+  min-width: 41px;
+  height: 41px;
+  margin-left: 12px;
+  border: 1px solid #019287;
+  background-color: transparent;
+  border-radius: 4px;
+  transition: all .3s;
+  cursor: pointer;
+  padding: 0; }
+  .friends__submit:hover {
+    background-color: #019287; }
+    .friends__submit:hover .friends__submit-svg {
+      fill: #fff; }
+
+.friends__submit-svg {
+  fill: #019287;
+  transition: all .3s; }
+
+.friends__lists {
+  margin-top: 40px; }
+
+.friends__list-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.565rem;
+  font-weight: 500; }
+
+.friends__list {
+  margin-top: 30px;
+  margin-bottom: 0;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: space-between; }
+
+.friends__item {
+  width: 25%;
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.friends__image {
+  display: block;
+  object-fit: contain;
+  width: 205px;
+  height: 205px;
+  max-width: 100%;
+  max-height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 50%; }
+
+.friends__name {
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-size: 1.565rem;
+  text-align: center;
+  font-weight: 500; }
+
+.friends__link {
+  display: block;
+  margin-top: 13px;
+  text-decoration: none; }
+
+.friends__block {
+  margin-bottom: 100px; }

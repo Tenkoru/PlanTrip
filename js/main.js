@@ -6,6 +6,7 @@ const displayButtonContainer = document.querySelector(`.displayButtons`);
 const listSortArrow = document.querySelector(`.list__sort-arrow`);
 const menuButton = document.querySelector(`#menuButton`);
 const createNewButton = document.querySelector(`#createNew`);
+const destinations = document.querySelector(`.destinations`);
 
 if (auth) {
 	const passwordSwitchers = [].slice.call(
@@ -130,19 +131,37 @@ if (menuButton) {
 }
 
 if (createNewButton) {
-	const backArrow = document.querySelector('.sidebar__arrow');
+	const backArrow = document.querySelector(`.sidebar__arrow`);
 	const mainSidebar = document.querySelector(`#sidebarMain`);
-	const sidebarCreateNew = document.querySelector('#sidebarNew');
+	const sidebarCreateNew = document.querySelector(`#sidebarNew`);
 
 	function openCreateNewBlock() {
-		mainSidebar.classList.add('sidebar__list--disable');
-		sidebarCreateNew.classList.add('sidebar__new--active');
+		mainSidebar.classList.add(`sidebar__list--disable`);
+		sidebarCreateNew.classList.add(`sidebar__new--active`);
 	}
 	function closeCreateNewBlock() {
-		mainSidebar.classList.remove('sidebar__list--disable');
-		sidebarCreateNew.classList.remove('sidebar__new--active');
+		mainSidebar.classList.remove(`sidebar__list--disable`);
+		sidebarCreateNew.classList.remove(`sidebar__new--active`);
 	}
 
-	createNewButton.addEventListener('click', openCreateNewBlock);
-	backArrow.addEventListener('click', closeCreateNewBlock);
+	createNewButton.addEventListener(`click`, openCreateNewBlock);
+	backArrow.addEventListener(`click`, closeCreateNewBlock);
+}
+
+if(destinations) {
+	function closeList() {
+		const curTarget = event.target;
+		if (curTarget.classList.contains(`destinations__button--dropdown`)) {
+			const nextTable = curTarget.closest(`.destinations__place-info`).nextSibling.nextSibling;
+			if (curTarget.classList.contains(`destinations__button--dropdown--active`)) {
+				nextTable.classList.remove('destinations--hide');
+				curTarget.classList.remove('destinations__button--dropdown--active');
+			} else {
+				nextTable.classList.add('destinations--hide');
+				curTarget.classList.add('destinations__button--dropdown--active');
+			}
+		}
+	}
+
+	destinations.addEventListener(`click`, closeList)
 }
