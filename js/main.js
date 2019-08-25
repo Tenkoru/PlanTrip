@@ -8,6 +8,23 @@ const menuButton = document.querySelector(`#menuButton`);
 const createNewButton = document.querySelector(`#createNew`);
 const destinations = document.querySelector(`.destinations`);
 
+function debounce(func, wait, immediate) {
+	setTimeout(function() {
+		var timeout;
+		return (function() {
+			var context = this, args = arguments;
+			var later = function() {
+				timeout = null;
+				if (!immediate) func.apply(context, args);
+			};
+			var callNow = immediate && !timeout;
+			clearTimeout(timeout);
+			timeout = setTimeout(later, wait);
+			if (callNow) func.apply(context, args);
+		})();
+	}, 250);
+};
+
 if (auth) {
 	const passwordSwitchers = [].slice.call(
 		document.querySelectorAll(`.auth__password-switcher`)
@@ -78,7 +95,13 @@ if (displayButtonContainer) {
     function changeListStyle(event) {
         const element = event.target.closest(`.displayButtons__button`);
         const listContent = document.querySelector(`.list__content`);
-        const buttons = [].slice.call(displayButtonContainer.querySelectorAll(`.displayButtons__button`));
+		const buttons = [].slice.call(displayButtonContainer.querySelectorAll(`.displayButtons__button`));
+		
+		function checkForMobile() {
+			if (window.matchMedia('(max-width: 640px)').matches) {
+				listContent.classList.remove('list__content--grid');
+			}
+		}
 
         if (element) {
             if (element.id === `displayButtonGrid`) {
@@ -94,7 +117,9 @@ if (displayButtonContainer) {
                 });
                 element.classList.add(`displayButtons__button--active`);
             }
-        }
+		}
+		
+		window.addEventListener(`resize`, debounce.bind(null, checkForMobile, 250));
 
     }
 

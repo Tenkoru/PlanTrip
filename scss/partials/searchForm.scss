@@ -22,6 +22,17 @@
 .searchForm__input {
     padding-left: 40px;
     min-width: 340px;
+    &:focus {
+        & + .searchForm__input-placeholder {
+            transform: translate(-40px, -45px);
+        }
+    }
+    @media (max-width: $screenMobile) {
+        min-width: 290px;
+    }
+}
+.input--filled + .searchForm__input-placeholder {
+    transform: translate(-40px, -45px);
 }
 .searchForm__input-placeholder {
     left: 40px;

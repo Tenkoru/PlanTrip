@@ -8,6 +8,9 @@
     border: 1px solid $inputBorderColor;
     border-bottom: none;
     border-radius: 3px;
+    @media (max-width: $screenMobile) {
+        margin-top: 35px;
+    }
 }
 .destinations__place-info {
     display: flex;
@@ -18,6 +21,14 @@
     padding-left: 20px;
     border-bottom: 1px solid $inputBorderColor;
     border-radius: 3px;
+    @media (max-width: $screenMobile) {
+        min-height: 50px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    @media (max-width: $screenMobileS) {
+        flex-wrap: wrap;
+    }
 }
 .destinations__name {
     margin-top: 0;
@@ -25,6 +36,9 @@
     margin-bottom: 0;
     padding-top: 10px;
     padding-bottom: 10px;
+    @media (max-width: $screenMobileS) {
+        width: 50%;
+    }
 }
 .destinations__date {
     min-width: 215px;
@@ -32,6 +46,14 @@
     margin-bottom: 0;   
     font-size: 20px;
     font-weight: 200;
+    @media (max-width: $screenMobile) {
+        font-size: 16px;
+    }
+    @media (max-width: $screenMobileS) {
+        width: 50%;
+        min-width: 0;
+        text-align: right;
+    }
 }
 .destinations__place--country {
     .destinations__name {
@@ -42,6 +64,14 @@
 .destinations__controls {
     min-width: 160px;
     margin-left: 20px;
+    @media (max-width: $screenMobile) {
+        margin-left: 10px;
+    }
+    @media (max-width: $screenMobileS) {
+        min-width: 130px;
+        width: 100%;
+        text-align: right;
+    }
 }
 .destinations__button {
     width: 40px;
@@ -54,6 +84,9 @@
     background-repeat: no-repeat;
     cursor: pointer;
     transition: all .3s;
+    @media (max-width: $screenMobileS) {
+        margin-left: 0;
+    }
 
     &:focus {
         outline-color: $inputButtonOutlineColor;
@@ -85,14 +118,20 @@
     }
     .destinations__place-info {
         padding-left: 40px;
+        @media (max-width: $screenMobile) {
+            padding-left: 20px;
+        }
     }
 }
 .destinations__place--place {
     .destinations__place-info {
         padding-left: 60px;
+        @media (max-width: $screenMobile) {
+            padding-left: 30px;
+        }
     }
     .destinations__name {
-        font-size: 1.25rem;
+        font-size: 1.35rem;
     }
 }
 .destinations__place-description {
@@ -107,6 +146,9 @@
     padding: 15px 10px;  
     font-weight: 600;
     font-size: 18px;
+    @media (max-width: $screenMobile) {
+        display: none;
+    }
 }
 .destinations__place-text {
     margin-top: 0;
@@ -117,6 +159,9 @@
     padding-left: 15px;
     font-size: 1.25rem;
     line-height: 1.2;
+    @media (max-width: $screenMobile) {
+        padding-right: 15px;
+    }
 }
 .destinations--hide {
     display: none;

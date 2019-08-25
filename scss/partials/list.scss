@@ -1,19 +1,49 @@
 .list__content {
     margin-top: 50px;
     margin-bottom: 50px;
+    @media (max-width: $screenTabletBig) {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
 }
 .list__header {
     display: flex;
     padding-top: 45px;
     align-items: center;
+    @media (max-width: $screenTabletBig) {
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding-top: 35px;
+        flex-wrap: wrap;
+    }
 }
 .list__search-form {
     max-width: 340px;
+    @media (max-width: $screenTabletBig) {
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+    @media (max-width: $screenMobileS) {
+        width: 100%;
+        margin-bottom: 15px;
+    }
 }
 .list__sort-wrapper {
     display: flex;
     margin-left: auto;
     align-items: center;
+    @media (max-width: $screenTabletBig) {
+        margin-left: 10px;
+        margin-bottom: 20px;
+    }
+    @media (max-width: $screenMobile) {
+        max-width: 100%;
+    }
+    @media (max-width: $screenMobileS) {
+        width: 100%;
+        margin-bottom: 15px;
+        margin-left: 0;
+    }
 }
 .list__sort-arrow {
     width: 35px;
@@ -31,6 +61,14 @@
     cursor: pointer;
     &:focus {
         outline-color: $inputButtonOutlineColor;
+    }
+    @media (max-width: $screenMobile) {
+        min-width: 35px;
+    }
+}
+.list__sort .select {
+    @media (max-width: $screenMobile) {
+        width: 100%;
     }
 }
 .list__sort-arrow--up {

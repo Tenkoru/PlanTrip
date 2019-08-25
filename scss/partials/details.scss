@@ -2,6 +2,9 @@
     display: flex;
     flex-wrap: wrap;
     padding-top: 45px;
+    @media (max-width: $screenTabletBig) {
+        padding-top: 25px;
+    }
 }
 .details__back-arrow {
     width: 100%;
@@ -24,10 +27,23 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    @media (max-width: $screenTabletBig) {
+        margin-top: 45px;
+    }
+    @media (max-width: $screenMobile) {
+        margin-top: 35px;
+    }
+    @media (max-width: $screenMobileS) {
+        flex-direction: column;
+    }
 }
 .details__controls {
     display: flex;
     flex-direction: column;
+    @media (max-width: $screenMobileS) {
+        width: 100%;
+        margin-top: 15px;
+    }
 }
 .details__image {
     width: 35%;
@@ -43,10 +59,16 @@
         max-width: 100%;
         max-height: 100%;
     }
+    @media (max-width: $screenMobile) {
+        display: none;
+    }
 }
 .details__button {
     width: 210px;
     margin-bottom: 12px;
+    @media (max-width: $screenMobileS) {
+        width: 100%;
+    }
 }
 .details__form {
     display: flex;
@@ -56,9 +78,15 @@
     flex-direction: column;
     width: 65%;
     padding-left: 25px;
+    @media (max-width: $screenMobile) {
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }
 .details__input {
     width: 100%;
+    padding-right: 35px;
     font-family: $mainFont;
     border: none;
     background-color: transparent;
@@ -91,6 +119,9 @@
     justify-content: space-between;
     position: relative;
     margin-bottom: 30px;
+    @media (max-width: $screenTabletBig) {
+        margin-bottom: 20px;
+    }
 }
 .details__description-wrapper {
     display: flex;
@@ -99,14 +130,24 @@
 }
 .details__date {
     font-size: 2.1875rem;
+    @media (max-width: $screenMobileS) {
+        font-size: 1.5rem;
+    }
 }
 .details__description {
     margin-top: 0;
     margin-bottom: 0;
+    font-size: 16px;
 }
 .details__middle {
     margin-top: 80px;
     width: 100%;
+    @media (max-width: $screenTabletBig) {
+        margin-top: 40px;
+    }
+    @media (max-width: $screenMobile) {
+        margin-top: 20px;
+    }
 }
 .details__form {
     width: 100%;
@@ -119,6 +160,9 @@
     min-height: 110px;
     margin-top: 30px;
     padding: 10px 15px;
+    @media (max-width: $screenMobile) {
+        margin-top: 25px;
+    }
 }
 .details__bottom-title {
     margin-top: 0;
@@ -140,4 +184,8 @@
     width: 100%;
     margin-top: 65px;
     margin-bottom: 120px;
+    @media (max-width: $screenMobile) {
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
 }
