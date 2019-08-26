@@ -123,7 +123,11 @@
 	}
 }
 .sidebar__date-label {
-	width: 45%;
+	width: 49%;
+	.input {
+		padding-right: 35px;
+		font-size: 14px;
+	}
 }
 .sidebar__date-button {
 	position: absolute;
@@ -146,7 +150,7 @@
 }
 .sidebar__textarea {
 	width: 100%;
-	min-height: 100px;
+	min-height: 60px;
 }
 .sidebar__new-submit {
 	margin-top: 22px;

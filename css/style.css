@@ -340,7 +340,7 @@ option {
 .textarea {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  padding: 5px;
+  padding: 5px 15px;
   border: 1px solid #019287;
   border-radius: 4px;
   resize: none; }
@@ -1528,7 +1528,10 @@ option {
       margin-top: 35px; } }
 
 .sidebar__date-label {
-  width: 45%; }
+  width: 49%; }
+  .sidebar__date-label .input {
+    padding-right: 35px;
+    font-size: 14px; }
 
 .sidebar__date-button {
   position: absolute;
@@ -1550,7 +1553,7 @@ option {
 
 .sidebar__textarea {
   width: 100%;
-  min-height: 100px; }
+  min-height: 60px; }
 
 .sidebar__new-submit {
   margin-top: 22px;
