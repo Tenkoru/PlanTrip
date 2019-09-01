@@ -35,7 +35,8 @@ export class RegisterComponent implements OnInit {
   };
 
   backArrowProps = {
-    className: "auth__back-arrow"
+    className: "auth__back-arrow",
+    link: "",
   };
 
   titleProps = {

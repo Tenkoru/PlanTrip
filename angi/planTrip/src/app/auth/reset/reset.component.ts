@@ -42,7 +42,8 @@ export class ResetComponent implements OnInit {
   };
 
   backArrowProps = {
-    className: "auth__back-arrow"
+    className: "auth__back-arrow",
+    link: "",
   };
 
   titleProps = {
@@ -58,7 +59,8 @@ export class ResetComponent implements OnInit {
 
   links = [
     {
-      text: "Получить код ещё раз"
+      text: "Получить код ещё раз",
+      link: "",
     }
   ];
   ngOnInit() {}

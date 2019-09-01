@@ -27,10 +27,12 @@ export class LoginComponent implements OnInit {
 
   links = [
     {
-      text: "Зарегистрироваться"
+      text: "Зарегистрироваться",
+      link: "register"
     },
     {
-      text: "Забыли пароль?"
+      text: "Забыли пароль?",
+      link: "reset"
     }
   ];
 

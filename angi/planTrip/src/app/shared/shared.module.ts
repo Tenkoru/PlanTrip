@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './../app-routing/app-routing.module';
 import { BackArrowComponent } from "./back-arrow/back-arrow.component";
 import { ButtonComponent } from "./button/button.component";
 import { LabelComponent } from "./label/label.component";
@@ -8,7 +9,7 @@ import { LinkComponent } from "./link/link.component";
 import { AngularSvgIconModule } from "angular-svg-icon";
 
 @NgModule({
-  imports: [CommonModule, AngularSvgIconModule],
+  imports: [CommonModule, AngularSvgIconModule,AppRoutingModule],
   declarations: [
     SharedComponent,
     LabelComponent,

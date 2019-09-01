@@ -10,6 +10,7 @@ export class LinkComponent implements OnInit {
 
   @Input() props: {
     text: String;
+    link: String;
   };
 
   ngOnInit() {}
