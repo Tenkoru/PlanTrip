@@ -120,6 +120,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "planTrip"
+    }
+  },
+  "defaultProject": "planTrip",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
