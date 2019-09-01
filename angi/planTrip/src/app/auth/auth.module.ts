@@ -12,7 +12,11 @@ import { ResetComponent } from "./reset/reset.component";
 import { AngularSvgIconModule } from "angular-svg-icon";
 
 @NgModule({
-  imports: [CommonModule, SharedModule, AngularSvgIconModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    AngularSvgIconModule,
+  ],
   declarations: [
     AuthComponent,
     LoginComponent,
