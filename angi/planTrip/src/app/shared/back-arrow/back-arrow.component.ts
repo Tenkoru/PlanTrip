@@ -11,6 +11,9 @@ export class BackArrowComponent implements OnInit {
     className: String;
   }
 
+  image = "./assets/icons/backArrow.svg";
+  iconColor = '#435A59';
+
   getClass() {
     let className = "back-arrow ";
     

@@ -5,9 +5,10 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { SharedComponent } from "./shared.component";
 import { LinkComponent } from "./link/link.component";
+import { AngularSvgIconModule } from "angular-svg-icon";
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, AngularSvgIconModule],
   declarations: [
     SharedComponent,
     LabelComponent,

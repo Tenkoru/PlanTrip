@@ -1,0 +1,34 @@
+.back-arrow {
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s;
+  fill: #435a59;
+}
+.back-arrow:hover {
+  transform: translateX(5px);
+}
+
+.auth__back-arrow {
+  position: absolute;
+  top: 0;
+  left: 0%;
+}
+@media (max-width: 1024px) {
+  .auth__back-arrow {
+    right: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .auth__back-arrow {
+    height: 30px;
+    transform: translateY(-15%);
+  }
+}
+@media (max-width: 425px) {
+  .auth__back-arrow {
+    right: auto;
+    top: auto;
+    bottom: 100%;
+    left: 0;
+  }
+}

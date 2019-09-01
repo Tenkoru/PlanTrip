@@ -1,6 +1,9 @@
 <main>
     <div class="container container--center">
-        <h1>{{ title }}</h1>
+        <h1>
+            <svg-icon [src]="image"></svg-icon>
+            {{ title }}
+        </h1>
         <div class="auth">
             <app-login></app-login>
             <app-register></app-register>

@@ -10,6 +10,7 @@ export class ResetComponent implements OnInit {
 
   getCodeButtonProps = {
     auth: true,
+    fade: true,
     text: "Получить код",
     type: "submit"
   };
@@ -19,6 +20,12 @@ export class ResetComponent implements OnInit {
     text: "Введите номер телефона или почту",
     required: true
   };
+
+  codeProps = {
+    auth: true,
+    text: "Введите код",
+    required: true
+  }
 
   passwordProps = {
     auth: true,

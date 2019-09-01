@@ -1,0 +1,62 @@
+:host {
+    margin-bottom: 35px;
+}
+.label {
+  width: 100%;
+  position: relative;
+}
+.input {
+  width: 100%;
+  height: 41px;
+  color: #3f3e3c;
+  border-radius: 4px;
+  padding: 0 15px;
+  border-width: 1px;
+  font-size: 16px;
+  line-height: 1;
+  font-family: "Montserrat", sans-serif;
+  background-color: #fbfbfb;
+  transition: all 0.3s;
+  border-color: #019287;
+}
+.input:focus {
+  outline-color: #019287;
+}
+.input:focus + .input__placeholder {
+  transform: translate(-15px, -45px);
+  cursor: auto;
+}
+
+.input--filled + .input__placeholder {
+  transform: translate(-15px, -45px);
+  cursor: auto;
+}
+
+.auth__input {
+  border-color: #a4036f;
+}
+.auth__input:focus {
+  outline-color: #a4036f;
+}
+
+.input__placeholder {
+  position: absolute;
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  color: rgba(63, 62, 60, 0.5);
+  z-index: 1;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  transition: all 0.3s;
+  text-transform: lowercase;
+  cursor: text;
+  pointer-events: none;
+  white-space: nowrap;
+}
+@media (max-width: 425px) {
+  .input__placeholder {
+    font-size: 14px;
+  }
+}

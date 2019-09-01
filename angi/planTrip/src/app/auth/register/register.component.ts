@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
 
   titleProps = {
     className: "auth__title--smaller",
-    text: "Зарегистрироваться"
+    text: "Регистрация"
   };
 
   ngOnInit() {}

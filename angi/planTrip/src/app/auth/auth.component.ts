@@ -8,6 +8,8 @@ import { Component, OnInit } from "@angular/core";
 export class AuthComponent implements OnInit {
   title: String = "Планировщик поездок";
 
+  image = "./assets/icons/logo.svg";
+
   constructor() {}
 
   ngOnInit() {}
