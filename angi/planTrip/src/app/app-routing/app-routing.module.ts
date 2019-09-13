@@ -5,11 +5,14 @@ import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from '../auth/login/login.component';
 import { RegisterComponent } from '../auth/register/register.component';
 import { ResetComponent } from '../auth/reset/reset.component';
+import { AuthComponent } from '../auth/auth.component';
+import { IndexComponent } from '../index/index.component';
 
 const routes: Routes = [
-  { path: "", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
-  { path: "reset", component: ResetComponent },
+  { path: "", component: AuthComponent },
+  { path: "index", component: IndexComponent },
+
+  { path: "**", redirectTo: "index" },
 ];
 
 @NgModule({
