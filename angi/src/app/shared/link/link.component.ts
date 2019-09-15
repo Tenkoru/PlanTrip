@@ -9,13 +9,13 @@ export class LinkComponent implements OnInit {
   constructor() {}
 
   @Input() props: {
-    text: String;
-    link: String;
+    text: string;
+    link: string;
     isSidebarLink: boolean;
   };
 
   getClass() {
-    let className = "link";
+    let className: string = "link";
 
     if (this.props.isSidebarLink) {
       className += " sidebar__link";

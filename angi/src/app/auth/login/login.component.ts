@@ -7,7 +7,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class LoginComponent implements OnInit {
   submitButtonProps = {
-    auth: true,
+    auth:  true,
     text: "Войти",
     type: "submit"
   };

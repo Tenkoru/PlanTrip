@@ -8,15 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BackArrowComponent implements OnInit {
 
   @Input() props: {
-    className: String;
-    link: String;
+    className: string;
+    link: string;
   }
 
-  image = "./assets/icons/backArrow.svg";
-  iconColor = '#435A59';
+  image: string= "./assets/icons/backArrow.svg";
+  iconColo: string = '#435A59';
 
-  getClass() {
-    let className = "back-arrow ";
+  getClass(): string {
+    let className: string = "back-arrow ";
     
     if (this.props.className) {
       className += this.props.className;

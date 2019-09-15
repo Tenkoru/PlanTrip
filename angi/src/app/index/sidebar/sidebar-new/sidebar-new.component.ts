@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./sidebar-new.component.scss"]
 })
 export class SidebarNewComponent implements OnInit {
-  title: String = "Создать новую поездку";
+  title: string = "Создать новую поездку";
 
   submitButtonProps = {
     text: "Добавить",

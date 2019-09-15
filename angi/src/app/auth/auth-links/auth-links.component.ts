@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AuthLinksComponent implements OnInit {
 
-  @Input() links: String[];
+  @Input() links: string[];
 
   constructor() { }
 

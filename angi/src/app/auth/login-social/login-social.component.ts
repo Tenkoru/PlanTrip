@@ -26,7 +26,7 @@ export class LoginSocialComponent implements OnInit {
       image: "assets/icons/google-plus.svg"
     }
   ];
-  iconColor = "#435A59";
+  iconColor: string = "#435A59";
 
   constructor() {}
 

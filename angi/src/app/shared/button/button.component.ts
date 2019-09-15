@@ -10,14 +10,14 @@ export class ButtonComponent implements OnInit {
 
   @Input() props: {
     auth: boolean;
-    text: String;
-    type: String;
+    text: string;
+    type: string;
     fade: boolean;
     isSidebar: boolean;
   };
 
-  getClass() {
-    let className = "button";
+  getClass(): string {
+    let className: string = "button";
 
     if (this.props.auth) {
       className += " auth__button";
@@ -33,11 +33,11 @@ export class ButtonComponent implements OnInit {
     return className;
   }
 
-  getText() {
+  getText(): string {
     return this.props.text || "Кнопка";
   }
 
-  getType() {
+  getType(): string {
     return this.props.type || "submit";
   }
 

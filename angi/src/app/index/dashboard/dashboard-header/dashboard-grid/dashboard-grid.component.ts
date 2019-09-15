@@ -7,9 +7,9 @@ import { Component, OnInit } from "@angular/core";
 })
 export class DashboardGridComponent implements OnInit {
 
-  activeButton: String = "grid";
-  iconColor: String = "#456462";
-  iconActiveColor: String = "#ffffff";
+  activeButton: string = "grid";
+  iconColor: string = "#456462";
+  iconActiveColor: string = "#ffffff";
 
   buttons: object[] = [
     {
@@ -22,7 +22,7 @@ export class DashboardGridComponent implements OnInit {
     }
   ]
 
-  changeTableDisplay(type: string) {
+  changeTableDisplay(type: string): void {
     this.activeButton = type;
   }
 

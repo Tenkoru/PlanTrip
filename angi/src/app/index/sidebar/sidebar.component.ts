@@ -1,25 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  selector: "app-sidebar",
+  templateUrl: "./sidebar.component.html",
+  styleUrls: ["./sidebar.component.scss"]
 })
 export class SidebarComponent implements OnInit {
-
   backArrowProps = {
     className: "sidebar__arrow",
-    link: "javascript:void(0)",
+    link: "javascript:void(0)"
   };
 
-  profileName: String = "Александр";
-  userAvatar: String = "assets/icons/profile.svg";
+  profileName: string = "Александр";
+  userAvatar: string = "assets/icons/profile.svg";
 
-  constructor() { }
+  constructor() {}
 
-  closeButtonImg = "assets/icons/closeIcon.svg"
+  closeButtonImg: string = "assets/icons/closeIcon.svg";
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

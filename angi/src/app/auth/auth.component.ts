@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./auth.component.scss"]
 })
 export class AuthComponent implements OnInit {
-  title: String = "Планировщик поездок";
+  title: string = "Планировщик поездок";
 
   constructor() {}
 

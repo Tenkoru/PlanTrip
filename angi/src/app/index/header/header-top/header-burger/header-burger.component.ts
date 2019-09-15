@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderBurgerComponent implements OnInit {
 
-  image = "./assets/icons/menu.svg";
-  iconColor = "#3C9891";
+  image: string = "./assets/icons/menu.svg";
+  iconColor: string = "#3C9891";
 
   constructor() { }
 

@@ -8,21 +8,21 @@ import { Component, OnInit, Input } from "@angular/core";
 export class LabelComponent implements OnInit {
   @Input() props: {
     auth: boolean;
-    text: String;
+    text: string;
     required: boolean;
     password: boolean;
   };
 
-  getText() {
+  getText(): string {
     return this.props.text || "";
   }
 
-  getLabelClass() {
+  getLabelClass(): string {
     return this.props.auth ? "label auth__label" : "label";
   }
 
-  getInputClass() {
-    let className: String = "input";
+  getInputClass(): string {
+    let className: string = "input";
 
     if (this.props.auth) {
       className += " auth__input";
@@ -35,7 +35,7 @@ export class LabelComponent implements OnInit {
     return className;
   }
 
-  isRequred() {
+  isRequred(): boolean {
     return this.props.required;
   }
 

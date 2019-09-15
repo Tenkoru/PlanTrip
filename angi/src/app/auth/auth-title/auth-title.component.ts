@@ -7,12 +7,12 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class AuthTitleComponent implements OnInit {
   @Input() props: {
-    className: String;
-    text: String;
+    className: string;
+    text: string;
   };
 
-  getClass() {
-    let className = "auth__title ";
+  getClass(): string {
+    let className: string = "auth__title ";
 
     if (this.props.className) {
       className += this.props.className;

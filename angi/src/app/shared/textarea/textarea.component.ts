@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class TextareaComponent implements OnInit {
   @Input() props: {
-    text: String;
-    type: String;
+    text: string;
+    type: string;
     isSidebar: boolean;
   };
 
@@ -16,8 +16,8 @@ export class TextareaComponent implements OnInit {
 
   ngOnInit() {}
 
-  getClass() {
-    let className = "textarea";
+  getClass(): string {
+    let className: string = "textarea";
 
     if (this.props.isSidebar) {
       className += " sidebar__textarea";
@@ -25,11 +25,11 @@ export class TextareaComponent implements OnInit {
     return className;
   }
 
-  getLabelClass() {
+  getLabelClass(): string {
     return "label";
   }
 
-  getText() {
+  getText(): string {
     return this.props.text || "";
   }
 }

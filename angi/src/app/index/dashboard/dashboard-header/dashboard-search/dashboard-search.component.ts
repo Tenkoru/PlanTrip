@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardSearchComponent implements OnInit {
 
-  buttonImage = "assets/icons/searchIcon.svg";
+  buttonImage: string = "assets/icons/searchIcon.svg";
 
   constructor() { }
 

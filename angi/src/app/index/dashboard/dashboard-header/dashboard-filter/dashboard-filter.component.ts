@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardFilterComponent implements OnInit {
 
-  buttonImage: String = "assets/icons/dropdownArrow.svg";
-  sortArrowImg: String = "assets/icons/backArrow.svg";
+  buttonImage: string = "assets/icons/dropdownArrow.svg";
+  sortArrowImg: string = "assets/icons/backArrow.svg";
   isArrowUp: boolean = true;
   filterOptions: object[] = [
     {
@@ -20,8 +20,8 @@ export class DashboardFilterComponent implements OnInit {
       value: "stars",
     },
   ];
-  
-  ButtonclickListener() {
+
+  ButtonclickListener(): void {
     this.isArrowUp = !this.isArrowUp;
   }
 
