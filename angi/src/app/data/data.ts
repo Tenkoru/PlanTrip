@@ -1,4 +1,4 @@
-import { Trip } from "./trip";
+import { Trip } from "../interfaces/trip";
 
 export const TRIPS: Trip[] = [
   {
