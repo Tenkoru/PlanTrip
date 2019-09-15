@@ -1,0 +1,11 @@
+@import "variables.scss";
+
+:host {
+    display: flex;
+    align-items: center;
+    @media (max-width: $screenTabletBig) {
+        align-items: flex-start;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+}

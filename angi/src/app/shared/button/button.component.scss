@@ -1,5 +1,7 @@
+@import "variables.scss";
+
 :host {
-    width: 100%;
+  width: 100%;
 }
 
 .button {
@@ -19,27 +21,29 @@
   transition: all 0.3s;
 }
 .button:hover {
-  background-color: #2e736e;
+  background-color: $buttonBgHoverColor;
 }
-@media (max-width: 767px) {
+@media (max-width: $screenMobile) {
   .button {
     font-size: 16px;
   }
 }
-
+.sidebar__new-submit {
+  width: 100%;
+}
 .auth__button {
-  background-color: #a4036f;
+  background-color: $authButtonBgColor;
   width: 100%;
   transition: all 0.3s;
 }
 .auth__button:hover {
-  background-color: #800457;
+  background-color: $authButtonBgHoverColor;
   transform: translateY(2px);
 }
 
 .auth__button--fade {
-  background-color: #601d4a;
+  background-color: $authButtonBgFadeColor;
 }
 .auth__button--fade:hover {
-  background-color: #4d163a;
+  background-color: $authButtonBgFadeHoverColor;
 }

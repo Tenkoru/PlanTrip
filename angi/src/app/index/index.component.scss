@@ -1,0 +1,8 @@
+@import "variables.scss";
+
+.container {
+  padding-top: 45px;
+  @media (max-width: $screenTabletBig) {
+    padding-top: 35px;
+  }
+}

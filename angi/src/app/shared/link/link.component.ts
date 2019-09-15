@@ -11,7 +11,17 @@ export class LinkComponent implements OnInit {
   @Input() props: {
     text: String;
     link: String;
+    isSidebarLink: boolean;
   };
+
+  getClass() {
+    let className = "link";
+
+    if (this.props.isSidebarLink) {
+      className += " sidebar__link";
+    }
+    return className;
+  }
 
   ngOnInit() {}
 }

@@ -13,6 +13,7 @@ export class ButtonComponent implements OnInit {
     text: String;
     type: String;
     fade: boolean;
+    isSidebar: boolean;
   };
 
   getClass() {
@@ -24,6 +25,10 @@ export class ButtonComponent implements OnInit {
 
     if (this.props.fade) {
       className += " auth__button--fade";
+    }
+
+    if (this.props.isSidebar) {
+      className += " sidebar__new-submit";
     }
     return className;
   }

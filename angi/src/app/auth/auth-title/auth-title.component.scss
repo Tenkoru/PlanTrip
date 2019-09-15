@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 .auth__title {
   margin-top: 0;
   margin-bottom: 55px;
@@ -14,7 +16,7 @@
   margin-bottom: 50px;
   font-size: 20px;
 }
-@media (max-width: 767px) {
+@media (max-width: $screenMobile) {
   .auth__title--smaller {
     margin-bottom: 40px;
   }

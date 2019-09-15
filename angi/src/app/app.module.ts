@@ -1,5 +1,5 @@
 import { IndexModule } from './index/index.module';
-import { AppRoutingModule } from './app-routing/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from "./auth/auth.module";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";

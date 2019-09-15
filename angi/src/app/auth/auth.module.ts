@@ -10,7 +10,7 @@ import { AuthComponent } from "./auth.component";
 import { RegisterComponent } from "./register/register.component";
 import { ResetComponent } from "./reset/reset.component";
 import { AngularSvgIconModule } from "angular-svg-icon";
-import { AppRoutingModule } from '../app-routing/app-routing.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   imports: [

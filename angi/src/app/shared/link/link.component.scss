@@ -32,3 +32,9 @@
 .link:hover::after {
   opacity: 1;
 }
+.sidebar__link {
+  display: inline-block;
+  margin-bottom: 13px;
+  font-size: 1.4375rem;
+  font-weight: 400;
+}

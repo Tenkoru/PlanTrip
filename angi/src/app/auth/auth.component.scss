@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 h1 {
   margin-top: 0;
   margin-bottom: 100px;
@@ -7,25 +9,25 @@ h1 {
   display: flex;
   align-items: center;
 }
-svg-icon {
+img {
   margin-right: 20px;
 }
-@media (max-width: 1024px) {
+@media (max-width: $screenTabletBig) {
   h1 {
     font-size: 2.68rem;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: $screenMobile) {
   h1 {
     margin-bottom: 50px;
   }
 }
-@media (max-width: 640px) {
+@media (max-width: $screenMobileS) {
   h1 {
     font-size: 1.5rem;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: $screenMobileXS) {
   h1 {
     font-size: 1rem;
     line-height: 1.35;

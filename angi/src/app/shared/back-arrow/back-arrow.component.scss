@@ -1,8 +1,12 @@
+@import "variables.scss";
+
 .back-arrow {
   position: relative;
   text-decoration: none;
   transition: all 0.3s;
-  fill: #435a59;
+  fill: $backArrowColor;
+  display: flex;
+  align-items: center;
 }
 .back-arrow:hover {
   transform: translateX(-5px);
@@ -15,18 +19,18 @@
   z-index: 1;
   cursor: pointer;
 }
-@media (max-width: 1024px) {
+@media (max-width: $screenTabletBig) {
   .auth__back-arrow {
     right: 100%;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: $screenMobile) {
   .auth__back-arrow {
     height: 30px;
     transform: translateY(-15%);
   }
 }
-@media (max-width: 425px) {
+@media (max-width: $screenMobileXS) {
   .auth__back-arrow {
     right: auto;
     top: auto;

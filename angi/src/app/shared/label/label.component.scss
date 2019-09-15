@@ -1,5 +1,15 @@
+@import "variables.scss";
+
 :host {
-    margin-bottom: 35px;
+  width: 100%;
+  margin-bottom: 35px;
+}
+:host.sidebar__date-label {
+  width: 49%;
+  .input {
+    padding-right: 35px;
+    font-size: 14px;
+  }
 }
 .label {
   width: 100%;
@@ -15,12 +25,12 @@
   font-size: 16px;
   line-height: 1;
   font-family: "Montserrat", sans-serif;
-  background-color: #fbfbfb;
+  background-color: $inputBgColor;
   transition: all 0.3s;
-  border-color: #019287;
+  border-color: $inputBorderColor;
 }
 .input:focus {
-  outline-color: #019287;
+  outline-color: $inputBorderColor;
 }
 .input:focus + .input__placeholder {
   transform: translate(-15px, -45px);
@@ -33,10 +43,10 @@
 }
 
 .auth__input {
-  border-color: #a4036f;
+  border-color: $authInputBorderColor;
 }
 .auth__input:focus {
-  outline-color: #a4036f;
+  outline-color: $authInputBorderColor;
 }
 
 .input__placeholder {
@@ -44,7 +54,7 @@
   font-size: 16px;
   font-weight: normal;
   position: absolute;
-  color: rgba(63, 62, 60, 0.5);
+  color: $inputPlaceholderColor;
   z-index: 1;
   top: 50%;
   left: 15px;
@@ -55,7 +65,7 @@
   pointer-events: none;
   white-space: nowrap;
 }
-@media (max-width: 425px) {
+@media (max-width: $screenMobileXS) {
   .input__placeholder {
     font-size: 14px;
   }
