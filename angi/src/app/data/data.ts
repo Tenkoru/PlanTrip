@@ -4,7 +4,7 @@ export const TRIPS: Trip[] = [
   {
     id: "1",
     title: "Америка",
-    date: [1573171200, 1573689600],
+    date: [1568494800 , 1573689600],
     mainImg: "assets/images/usa.jpg",
     description: "Поездка в Америку",
     type: "future",
@@ -47,7 +47,7 @@ export const TRIPS: Trip[] = [
     date: [1451779200, 1451174400],
     mainImg: "assets/images/london.jpg",
     description: "Поездка в Лондон",
-    type: "future",
+    type: "past",
     rating: 5,
     places: [{}]
   },
@@ -56,7 +56,7 @@ export const TRIPS: Trip[] = [
     title: "Греция",
     date: [1574208000, 1573171200],
     mainImg: "assets/images/greece.jpg",
-    description: "Поездка в Греция",
+    description: "Поездка в Грецию",
     type: "deleted",
     rating: 2,
     places: [{}]

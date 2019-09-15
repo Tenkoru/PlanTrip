@@ -12,6 +12,7 @@ export class LinkComponent implements OnInit {
     text: string;
     link: string;
     isSidebarLink: boolean;
+    isCardEditLink: boolean;
   };
 
   getClass() {
@@ -19,6 +20,10 @@ export class LinkComponent implements OnInit {
 
     if (this.props.isSidebarLink) {
       className += " sidebar__link";
+    }
+
+    if (this.props.isCardEditLink) {
+      className += " card__edit";
     }
     return className;
   }

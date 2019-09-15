@@ -1,0 +1,22 @@
+<li class="list__item card">
+  <div class="card__image-wrapper">
+    <img [src]="props.mainImg" width="330" height="270" class="card__image">
+  </div>
+  <div class="card__inner">
+    <div class="card__info">
+      <p class="card__title">{{ props.title }}</p>
+      <p class="card__date">{{dates[0]}} - {{dates[1]}}</p>
+    </div>
+    <div class="card__other">
+      <div class="card__stars stars">
+        <svg-icon class="stars__svg" *ngFor="let number of numbers" [src]="star.icon"
+          [svgStyle]="{ 'width.px': 15, 'height.px': 15, 'fill': number > props.rating ? star.color : star.filledColor }">
+        </svg-icon>
+      </div>
+      <div class="card__edit">
+        <app-link [props]="linkProps"></app-link> 
+      </div>
+    </div>
+    <p class="card__description">{{ props.description }}</p>
+  </div>
+</li>

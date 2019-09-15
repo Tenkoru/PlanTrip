@@ -8,6 +8,7 @@ import { DashboardComponent } from "./dashboard.component";
 import { DashboardHeaderComponent } from "./dashboard-header/dashboard-header.component";
 import { DashboardMainComponent } from "./dashboard-main/dashboard-main.component";
 import { AngularSvgIconModule } from "angular-svg-icon";
+import { DashboardCardComponent } from './dashboard-main/dashboard-card/dashboard-card.component';
 
 @NgModule({
   imports: [CommonModule, AngularSvgIconModule, SharedModule],
@@ -18,6 +19,7 @@ import { AngularSvgIconModule } from "angular-svg-icon";
     DashboardSearchComponent,
     DashboardGridComponent,
     DashboardFilterComponent,
+    DashboardCardComponent
   ],
   exports: [DashboardComponent]
 })
