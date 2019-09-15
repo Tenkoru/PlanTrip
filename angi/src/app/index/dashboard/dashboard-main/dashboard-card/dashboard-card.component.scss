@@ -1,5 +1,9 @@
 @import "variables.scss";
 
+:host.card--grid {
+  width: 33%;
+}
+
 .card {
   display: flex;
   position: relative;
@@ -116,4 +120,63 @@
   margin-right: 3px;
   margin-left: 3px;
   transition: all 0.3s;
+}
+:host.card--grid {
+  .card {
+    flex-direction: column;
+    border: none;
+    padding-right: 15px;
+    padding-left: 15px;
+    @media (max-width: $screenTabletBig) {
+      width: 50%;
+    }
+    @media (max-width: $screenMobileS) {
+      width: 100%;
+    }
+  }
+  .card__image-wrapper {
+    width: 100%;
+    height: 205px;
+    @media (max-width: $screenDesktop) {
+      min-width: 100%;
+    }
+    @media (max-width: $screenMobileS) {
+      display: block;
+    }
+  }
+  .card__info {
+    padding-left: 0;
+  }
+  .card__title {
+    font-weight: 500;
+  }
+  .card__date {
+    margin-top: 5px;
+  }
+  .card__description {
+    display: none;
+  }
+  .card__other {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 30px);
+    min-height: 30px;
+    position: absolute;
+    top: 200px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(255, 255, 255, 0.75);
+    @media (max-width: $screenMobile) {
+      top: 185px;
+    }
+  }
+  .card__edit {
+    margin-top: 0;
+    margin-left: auto;
+  }
+  .stars {
+		margin-top: 0;
+		display: flex;
+		align-items: center;
+	}
 }

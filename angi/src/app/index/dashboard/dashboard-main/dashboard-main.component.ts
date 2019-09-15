@@ -14,6 +14,7 @@ export class DashboardMainComponent implements OnInit {
     isPast: false,
     isDeleted: false
   };
+  isGrid: boolean = true;
   futureListTitle: string = "Предстоящие поездки:";
   pastListTitle: string = "Прошедшие поездки:";
   deletedListTitle: string = "Удаленные поездки:";

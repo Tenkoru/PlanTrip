@@ -9,6 +9,7 @@ import * as moment from "moment";
 })
 export class DashboardCardComponent implements OnInit {
   @Input() props: Trip;
+  @Input() isGrid: boolean;
 
   numbers: number[];
   star = {
@@ -19,7 +20,8 @@ export class DashboardCardComponent implements OnInit {
   linkProps = {
     text: "",
     link: "",
-    isCardEditLink: true
+    isCardEditLink: true,
+    isGrid: false,
   };
   dates: string[];
   getLinkProps(): void {
@@ -39,5 +41,6 @@ export class DashboardCardComponent implements OnInit {
       moment.unix(this.props.date[0]).format("DD/MMM/YYYY"),
       moment.unix(this.props.date[1]).format("DD/MMM/YYYY")
     ];
+    this.linkProps.isGrid = this.isGrid;
   }
 }

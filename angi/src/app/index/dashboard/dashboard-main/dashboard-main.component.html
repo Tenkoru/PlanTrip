@@ -1,26 +1,26 @@
-<div class="list__type" *ngIf="statuses.isFuture">
+<div class="list__type" [ngClass]="{'list__type--grid': isGrid}" *ngIf="statuses.isFuture">
   <h3 class="list__type-title">{{ futureListTitle }}</h3>
   <ul class="list__list">
     <ng-container *ngFor="let trip of trips">
-      <app-dashboard-card *ngIf="trip.type === 'future'" [props]="trip"></app-dashboard-card>
+      <app-dashboard-card *ngIf="trip.type === 'future'" [ngClass]="{'card--grid': isGrid}" [isGrid]="isGrid" [props]="trip"></app-dashboard-card>
     </ng-container>
   </ul>
 </div>
 
-<div class="list__type" *ngIf="statuses.isPast">
+<div class="list__type" [ngClass]="{'list__type--grid': isGrid}" *ngIf="statuses.isPast">
   <h3 class="list__type-title">{{ pastListTitle }}</h3>
   <ul class="list__list">
     <ng-container *ngFor="let trip of trips">
-      <app-dashboard-card *ngIf="trip.type === 'past'" [props]="trip"></app-dashboard-card>
+      <app-dashboard-card *ngIf="trip.type === 'past'" [ngClass]="{'card--grid': isGrid}" [isGrid]="isGrid" [props]="trip"></app-dashboard-card>
     </ng-container>
   </ul>
 </div>
 
-<div class="list__type" *ngIf="statuses.isDeleted">
+<div class="list__type" [ngClass]="{'list__type--grid': isGrid}" *ngIf="statuses.isDeleted">
   <h3 class="list__type-title">{{ deletedListTitle }}</h3>
   <ul class="list__list">
     <ng-container *ngFor="let trip of trips">
-      <app-dashboard-card *ngIf="trip.type === 'deleted'" [props]="trip"></app-dashboard-card>
+      <app-dashboard-card *ngIf="trip.type === 'deleted'" [ngClass]="{'card--grid': isGrid}" [isGrid]="isGrid" [props]="trip"></app-dashboard-card>
     </ng-container>
   </ul>
 </div>

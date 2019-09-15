@@ -13,20 +13,17 @@ export class LinkComponent implements OnInit {
     link: string;
     isSidebarLink: boolean;
     isCardEditLink: boolean;
+    isGrid: boolean;
   };
 
-  getClass() {
-    let className: string = "link";
+  currentClasses: object;
 
-    if (this.props.isSidebarLink) {
-      className += " sidebar__link";
-    }
-
-    if (this.props.isCardEditLink) {
-      className += " card__edit";
-    }
-    return className;
+  ngOnInit() {
+    this.currentClasses = {
+      "link": true,
+      "sidebar__link": this.props.isSidebarLink,
+      "card__edit": this.props.isCardEditLink,
+      "grid": this.props.isGrid,
+    };
   }
-
-  ngOnInit() {}
 }

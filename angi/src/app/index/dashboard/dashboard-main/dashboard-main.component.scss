@@ -24,3 +24,15 @@
   padding-left: 0;
   list-style: none;
 }
+.list__type--grid {
+  margin-bottom: 35px;
+  @media (max-width: $screenTabletBig) {
+    margin-bottom: 25px;
+  }
+  .list__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
