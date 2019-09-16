@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Trip } from "../interfaces/trip";
 import { TRIPS } from "../data/data";
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: "root"
@@ -11,6 +12,13 @@ export class DashboardService {
     isPast: false,
     isDeleted: false
   };
+  isGrid: boolean = true;
+
+  gridDisplayChange: Subject<boolean> = new Subject<boolean>();
+
+  setGridDisplay(value: boolean) {
+    this.gridDisplayChange.next(value);
+  }
 
   getTrips(): Trip[] {
     return TRIPS;
@@ -18,6 +26,9 @@ export class DashboardService {
   getStatuses() {
     this.setStatusesStatus();
     return this.statuses;
+  }
+  getGridStatus(): boolean {
+    return this.isGrid;
   }
   setStatusesStatus(): void {
     const statuses = this.statuses;
@@ -40,5 +51,9 @@ export class DashboardService {
     this.statuses = statuses;
   }
 
-  constructor() {}
+  constructor() {
+    this.gridDisplayChange.subscribe((value) => {
+      this.isGrid = value;
+    });
+  }
 }

@@ -14,12 +14,17 @@ export class DashboardMainComponent implements OnInit {
     isPast: false,
     isDeleted: false
   };
-  isGrid: boolean = true;
+  isGrid: boolean;
   futureListTitle: string = "Предстоящие поездки:";
   pastListTitle: string = "Прошедшие поездки:";
   deletedListTitle: string = "Удаленные поездки:";
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private dashboardService: DashboardService) {
+    this.isGrid = dashboardService.isGrid;
+    this.dashboardService.gridDisplayChange.subscribe(value => {
+      this.isGrid = value;
+    });
+  }
 
   getTrips(): void {
     this.statuses = this.dashboardService.getStatuses();
@@ -29,4 +34,5 @@ export class DashboardMainComponent implements OnInit {
   ngOnInit() {
     this.getTrips();
   }
+
 }

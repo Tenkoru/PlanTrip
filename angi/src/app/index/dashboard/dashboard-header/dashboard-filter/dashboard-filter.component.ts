@@ -12,6 +12,10 @@ export class DashboardFilterComponent implements OnInit {
   isArrowUp: boolean = true;
   filterOptions: object[] = [
     {
+      text: "Сортировать по названию",
+      value: "name",
+    },
+    {
       text: "Сортировать по дате",
       value: "date",
     },
