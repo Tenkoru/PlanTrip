@@ -14,6 +14,9 @@ import { IndexComponent } from "./index.component";
 import { SidebarNavigationComponent } from "./sidebar/sidebar-navigation/sidebar-navigation.component";
 import { SidebarBottomComponent } from "./sidebar/sidebar-bottom/sidebar-bottom.component";
 import { SidebarNewComponent } from "./sidebar/sidebar-new/sidebar-new.component";
+import { DetailsComponent } from './details/details.component';
+import { DetailsHeaderComponent } from './details/details-header/details-header.component';
+import { DetailsMainComponent } from './details/details-main/details-main.component';
 
 @NgModule({
   imports: [
@@ -33,7 +36,10 @@ import { SidebarNewComponent } from "./sidebar/sidebar-new/sidebar-new.component
     SidebarComponent,
     SidebarNavigationComponent,
     SidebarBottomComponent,
-    SidebarNewComponent
+    SidebarNewComponent,
+    DetailsComponent,
+    DetailsHeaderComponent,
+    DetailsMainComponent,
   ]
 })
 export class IndexModule {}
