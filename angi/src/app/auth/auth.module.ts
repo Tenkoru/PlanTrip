@@ -1,3 +1,4 @@
+import { AuthRoutes } from './auth.routing';
 import { AuthLinksComponent } from "./auth-links/auth-links.component";
 import { AuthTitleComponent } from "./auth-title/auth-title.component";
 import { LoginSocialComponent } from "./login-social/login-social.component";
@@ -10,14 +11,13 @@ import { AuthComponent } from "./auth.component";
 import { RegisterComponent } from "./register/register.component";
 import { ResetComponent } from "./reset/reset.component";
 import { AngularSvgIconModule } from "angular-svg-icon";
-import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     AngularSvgIconModule,
-    AppRoutingModule,
+    AuthRoutes,
   ],
   declarations: [
     AuthComponent,
