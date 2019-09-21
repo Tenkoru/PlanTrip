@@ -19,6 +19,10 @@ export class DashboardService {
   UserId: number = 1;
   private usersUrl = "api/USERS";
 
+  httpOptions = {
+    headers: new HttpHeaders({ "Content-Type": "application/json" })
+  };
+
   gridDisplayChange: Subject<boolean> = new Subject<boolean>();
   statusesChange: Subject<any> = new Subject<any>();
 
@@ -30,10 +34,15 @@ export class DashboardService {
   }
 
   getUserData() {
-    const url = `${this.usersUrl}/${this.UserId}/trips/1`;
+    const url = `${this.usersUrl}/${this.UserId}`;
     return this.http
       .get<User>(url)
       .pipe(catchError(this.handleError<User>(`getHero id=${this.UserId}`)));
+  }
+  updateUserData(user: User): Observable<any> {
+    return this.http
+      .put(this.usersUrl, user, this.httpOptions)
+      .pipe(catchError(this.handleError<any>(`updateUser`)));
   }
   setStatusesStatus(): void {
     const statuses = {
