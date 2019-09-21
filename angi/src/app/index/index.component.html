@@ -2,8 +2,7 @@
 
 <main>
     <div class="container">
-        <app-dashboard></app-dashboard>
-        <!-- <app-details></app-details> -->
+        <router-outlet></router-outlet>
     </div>
 </main>
 <app-sidebar [ngClass]="{'--open': isSidebarOpen}"></app-sidebar>

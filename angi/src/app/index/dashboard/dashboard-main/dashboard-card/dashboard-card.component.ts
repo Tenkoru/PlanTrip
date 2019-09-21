@@ -35,6 +35,10 @@ export class DashboardCardComponent implements OnInit {
       .map((x, i) => i + 1);
   }
 
+  setLinkPath() {
+    this.linkProps.link = `../details/${this.props.id}`;
+  }
+
   ngOnInit() {
     this.getLinkProps();
     this.dates = [
@@ -42,5 +46,6 @@ export class DashboardCardComponent implements OnInit {
       moment.unix(this.props.date[1]).format("DD/MMM/YYYY")
     ];
     this.linkProps.isGrid = this.isGrid;
+    this.setLinkPath();
   }
 }

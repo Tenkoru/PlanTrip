@@ -5,10 +5,9 @@ import { AuthComponent } from "./auth/auth.component";
 import { IndexComponent } from "./index/index.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: 'index', pathMatch: "full" },
+  { path: "", redirectTo: 'index/dashboard', pathMatch: "full" },
   { path: "auth", component: AuthComponent },
   { path: "index", component: IndexComponent },
-
 ];
 
 @NgModule({

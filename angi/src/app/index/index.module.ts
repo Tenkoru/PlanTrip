@@ -4,7 +4,6 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
 import { FooterComponent } from "./footer/footer.component";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { HeaderBurgerComponent } from "./header/header-top/header-burger/header-burger.component";
-import { AppRoutingModule } from "./../app-routing.module";
 import { HeaderBottomComponent } from "./header/header-bottom/header-bottom.component";
 import { HeaderTopComponent } from "./header/header-top/header-top.component";
 import { HeaderComponent } from "./header/header.component";
@@ -17,14 +16,15 @@ import { SidebarNewComponent } from "./sidebar/sidebar-new/sidebar-new.component
 import { DetailsComponent } from './details/details.component';
 import { DetailsHeaderComponent } from './details/details-header/details-header.component';
 import { DetailsMainComponent } from './details/details-main/details-main.component';
+import { IndexRouts } from './index.routing';
 
 @NgModule({
   imports: [
     CommonModule,
-    AppRoutingModule,
     AngularSvgIconModule,
     SharedModule,
-    DashboardModule
+    DashboardModule,
+    IndexRouts,
   ],
   declarations: [
     IndexComponent,
