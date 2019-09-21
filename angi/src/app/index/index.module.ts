@@ -14,9 +14,10 @@ import { SidebarNavigationComponent } from "./sidebar/sidebar-navigation/sidebar
 import { SidebarBottomComponent } from "./sidebar/sidebar-bottom/sidebar-bottom.component";
 import { SidebarNewComponent } from "./sidebar/sidebar-new/sidebar-new.component";
 import { DetailsComponent } from './details/details.component';
-import { DetailsHeaderComponent } from './details/details-header/details-header.component';
 import { DetailsMainComponent } from './details/details-main/details-main.component';
 import { IndexRouts } from './index.routing';
+import { FormsModule } from '@angular/forms';
+import { DetailsControlsComponent } from './details/details-controls/details-controls.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { IndexRouts } from './index.routing';
     SharedModule,
     DashboardModule,
     IndexRouts,
+    FormsModule,
   ],
   declarations: [
     IndexComponent,
@@ -38,8 +40,8 @@ import { IndexRouts } from './index.routing';
     SidebarBottomComponent,
     SidebarNewComponent,
     DetailsComponent,
-    DetailsHeaderComponent,
     DetailsMainComponent,
+    DetailsControlsComponent,
   ]
 })
 export class IndexModule {}

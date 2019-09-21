@@ -7,6 +7,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 import { AppComponent } from "./app.component";
 import { InMemoryDataService } from "./InMemoryData.service";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { InMemoryDataService } from "./InMemoryData.service";
     HttpClientModule,
     AppRoutingModule,
     IndexModule,
+    FormsModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
       passThruUnknownUrl: true,

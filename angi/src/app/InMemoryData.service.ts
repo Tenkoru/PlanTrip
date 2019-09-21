@@ -27,7 +27,7 @@ export class InMemoryDataService implements InMemoryDbService {
             title: "Венеция",
             date: [1576800000, 1576972800],
             mainImg: "assets/images/Venice.jpg",
-            description: "Поездка в Венецию",
+            description: "",
             type: "future",
             rating: 4,
             places: [{}]
@@ -37,7 +37,6 @@ export class InMemoryDataService implements InMemoryDbService {
             title: "Испания",
             date: [1569888000, 1570233600],
             mainImg: "assets/images/spain.jpg",
-            description: "Поездка в Испанию",
             type: "future",
             rating: 3,
             places: [{}]

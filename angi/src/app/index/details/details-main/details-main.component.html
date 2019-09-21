@@ -1,3 +1,19 @@
-<p>
-  details-main works!
-</p>
+<form class="details__form">
+  <div class="details__image">
+    <img [src]="props.mainImg" width="455" height="300" alt="Usa">
+  </div>
+  <div class="details__info">
+    <label class="label details__info-label">
+      <input type="text" class="details__input details__subtitle" name="title" [value]="props.title">
+    </label>
+    <label class="label details__info-label details__info-label--lessMb">
+      <input type="text" class="details__input details__date" name="dates" [value]="date || 'Дата'">
+    </label>
+    <label class="label details__info-label">
+      <span class="details__description-wrapper">
+        <span class="details__description">Описание</span>
+      </span>
+      <textarea class="textarea details__textarea" [value]="props.description || ''"></textarea>
+    </label>
+  </div>
+</form>
