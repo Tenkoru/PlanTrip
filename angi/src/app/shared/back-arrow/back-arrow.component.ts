@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-back-arrow',
@@ -12,6 +13,7 @@ export class BackArrowComponent implements OnInit {
     link: string;
     isButton: boolean;
   }
+  @Output() buttonClickEvent = new EventEmitter<void>();
 
   image: string= "./assets/icons/backArrow.svg";
   iconColo: string = '#435A59';
@@ -24,6 +26,11 @@ export class BackArrowComponent implements OnInit {
     }
     return className;
   }
+
+  buttonClickHandler() {
+    this.buttonClickEvent.emit();
+  }
+  
 
   constructor() { }
 

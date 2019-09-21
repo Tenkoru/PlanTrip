@@ -42,7 +42,6 @@ app-back-arrow.isHidden {
 .sidebar__top {
   display: flex;
   align-items: center;
-  cursor: pointer;
   margin-bottom: 15px;
   @media (max-width: $screenMobileS) {
     margin-bottom: 10px;

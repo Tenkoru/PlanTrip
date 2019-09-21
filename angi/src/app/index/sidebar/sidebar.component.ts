@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
   backArrowProps = {
     className: "sidebar__arrow",
     link: "javascript:void(0)",
-    isButton: true
+    isButton: true,
   };
   userName: string;
   closeButtonImg: string = "assets/icons/closeIcon.svg";
@@ -23,6 +23,10 @@ export class SidebarComponent implements OnInit {
 
   closeSidebar() {
     this.sidebarService.setSidebarStatus(false);
+  }
+  closeCreateNewMenu() {
+    this.isNavHidden = false;
+    this.isNewHidden = true;
   }
   openCreateNewMenu() {
     this.isNavHidden = true;
