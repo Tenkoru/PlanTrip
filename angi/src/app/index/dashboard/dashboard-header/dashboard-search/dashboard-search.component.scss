@@ -1,5 +1,13 @@
 @import "variables.scss";
 
+:host {
+  @media (max-width: $screenMobileS) {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
 .label {
   width: 100%;
   position: relative;

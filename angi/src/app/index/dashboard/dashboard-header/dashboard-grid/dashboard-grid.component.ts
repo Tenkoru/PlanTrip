@@ -1,14 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { DashboardService } from "src/app/services/dashboard.service";
 
-
 @Component({
   selector: "app-dashboard-grid",
   templateUrl: "./dashboard-grid.component.html",
   styleUrls: ["./dashboard-grid.component.scss"]
 })
 export class DashboardGridComponent implements OnInit {
-
   activeButton: string = "grid";
   iconColor: string = "#456462";
   iconActiveColor: string = "#ffffff";
@@ -16,13 +14,13 @@ export class DashboardGridComponent implements OnInit {
   buttons: object[] = [
     {
       type: "grid",
-      icon: "assets/icons/grid.svg",
+      icon: "assets/icons/grid.svg"
     },
     {
       type: "list",
-      icon: "assets/icons/list.svg",
+      icon: "assets/icons/list.svg"
     }
-  ]
+  ];
 
   changeTableDisplay(type: string): void {
     this.activeButton = type;
@@ -31,11 +29,18 @@ export class DashboardGridComponent implements OnInit {
     if (type === "grid") {
       isGrid = true;
     }
-    
+
     this.dashboardService.setGridDisplay(isGrid);
+  }
+  setGridStatus(): void {
+    this.dashboardService.gridDisplayChange.subscribe(value => {
+      this.activeButton = value ? "grid" : "list";
+    });
   }
 
   constructor(private dashboardService: DashboardService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setGridStatus();
+  }
 }

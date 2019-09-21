@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 import { DashboardService } from "src/app/services/dashboard.service";
 import { Trip } from "src/app/app.trip";
 
@@ -21,6 +21,13 @@ export class DashboardMainComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService) {
     this.isGrid = dashboardService.isGrid;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if (window.matchMedia("(max-width: 640px)").matches && this.isGrid === true) {
+      this.dashboardService.setGridDisplay(false);
+    }
   }
 
   getTrips(): void {
