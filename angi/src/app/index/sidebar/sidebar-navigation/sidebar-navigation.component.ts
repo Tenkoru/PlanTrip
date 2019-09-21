@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-sidebar-navigation",
@@ -6,24 +6,29 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./sidebar-navigation.component.scss"]
 })
 export class SidebarNavigationComponent implements OnInit {
-  
+  @Output() openCreateNewMenu = new EventEmitter<boolean>();
+
   links = [
     {
       text: "Мои друзья",
       link: "friends",
-      isSidebarLink: true,
+      isSidebarLink: true
     },
     {
       text: "Мои поездки",
       link: "dashboard",
-      isSidebarLink: true,
-    },
-    {
-      text: "Создать новую поездку",
-      link: "new-trip",
-      isSidebarLink: true,
+      isSidebarLink: true
     }
   ];
+  linkCreateNew = {
+    text: "Создать новую поездку",
+    link: "",
+    isSidebarLink: true
+  };
+  createNewButtonText: string = "Создать новую поездку";
+  openMenu(isOpened: boolean) {
+    this.openCreateNewMenu.emit(isOpened);
+  }
 
   constructor() {}
 

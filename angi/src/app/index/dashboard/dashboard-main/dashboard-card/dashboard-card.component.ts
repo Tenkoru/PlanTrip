@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Trip } from "src/app/interfaces/trip";
+import { Trip } from "src/app/app.trip";
 import * as moment from "moment";
 
 @Component({

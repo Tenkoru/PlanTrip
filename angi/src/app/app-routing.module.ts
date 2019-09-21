@@ -5,7 +5,7 @@ import { AuthComponent } from "./auth/auth.component";
 import { IndexComponent } from "./index/index.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: '/auth/login', pathMatch: "full" },
+  { path: "", redirectTo: 'index', pathMatch: "full" },
   { path: "auth", component: AuthComponent },
   { path: "index", component: IndexComponent },
 

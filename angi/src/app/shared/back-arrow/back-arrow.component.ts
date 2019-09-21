@@ -10,6 +10,7 @@ export class BackArrowComponent implements OnInit {
   @Input() props: {
     className: string;
     link: string;
+    isButton: boolean;
   }
 
   image: string= "./assets/icons/backArrow.svg";

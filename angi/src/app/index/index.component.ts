@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from './sidebar.service';
 
 @Component({
   selector: 'app-index',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  isSidebarOpen: boolean = false;
+
+  constructor(private sidebarService: SidebarService) { }
 
   ngOnInit() {
+    this.isSidebarOpen = this.sidebarService.getSidebarStatus();
+    this.sidebarService.sidebarDisplayChange.subscribe(value => {
+      this.isSidebarOpen = value;
+    });
   }
 
 }

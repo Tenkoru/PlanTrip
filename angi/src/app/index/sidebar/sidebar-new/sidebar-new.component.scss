@@ -1,5 +1,8 @@
 @import "variables.scss";
 
+:host.isHidden {
+  display: none;
+}
 .sidebar__form {
   display: flex;
   flex-wrap: wrap;

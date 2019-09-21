@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { DashboardService } from "src/app/services/dashboard.service";
-import { Trip } from "src/app/interfaces/trip";
+import { Trip } from "src/app/app.trip";
 
 @Component({
   selector: "app-dashboard-main",
@@ -21,18 +21,27 @@ export class DashboardMainComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService) {
     this.isGrid = dashboardService.isGrid;
+  }
+
+  getTrips(): void {
+    this.dashboardService.getUserData().subscribe(user => {
+      this.trips = user.trips;
+    });
+  }
+  setGridStatus(): void {
     this.dashboardService.gridDisplayChange.subscribe(value => {
       this.isGrid = value;
     });
   }
-
-  getTrips(): void {
-    this.statuses = this.dashboardService.getStatuses();
-    this.trips = this.dashboardService.getTrips();
+  getStatuses(): void {
+    this.dashboardService.statusesChange.subscribe(value => {
+      this.statuses = value;
+    })
   }
 
   ngOnInit() {
+    this.setGridStatus();
     this.getTrips();
+    this.getStatuses();
   }
-
 }
