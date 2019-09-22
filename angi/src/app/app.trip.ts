@@ -1,4 +1,4 @@
-import { Place } from './app.place';
+import { Place } from './index/details/app.place';
 
 export interface Trip {
     id: number;
