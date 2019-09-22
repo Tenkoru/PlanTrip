@@ -1,5 +1,10 @@
 <div class="details__stars stars">
-  <svg-icon (click)="starClickHandler(id)" class="stars__svg" *ngFor="let number of numbers, index as id" [src]="star.icon"
+  <svg-icon (click)="starClickHandler(id)" class="stars__svg" *ngFor="let number of numbers, index as id"
+    [src]="star.icon"
     [svgStyle]="{ 'width.px': star.size, 'height.px': star.size, 'fill': number > rating ? star.color : star.filledColor }">
   </svg-icon>
+</div>
+<div class="details__controls">
+  <app-button [props]="saveButton"></app-button>
+  <app-button [props]="deleteButton"></app-button>
 </div>

@@ -36,6 +36,10 @@
     padding-left: 15px;
     padding-right: 15px;
   }
+  @media (max-width: $screenMobileS) {
+      padding-left: 0;
+      padding-right: 0;
+  }
 }
 .label {
     width: 100%;
@@ -54,15 +58,14 @@
     @media (max-width: $screenTabletBig) {
         margin-bottom: 20px;
     }
-}
-.details__info-label--lessMb {
-    margin-bottom: 20px;
+    @media (max-width: $screenMobileS) {
+        margin-bottom: 10px;
+    }
 }
 .details__input {
     width: 100%;
     max-width: 100%;
     text-overflow: ellipsis;
-    padding-right: 35px;
     font-family: $mainFont;
     border: none;
     background-color: transparent;
@@ -73,11 +76,14 @@
 .details__subtitle {
     font-weight: 600;
     font-size: 35px;
+    @media (max-width: $screenMobileS) {
+        font-size: 24px;
+    }
 }
 .details__date {
     font-size: 2.1875rem;
     @media (max-width: $screenMobileS) {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 }
 .label:last-child {

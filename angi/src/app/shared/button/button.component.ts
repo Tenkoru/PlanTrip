@@ -14,6 +14,7 @@ export class ButtonComponent implements OnInit {
     type: string;
     fade: boolean;
     isSidebar: boolean;
+    isDetailsButton: boolean;
   };
 
   getClass(): string {
@@ -29,6 +30,10 @@ export class ButtonComponent implements OnInit {
 
     if (this.props.isSidebar) {
       className += " sidebar__new-submit";
+    }
+
+    if (this.props.isDetailsButton) {
+      className += " details__button";
     }
     return className;
   }

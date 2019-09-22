@@ -17,6 +17,18 @@ export class DetailsControlsComponent implements OnInit {
     size: 30,
   };
   numbers: number[];
+
+  saveButton = {
+    text: "Сохранить",
+    type: "submit",
+    isDetailsButton: true,
+  }
+
+  deleteButton = {
+    text: "Удалить",
+    type: "submit",
+    isDetailsButton: true,
+  }
   
   starClickHandler(id: number) {
     this.starClickEmitter.emit(id + 1);

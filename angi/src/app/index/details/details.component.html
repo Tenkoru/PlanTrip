@@ -1,2 +1,3 @@
 <app-details-main *ngIf="trip" [props]="trip"></app-details-main>
 <app-details-controls *ngIf="trip" [rating]="trip.rating" (starClickEmitter)="starClickEvent($event)"></app-details-controls>
+<app-details-bottom></app-details-bottom>

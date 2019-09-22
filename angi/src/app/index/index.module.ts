@@ -1,3 +1,4 @@
+import { DetailsListComponent } from './details/details-bottom/details-list/details-list.component';
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { SharedModule } from "./../shared/shared.module";
 import { SidebarComponent } from "./sidebar/sidebar.component";
@@ -18,6 +19,8 @@ import { DetailsMainComponent } from './details/details-main/details-main.compon
 import { IndexRouts } from './index.routing';
 import { FormsModule } from '@angular/forms';
 import { DetailsControlsComponent } from './details/details-controls/details-controls.component';
+import { DetailsSearchComponent } from './details/details-bottom/details-search/details-search.component';
+import { DetailsBottomComponent } from './details/details-bottom/details-bottom.component';
 
 @NgModule({
   imports: [
@@ -42,6 +45,9 @@ import { DetailsControlsComponent } from './details/details-controls/details-con
     DetailsComponent,
     DetailsMainComponent,
     DetailsControlsComponent,
+    DetailsSearchComponent,
+    DetailsListComponent,
+    DetailsBottomComponent,
   ]
 })
 export class IndexModule {}

@@ -47,3 +47,10 @@
 .auth__button--fade:hover {
   background-color: $authButtonBgFadeHoverColor;
 }
+.details__button {
+  width: 210px;
+  margin-bottom: 12px;
+  @media (max-width: $screenMobileS) {
+    width: 100%;
+  }
+}
