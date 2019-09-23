@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Trip } from 'src/app/app.trip';
 
 @Component({
   selector: 'app-details-bottom',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./details-bottom.component.scss']
 })
 export class DetailsBottomComponent implements OnInit {
+
+  @Input() props: Trip;
 
   detailsBottomTitle: string = "Подробный план моего путешествия:";
 

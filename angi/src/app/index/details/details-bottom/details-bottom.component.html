@@ -1,3 +1,3 @@
 <app-details-search></app-details-search>
 <h2>{{detailsBottomTitle}}</h2>
-<app-details-list></app-details-list>
+<app-details-list *ngIf="props.places.length" [list]=props.places></app-details-list>

@@ -14,7 +14,7 @@ export class InMemoryDataService implements InMemoryDbService {
         trips: [
           {
             id: 1,
-            title: "Америка",
+            title: "Северная Америка",
             date: [1568494800, 1573689600],
             mainImg: "assets/images/usa.jpg",
             description: "Поездка в Америку",
@@ -24,11 +24,11 @@ export class InMemoryDataService implements InMemoryDbService {
               {
                 name: "Америка",
                 date: [1568494800, 1573689600],
-                region: [
+                regions: [
                   {
                     name: "Нью Йорк",
                     date: [1568494800, 1573689600],
-                    location: [
+                    locations: [
                       {
                         name: "Центральный парк",
                         date: [1568494800, 1573689600],
@@ -37,7 +37,7 @@ export class InMemoryDataService implements InMemoryDbService {
                       },
                       {
                         name: "Статуя Свободы",
-                        date: [1568494123, 1573689345],
+                        date: [1568494123, ],
                         description:
                           "Ста́туя Свобо́ды (англ. Statue of Liberty, полное название — «Свобо́да, озаря́ющая мир», англ. Liberty Enlightening the World) — колоссальная скульптура в стиле неоклассицизма, расположенная в США на острове Свободы, находящемся в Верхней Нью-Йоркской бухте примерно в 3 километрах к юго-западу от южной оконечности острова Манхэттен. Была сооружена как подарок США от Франции ко Всемирной выставке 1876 года и столетию американской независимости.                          "
                       }
@@ -46,7 +46,7 @@ export class InMemoryDataService implements InMemoryDbService {
                   {
                     name: "Чикаго",
                     date: [1576800000, 1576972800],
-                    location: [
+                    locations: [
                       {
                         name: "Миллениум-парк",
                         date: [1569888000, 1570233600],
@@ -54,6 +54,18 @@ export class InMemoryDataService implements InMemoryDbService {
                           "Миллениум-парк — общественный парк города Чикаго, входящий в состав паркового комплекса Грант-парк, располагающегося на берегу озера Мичиган. Проектные работы начались в октябре 1997 года."
                       }
                     ]
+                  }
+                ]
+              },
+              {
+                name: "Канада",
+                date: [1569888000, 1570233600],
+                regions: [
+                  {
+                    name: "Ванкувер",
+                    locations: [{
+                      name: "Стэнли Парк",
+                    }],
                   }
                 ]
               }

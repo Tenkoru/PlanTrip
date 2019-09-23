@@ -1,3 +1,69 @@
-<p>
-  details-list works!
-</p>
+<ul class="details__table destinations">
+    <ng-container *ngIf="list">
+        <li *ngFor="let place of list" class="destinations__place destinations__place--country">
+            <div class="destinations__place-info">
+                <button [ngClass]="{'destination__dropdown' : true, 'destination__dropdown--up' : place.hidden}"
+                    (click)="dropdownButtonClickListener(place)" type="button">
+                    <svg-icon [src]="dropdownIconImg"
+                        [svgStyle]="{ 'width.px': dropdownIconBigSize, 'height.px': dropdownIconBigSize, 'fill': dropdownIconColor }">
+                    </svg-icon>
+                </button>
+                <p *ngIf="place.name" class="destinations__name">{{place.name}}</p>
+                <p *ngIf="place.date" class="destinations__date">{{getDate(place.date)}}</p>
+                <div class="destinations__controls">
+                    <button class="destination__edit" type="button">
+                        <svg-icon [src]="editIconImage" [svgStyle]="{ 'width.px': editIconsSize, 'height.px': editIconsSize, 'fill': editIconsColor}"></svg-icon>
+                    </button>
+                </div>
+            </div>
+            <ul *ngIf="place.regions" [ngClass]="{'destinations__cities': true,
+            'destinations--hidden': place.hidden}">
+                <li *ngFor="let region of place.regions" class="destinations__place destinations__place--city">
+                    <div class="destinations__place-info">
+                        <button [ngClass]="{'destination__dropdown' : true, 'destination__dropdown--up' : region.hidden}"
+                            (click)="dropdownButtonClickListener(region)"
+                            type="button">
+                            <svg-icon [src]="dropdownIconImg"
+                                [svgStyle]="{ 'width.px': dropdownIconMediumSize, 'height.px': dropdownIconMediumSize, 'fill': dropdownIconColor }">
+                            </svg-icon>
+                        </button>
+                        <p *ngIf="region.name" class="destinations__name">{{region.name}}</p>
+                        <p *ngIf="region.date" class="destinations__date">{{getDate(region.date)}}</p>
+                        <div class="destinations__controls">
+                            <button class="destination__edit" type="button">
+                                <svg-icon [src]="editIconImage" [svgStyle]="{ 'width.px': editIconsSize, 'height.px': editIconsSize, 'fill': editIconsColor}"></svg-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <ul *ngIf="region.locations" [ngClass]="{'destinations__places': true,
+                    'destinations--hidden': region.hidden}">
+                        <li *ngFor="let location of region.locations"
+                            class="destinations__place destinations__place--place">
+                            <div class="destinations__place-info">
+                                <button
+                                    [ngClass]="{'destination__dropdown' : true, 'destination__dropdown--up' : location.hidden}"
+                                    (click)="dropdownButtonClickListener(location)"
+                                    type="button">
+                                    <svg-icon [src]="dropdownIconImg"
+                                        [svgStyle]="{ 'width.px': dropdownIconSmallSize, 'height.px': dropdownIconSmallSize, 'fill': dropdownIconColor }">
+                                    </svg-icon>
+                                </button>
+                                <p *ngIf="location.name" class="destinations__name">{{location.name}}</p>
+                                <p *ngIf="location.date" class="destinations__date">{{getDate(location.date)}}</p>
+                                <div class="destinations__controls">
+                                    <button class="destination__edit" type="button">
+                                        <svg-icon [src]="editIconImage" [svgStyle]="{ 'width.px': editIconsSize, 'height.px': editIconsSize, 'fill': editIconsColor}"></svg-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <div *ngIf="location.description" [ngClass]="{'destinations__place-description': true,
+                            'destinations--hidden': location.hidden}">
+                                <p class="destinations__place-text">{{location.description}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ng-container>
+</ul>
