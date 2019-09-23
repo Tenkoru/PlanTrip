@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/authentication/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,13 +14,15 @@ export class SidebarBottomComponent implements OnInit {
       text: "Выйти из аккаунта",
       link: "auth",
     },
-    {
-      text: "Сменить пароль",
-      link: "auth",
-    },
   ];
 
-  constructor() { }
+  logoutClickHandler() {
+    this.authService.doLogout().subscribe(() => {
+      this.router.navigateByUrl('/auth');
+    })
+  }
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }

@@ -23,9 +23,12 @@ export class DashboardMainComponent implements OnInit {
     this.isGrid = dashboardService.isGrid;
   }
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener("window:resize", ["$event"])
   onResize() {
-    if (window.matchMedia("(max-width: 640px)").matches && this.isGrid === true) {
+    if (
+      window.matchMedia("(max-width: 640px)").matches &&
+      this.isGrid === true
+    ) {
       this.dashboardService.setGridDisplay(false);
     }
   }
@@ -43,7 +46,7 @@ export class DashboardMainComponent implements OnInit {
   getStatuses(): void {
     this.dashboardService.statusesChange.subscribe(value => {
       this.statuses = value;
-    })
+    });
   }
 
   ngOnInit() {
@@ -51,4 +54,5 @@ export class DashboardMainComponent implements OnInit {
     this.getTrips();
     this.getStatuses();
   }
+  ngOnDestroy() {}
 }

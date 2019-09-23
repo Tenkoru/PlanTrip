@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Trip } from "../app.trip";
 import { Subject, Observable, of } from "rxjs";
 import { Component, OnInit } from "@angular/core";
-import { User } from "../app.user";
+import { User } from "../user/app.user";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError, map, tap } from "rxjs/operators";
 

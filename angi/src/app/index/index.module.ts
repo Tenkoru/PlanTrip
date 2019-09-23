@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './../app-routing.module';
 import { DetailsListComponent } from './details/details-bottom/details-list/details-list.component';
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { SharedModule } from "./../shared/shared.module";
@@ -16,7 +17,6 @@ import { SidebarBottomComponent } from "./sidebar/sidebar-bottom/sidebar-bottom.
 import { SidebarNewComponent } from "./sidebar/sidebar-new/sidebar-new.component";
 import { DetailsComponent } from './details/details.component';
 import { DetailsMainComponent } from './details/details-main/details-main.component';
-import { IndexRouts } from './index.routing';
 import { FormsModule } from '@angular/forms';
 import { DetailsControlsComponent } from './details/details-controls/details-controls.component';
 import { DetailsSearchComponent } from './details/details-bottom/details-search/details-search.component';
@@ -28,7 +28,7 @@ import { DetailsBottomComponent } from './details/details-bottom/details-bottom.
     AngularSvgIconModule,
     SharedModule,
     DashboardModule,
-    IndexRouts,
+    AppRoutingModule,
     FormsModule,
   ],
   declarations: [

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-link",
@@ -15,8 +15,13 @@ export class LinkComponent implements OnInit {
     isCardEditLink: boolean;
     isGrid: boolean;
   };
+  @Output() clickEventEmitter = new EventEmitter<void>();
 
   currentClasses: object;
+
+  linkClickHandler() {
+    this.clickEventEmitter.emit();
+  }
 
   ngOnInit() {
     this.currentClasses = {

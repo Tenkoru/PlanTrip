@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-button",
@@ -16,6 +16,7 @@ export class ButtonComponent implements OnInit {
     isSidebar: boolean;
     isDetailsButton: boolean;
   };
+  @Output() eventEmitter = new EventEmitter<void>();
 
   getClass(): string {
     let className: string = "button";
@@ -36,6 +37,10 @@ export class ButtonComponent implements OnInit {
       className += " details__button";
     }
     return className;
+  }
+
+  buttonClickHandler() {
+    this.eventEmitter.emit();
   }
 
   getText(): string {

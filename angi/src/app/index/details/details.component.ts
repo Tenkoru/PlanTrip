@@ -1,4 +1,4 @@
-import { User } from "./../../app.user";
+import { User } from "../../user/app.user";
 import { Component, OnInit } from "@angular/core";
 import { Trip } from "src/app/app.trip";
 import { DashboardService } from "src/app/services/dashboard.service";

@@ -1,3 +1,4 @@
 <a href="javascript:void(0)"
     [ngClass]="currentClasses"
-    [routerLink]="props.link">{{props.text}}</a>
+    [routerLink]="props.link"
+    (click)="linkClickHandler()">{{props.text}}</a>

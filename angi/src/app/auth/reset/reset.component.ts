@@ -43,7 +43,7 @@ export class ResetComponent implements OnInit {
 
   backArrowProps = {
     className: "auth__back-arrow",
-    link: "",
+    link: "../login",
   };
 
   titleProps = {
