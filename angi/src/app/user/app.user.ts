@@ -1,4 +1,4 @@
-import { Trip } from './app.trip';
+import { Trip } from '../app.trip';
 
 export interface User {
     id: number,
