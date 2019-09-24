@@ -1,6 +1,7 @@
-import { User } from "../../user/app.user";
+import { Trip } from "./../../app.trip";
+import { DatabaseService } from "src/app/database/database.service";
+import { UserService } from "./../../user/user.service";
 import { Component, OnInit } from "@angular/core";
-import { Trip } from "src/app/app.trip";
 import { DashboardService } from "src/app/services/dashboard.service";
 import { ActivatedRoute } from "@angular/router";
 
@@ -11,12 +12,12 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class DetailsComponent implements OnInit {
   trip: Trip;
-  user: User;
+  trips: Trip[];
   tripId: number = +this.route.snapshot.paramMap.get("id");
   initData(): void {
     this.dashboardService.getUserData().subscribe(user => {
-      this.user = user;
-      this.trip = user.trips.find(item => item.id === this.tripId);
+      this.getTrips();
+      // this.trip = user.trips.find(item => item.id === this.tripId);
     });
   }
   updateUserRating(): void {
@@ -24,14 +25,36 @@ export class DetailsComponent implements OnInit {
   }
   starClickEvent($event: number) {
     this.trip.rating = $event;
-    this.dashboardService.updateUserData(this.user).subscribe(() => {
-      this.initData();
-    })
+  }
+  deleteButtonHandler() {
+    this.trip.type = "deleted";
+  }
+  saveButtonHandler() {
+    this.sendTripsData();
+  }
+  sendTripsData() {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.databaseService.updateTripsData(user.email, {trips: this.trips});
+    });
+  }
+  getTrips(): void {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.databaseService.getUserData(user.email).subscribe(userdata => {
+        if (userdata.payload.data()) {
+          this.trips = userdata.payload
+            .data()
+            .trips;
+          this.trip = this.trips.find(item => item.id === this.tripId);
+        }
+      });
+    });
   }
 
   constructor(
     private dashboardService: DashboardService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private databaseService: DatabaseService,
+    private userService: UserService
   ) {}
   ngOnInit() {
     this.initData();

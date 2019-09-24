@@ -1,4 +1,4 @@
-import { Trip } from 'src/app/app.trip';
+import { Trip } from "src/app/app.trip";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
@@ -9,27 +9,36 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 export class DetailsControlsComponent implements OnInit {
   @Input() rating: number = 0;
   @Output() starClickEmitter = new EventEmitter<number>();
+  @Output() deleteButtonEmitter = new EventEmitter<any>();
+  @Output() saveButtonEmitter = new EventEmitter<any>();
 
   star = {
     icon: "assets/icons/star.svg",
     color: "#02332f",
     filledColor: "#019287",
-    size: 30,
+    size: 30
   };
   numbers: number[];
 
   saveButton = {
     text: "Сохранить",
     type: "submit",
-    isDetailsButton: true,
-  }
+    isDetailsButton: true
+  };
 
   deleteButton = {
     text: "Удалить",
     type: "submit",
-    isDetailsButton: true,
+    isDetailsButton: true
+  };
+
+  saveButtonHandler() {
+    this.saveButtonEmitter.emit();
   }
-  
+  deleteButtonHandler() {
+    this.deleteButtonEmitter.emit();
+  }
+
   starClickHandler(id: number) {
     this.starClickEmitter.emit(id + 1);
   }

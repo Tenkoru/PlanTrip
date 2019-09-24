@@ -13,4 +13,7 @@ export class DatabaseService {
   getUserData(userId: string): Observable<Action<firestore.DocumentSnapshot>> {
     return this.db.collection("users").doc(userId).snapshotChanges()
   }
+  updateTripsData(userId: string, trips: object) {
+    this.db.collection("users").doc(userId).update(trips);
+  }
 }
