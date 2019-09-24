@@ -1,3 +1,5 @@
+import { UserService } from "./../user/user.service";
+import { DatabaseService } from "./../database/database.service";
 import { Injectable } from "@angular/core";
 import { Trip } from "../app.trip";
 import { Subject, Observable, of } from "rxjs";
@@ -15,7 +17,7 @@ export class DashboardService {
     isPast: false,
     isDeleted: false
   };
-  isGrid: boolean = true;
+  isGrid = true;
   UserId: number = 1;
   private usersUrl = "api/USERS";
 
@@ -24,7 +26,15 @@ export class DashboardService {
   };
 
   gridDisplayChange: Subject<boolean> = new Subject<boolean>();
-  statusesChange: Subject<any> = new Subject<any>();
+  tripsStatusesChange: Subject<any> = new Subject<any>();
+
+  getGridStatus() {
+    return this.isGrid;
+  }
+
+  setGridStatus(value: boolean) {
+    this.gridDisplayChange.next(value);
+  }
 
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
@@ -44,47 +54,51 @@ export class DashboardService {
       .put(this.usersUrl, user, this.httpOptions)
       .pipe(catchError(this.handleError<any>(`updateUser`)));
   }
-  setStatusesStatus(): void {
+  getTripsStatus(): void {
     const statuses = {
       isFuture: false,
       isPast: false,
       isDeleted: false
     };
-    this.getUserData().subscribe(user => {
-      user.trips.forEach(function(item) {
-        switch (item.type) {
-          case "future": {
-            statuses.isFuture = true;
-            break;
-          }
-          case "past": {
-            statuses.isPast = true;
-            break;
-          }
-          case "deleted": {
-            statuses.isDeleted = true;
-            break;
-          }
-          default: {
-            statuses.isDeleted = true;
-            break;
-          }
+    this.userService.getCurrentUser().subscribe(user => {
+      this.databaseService.getUserData(user.email).subscribe(userdata => {
+        if (userdata.payload.data()) {
+          userdata.payload.data().trips.forEach(function(item) {
+            switch (item.type) {
+              case "future": {
+                statuses.isFuture = true;
+                break;
+              }
+              case "past": {
+                statuses.isPast = true;
+                break;
+              }
+              case "deleted": {
+                statuses.isDeleted = true;
+                break;
+              }
+              default: {
+                statuses.isDeleted = true;
+                break;
+              }
+            }
+          });
         }
+        this.tripsStatusesChange.next(statuses);
       });
-      this.statusesChange.next(statuses);
     });
   }
-  setGridDisplay(value: boolean): void {
-    this.gridDisplayChange.next(value);
-  }
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private databaseService: DatabaseService,
+    private userService: UserService
+  ) {
     this.gridDisplayChange.subscribe(value => {
       this.isGrid = value;
     });
-    this.statusesChange.subscribe(value => {
+    this.tripsStatusesChange.subscribe(value => {
       this.statuses = value;
     });
-    this.setStatusesStatus();
   }
 }

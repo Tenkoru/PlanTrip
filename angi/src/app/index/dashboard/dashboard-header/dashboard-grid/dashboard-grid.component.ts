@@ -29,10 +29,9 @@ export class DashboardGridComponent implements OnInit {
     if (type === "grid") {
       isGrid = true;
     }
-
-    this.dashboardService.setGridDisplay(isGrid);
+    this.dashboardService.setGridStatus(isGrid);
   }
-  setGridStatus(): void {
+  getGridStatus(): void {
     this.dashboardService.gridDisplayChange.subscribe(value => {
       this.activeButton = value ? "grid" : "list";
     });
@@ -41,6 +40,6 @@ export class DashboardGridComponent implements OnInit {
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit() {
-    this.setGridStatus();
+    this.getGridStatus();
   }
 }

@@ -8,7 +8,7 @@ import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 import { AppComponent } from "./app.component";
 import { InMemoryDataService } from "./InMemoryData.service";
 import { FormsModule } from "@angular/forms";
-
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -29,7 +29,8 @@ import { environment } from "../environments/environment";
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

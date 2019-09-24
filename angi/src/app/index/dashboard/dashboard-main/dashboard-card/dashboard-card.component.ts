@@ -1,3 +1,4 @@
+import { DetailsService } from './../../../details/details.service';
 import { Component, OnInit, Input } from "@angular/core";
 import { Trip } from "src/app/app.trip";
 import * as moment from "moment";
@@ -21,15 +22,16 @@ export class DashboardCardComponent implements OnInit {
     text: "",
     link: "",
     isCardEditLink: true,
-    isGrid: false,
+    isGrid: false
   };
-  dates: string[];
+  mainImg = "assets/images/tripDefault.jpg";
+  dates: string = "";
   getLinkProps(): void {
     this.linkProps.text =
       this.props.type === "deleted" ? "Восстановить" : "Редактировать";
   }
 
-  constructor() {
+  constructor(private detailsService: DetailsService) {
     this.numbers = Array(5)
       .fill(0)
       .map((x, i) => i + 1);
@@ -38,14 +40,20 @@ export class DashboardCardComponent implements OnInit {
   setLinkPath() {
     this.linkProps.link = `../details/${this.props.id}`;
   }
+  formatDates() {
+    this.dates = this.detailsService.getParsedDates(this.props.date);
+  }
+  setNewImage() {
+    if (this.props.mainImg) {
+      this.mainImg = this.props.mainImg;
+    }
+  }
 
   ngOnInit() {
     this.getLinkProps();
-    this.dates = [
-      moment.unix(this.props.date[0]).format("DD/MMM/YYYY"),
-      moment.unix(this.props.date[1]).format("DD/MMM/YYYY")
-    ];
+    this.formatDates();
     this.linkProps.isGrid = this.isGrid;
     this.setLinkPath();
+    this.setNewImage();
   }
 }

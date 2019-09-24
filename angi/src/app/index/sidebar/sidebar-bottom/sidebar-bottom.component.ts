@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/authentication/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from '../../sidebar.service';
 
 @Component({
   selector: 'app-sidebar-bottom',
@@ -19,10 +20,14 @@ export class SidebarBottomComponent implements OnInit {
   logoutClickHandler() {
     this.authService.doLogout().subscribe(() => {
       this.router.navigateByUrl('/auth');
+      this.closeSidebar();
     })
   }
+  closeSidebar() {
+    this.sidebarService.setSidebarStatus(false);
+  }
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private sidebarService: SidebarService) { }
 
   ngOnInit() {
   }

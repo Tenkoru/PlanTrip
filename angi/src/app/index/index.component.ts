@@ -10,7 +10,8 @@ export class IndexComponent implements OnInit {
 
   isSidebarOpen: boolean = false;
 
-  constructor(private sidebarService: SidebarService) { }
+  constructor(private sidebarService: SidebarService) {
+   }
 
   ngOnInit() {
     this.isSidebarOpen = this.sidebarService.getSidebarStatus();

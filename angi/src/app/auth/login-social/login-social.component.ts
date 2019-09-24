@@ -32,14 +32,12 @@ export class LoginSocialComponent implements OnInit {
     switch (socialName) {
       case this.socialNames.facebook: {
         this.authService.doFacebookLogin().subscribe(res => {
-          console.log(res);
           this.redirect();
         });
         break;
       }
       case this.socialNames.google: {
         this.authService.doGoogleLogin().subscribe(res => {
-          console.log(res);
           this.redirect();
         });
         break;
@@ -50,7 +48,6 @@ export class LoginSocialComponent implements OnInit {
     }
   }
   redirect(): void {
-    debugger;
     let redirect = this.authService.redirectUrl
       ? this.router.parseUrl(this.authService.redirectUrl)
       : "/index/dashboard";
