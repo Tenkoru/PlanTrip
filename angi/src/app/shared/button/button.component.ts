@@ -18,26 +18,7 @@ export class ButtonComponent implements OnInit {
   };
   @Output() eventEmitter = new EventEmitter<void>();
 
-  getClass(): string {
-    let className: string = "button";
-
-    if (this.props.auth) {
-      className += " auth__button";
-    }
-
-    if (this.props.fade) {
-      className += " auth__button--fade";
-    }
-
-    if (this.props.isSidebar) {
-      className += " sidebar__new-submit";
-    }
-
-    if (this.props.isDetailsButton) {
-      className += " details__button";
-    }
-    return className;
-  }
+  classNames = {}
 
   buttonClickHandler() {
     this.eventEmitter.emit();
@@ -50,6 +31,20 @@ export class ButtonComponent implements OnInit {
   getType(): string {
     return this.props.type || "submit";
   }
+  initClassNames() {
+    this.classNames = {
+      "button": true,
+      "auth__button": this.props.auth,
+      "auth__button--fade": this.props.fade,
+      "sidebar__new-submit": this.props.isSidebar,
+      "details__button": this.props.isDetailsButton,
+    }
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
+  ngOnChanges() {
+    this.initClassNames();
+  }
 }

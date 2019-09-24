@@ -1,7 +1,9 @@
-import { DetailsService } from './../../../details/details.service';
+import { DatabaseService } from "src/app/database/database.service";
+import { DetailsService } from "./../../../details/details.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { Trip } from "src/app/app.trip";
 import * as moment from "moment";
+import { UserService } from "src/app/user/user.service";
 
 @Component({
   selector: "app-dashboard-card",
@@ -22,16 +24,36 @@ export class DashboardCardComponent implements OnInit {
     text: "",
     link: "",
     isCardEditLink: true,
-    isGrid: false
+    isGrid: false,
+    isButton: false
   };
   mainImg = "assets/images/tripDefault.jpg";
   dates: string = "";
+
   getLinkProps(): void {
     this.linkProps.text =
       this.props.type === "deleted" ? "Восстановить" : "Редактировать";
+    this.linkProps.isButton = this.props.type === "deleted" ? true : false;
   }
 
-  constructor(private detailsService: DetailsService) {
+  clickRestoreHandler() {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.databaseService.getUserData(user.email).subscribe(userdata => {
+        if (userdata.payload.data()) {
+          const trips = userdata.payload.data().trips;
+          let trip = trips.find(item => item.id === this.props.id);
+          trip.type = "future";
+          this.databaseService.updateTripsData(user.email, { trips: trips });
+        }
+      });
+    });
+  }
+
+  constructor(
+    private detailsService: DetailsService,
+    private userService: UserService,
+    private databaseService: DatabaseService
+  ) {
     this.numbers = Array(5)
       .fill(0)
       .map((x, i) => i + 1);

@@ -14,7 +14,7 @@
         </svg-icon>
       </div>
       <div class="card__edit">
-        <app-link [props]="linkProps"></app-link> 
+        <app-link [props]="linkProps" (clickEventEmitter)="clickRestoreHandler()"></app-link> 
       </div>
     </div>
     <p class="card__description">{{ props.description }}</p>

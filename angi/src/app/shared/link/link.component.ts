@@ -14,6 +14,7 @@ export class LinkComponent implements OnInit {
     isSidebarLink: boolean;
     isCardEditLink: boolean;
     isGrid: boolean;
+    isButton: boolean;
   };
   @Output() clickEventEmitter = new EventEmitter<void>();
 
@@ -29,6 +30,7 @@ export class LinkComponent implements OnInit {
       "sidebar__link": this.props.isSidebarLink,
       "card__edit": this.props.isCardEditLink,
       "grid": this.props.isGrid,
+      "button": this.props.isButton,
     };
   }
 }
