@@ -3,7 +3,7 @@ import { DatabaseService } from "src/app/database/database.service";
 import { UserService } from "./../../user/user.service";
 import { Component, OnInit } from "@angular/core";
 import { DashboardService } from "src/app/services/dashboard.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-details",
@@ -17,7 +17,6 @@ export class DetailsComponent implements OnInit {
   initData(): void {
     this.dashboardService.getUserData().subscribe(user => {
       this.getTrips();
-      // this.trip = user.trips.find(item => item.id === this.tripId);
     });
   }
   updateUserRating(): void {
@@ -28,22 +27,25 @@ export class DetailsComponent implements OnInit {
   }
   deleteButtonHandler() {
     this.trip.type = "deleted";
+    this.sendTripsData();
   }
   saveButtonHandler() {
     this.sendTripsData();
   }
   sendTripsData() {
     this.userService.getCurrentUser().subscribe(user => {
-      this.databaseService.updateTripsData(user.email, {trips: this.trips});
+      this.databaseService
+        .updateTripsData(user.email, { trips: this.trips })
+        .subscribe(() => {
+          this.router.navigateByUrl("/dashboard");
+        });
     });
   }
   getTrips(): void {
     this.userService.getCurrentUser().subscribe(user => {
       this.databaseService.getUserData(user.email).subscribe(userdata => {
         if (userdata.payload.data()) {
-          this.trips = userdata.payload
-            .data()
-            .trips;
+          this.trips = userdata.payload.data().trips;
           this.trip = this.trips.find(item => item.id === this.tripId);
         }
       });
@@ -53,10 +55,12 @@ export class DetailsComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     private route: ActivatedRoute,
+    private router: Router,
     private databaseService: DatabaseService,
     private userService: UserService
   ) {}
   ngOnInit() {
     this.initData();
   }
+  ngOnDestroy() {}
 }

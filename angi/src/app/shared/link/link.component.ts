@@ -21,16 +21,18 @@ export class LinkComponent implements OnInit {
   currentClasses: object;
 
   linkClickHandler() {
-    this.clickEventEmitter.emit();
+    if (this.props.isButton) {
+      this.clickEventEmitter.emit();
+    }
   }
 
   ngOnInit() {
     this.currentClasses = {
-      "link": true,
-      "sidebar__link": this.props.isSidebarLink,
-      "card__edit": this.props.isCardEditLink,
-      "grid": this.props.isGrid,
-      "button": this.props.isButton,
+      link: true,
+      sidebar__link: this.props.isSidebarLink,
+      card__edit: this.props.isCardEditLink,
+      grid: this.props.isGrid,
+      button: this.props.isButton
     };
   }
 }

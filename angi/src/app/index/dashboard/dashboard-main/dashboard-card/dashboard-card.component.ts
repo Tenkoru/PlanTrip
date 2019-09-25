@@ -12,6 +12,7 @@ import { UserService } from "src/app/user/user.service";
 })
 export class DashboardCardComponent implements OnInit {
   @Input() props: Trip;
+  @Input() tripList: Trip[];
   @Input() isGrid: boolean;
 
   numbers: number[];
@@ -38,14 +39,11 @@ export class DashboardCardComponent implements OnInit {
 
   clickRestoreHandler() {
     this.userService.getCurrentUser().subscribe(user => {
-      this.databaseService.getUserData(user.email).subscribe(userdata => {
-        if (userdata.payload.data()) {
-          const trips = userdata.payload.data().trips;
-          let trip = trips.find(item => item.id === this.props.id);
-          trip.type = "future";
-          this.databaseService.updateTripsData(user.email, { trips: trips });
-        }
-      });
+      let trip = this.tripList.find(item => item.id === this.props.id);
+      trip.type = "future";
+      this.databaseService
+        .updateTripsData(user.email, { trips: this.tripList })
+        .subscribe();
     });
   }
 

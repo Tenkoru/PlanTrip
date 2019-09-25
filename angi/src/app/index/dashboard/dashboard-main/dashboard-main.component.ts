@@ -3,6 +3,7 @@ import { Component, OnInit, HostListener } from "@angular/core";
 import { DashboardService } from "src/app/services/dashboard.service";
 import { Trip } from "src/app/app.trip";
 import { DatabaseService } from "src/app/database/database.service";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-dashboard-main",
@@ -20,6 +21,7 @@ export class DashboardMainComponent implements OnInit {
   futureListTitle: string = "Предстоящие поездки:";
   pastListTitle: string = "Прошедшие поездки:";
   deletedListTitle: string = "Удаленные поездки:";
+  tripsSubscription: Subscription;
 
   constructor(
     private dashboardService: DashboardService,
@@ -41,7 +43,7 @@ export class DashboardMainComponent implements OnInit {
 
   getTrips(): void {
     this.userService.getCurrentUser().subscribe(user => {
-      this.databaseService.getUserData(user.email).subscribe(userdata => {
+      this.tripsSubscription = this.databaseService.getUserData(user.email).subscribe(userdata => {
         if (userdata.payload.data()) {
           this.trips = userdata.payload.data().trips;
         }
@@ -65,5 +67,8 @@ export class DashboardMainComponent implements OnInit {
     this.dashboardService.tripsStatusesChange.subscribe(value => {
       this.statuses = value;
     })
+  }
+  ngOnDestroy() {
+    this.tripsSubscription.unsubscribe();
   }
 }
