@@ -5,6 +5,7 @@ import { UserService } from "./../../user/user.service";
 import { Component, OnInit } from "@angular/core";
 import { DashboardService } from "src/app/services/dashboard.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Place } from './app.place';
 
 @Component({
   selector: "app-details",
@@ -33,6 +34,12 @@ export class DetailsComponent implements OnInit {
     this.trip.description = newData.description;
     console.log(this.trips);
   }
+  updatePlaceHandler(updatedPlaces: Place[]) {
+    this.trip.places = updatedPlaces;
+    console.log(this.trip);
+    this.sendTripsData();
+
+  }
   saveButtonHandler(formData: FormGroup) {
     this.updateTripData(formData.value);
     this.sendTripsData();
@@ -42,7 +49,7 @@ export class DetailsComponent implements OnInit {
       this.databaseService
         .updateTripsData(user.email, { trips: this.trips })
         .subscribe(() => {
-          this.router.navigateByUrl("/dashboard");
+          // this.router.navigateByUrl("/dashboard");
         });
     });
   }
@@ -67,5 +74,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     this.initData();
   }
-  ngOnDestroy() {}
+  ngOnChanges() {
+    console.log(123)
+  }
 }

@@ -13,6 +13,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from "../environments/environment";
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,11 @@ import { environment } from "../environments/environment";
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
       passThruUnknownUrl: true
+    }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyArKkdLXF0Cpv3xhEVi3QYLuo1k-ZLU91c',
+      libraries: ["places"],
+      language: "ru"
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

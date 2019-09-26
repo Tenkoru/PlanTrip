@@ -1,5 +1,5 @@
 <label [className]="getLabelClass()">
-  <input type="text" [className]="getInputClass()" [required]="isRequred()">
+  <input type="text" [ngClass]="inputClasses" [required]="isRequred()">
   <span class="input__placeholder">{{getText()}}</span>
   <span *ngIf="props.password" [className]="'auth__password-switcher'"></span>
 </label>

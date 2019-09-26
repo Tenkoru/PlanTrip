@@ -1,5 +1,5 @@
 import { DetailsService } from './../../details.service';
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Place } from "../../app.place";
 
 @Component({
@@ -9,9 +9,10 @@ import { Place } from "../../app.place";
 })
 export class DetailsListComponent implements OnInit {
   @Input() list: Place[];
+  @Output() deleteEmitter = new EventEmitter;
 
   dropdownIconImg = "assets/icons/down-chevron.svg";
-  editIconImage = "assets/icons/pen.svg";
+  editIconImage = "assets/icons/closeIcon.svg";
   dropdownIconColor = "#10645D";
   editIconsColor = "#10645D";
 
@@ -25,6 +26,11 @@ export class DetailsListComponent implements OnInit {
     } else {
       place.hidden = !place.hidden;
     }
+  }
+
+  destinationDeleteHandler(place: object) {
+    let updatedList = this.detailsService.deletePlaceFromList(this.list, place);
+    this.deleteEmitter.emit(updatedList);
   }
 
   getDate(dates: number[]): string {

@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Trip } from 'src/app/app.trip';
+import { Place } from '../app.place';
 
 @Component({
   selector: 'app-details-bottom',
@@ -9,8 +11,13 @@ import { Trip } from 'src/app/app.trip';
 export class DetailsBottomComponent implements OnInit {
 
   @Input() props: Trip;
+  @Output() updatePlaceEmitter = new EventEmitter;
 
   detailsBottomTitle: string = "Подробный план моего путешествия:";
+
+  updatePlaceHandler($event: Place[]) {
+    this.updatePlaceEmitter.emit($event)
+  }
 
   constructor() { }
 

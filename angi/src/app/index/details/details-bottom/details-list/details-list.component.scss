@@ -27,6 +27,9 @@
   @media (max-width: $screenMobile) {
     min-height: 50px;
   }
+  @media (max-width: $screenMobileS) {
+    padding-right: 5px;
+  }
 }
 .destinations__name {
   margin-top: 0;
@@ -170,6 +173,14 @@
   }
   &.destination__dropdown--up {
     transform: scale(-1);
+    @media (max-width: $screenMobileS) {
+      transform: scale(-0.75);
+    }
+  }
+  @media (max-width: $screenMobileS) {
+    width: 35px;
+    min-width: 35px;
+    transform: scale(0.75);
   }
 }
 .destinations--hidden {

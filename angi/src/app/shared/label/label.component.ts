@@ -13,6 +13,8 @@ export class LabelComponent implements OnInit {
     password: boolean;
   };
 
+  inputClasses = {};
+
   getText(): string {
     return this.props.text || "";
   }
@@ -21,25 +23,17 @@ export class LabelComponent implements OnInit {
     return this.props.auth ? "label auth__label" : "label";
   }
 
-  getInputClass(): string {
-    let className: string = "input";
-
-    if (this.props.auth) {
-      className += " auth__input";
-    }
-
-    if (this.props.password) {
-      className += " auth__input--password";
-    }
-
-    return className;
-  }
-
   isRequred(): boolean {
     return this.props.required;
   }
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.inputClasses = {
+      input: true,
+      auth__input: this.props.auth,
+      "auth__input--password": this.props.password
+    };
+  }
 }
