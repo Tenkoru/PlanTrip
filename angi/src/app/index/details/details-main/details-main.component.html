@@ -1,19 +1,31 @@
-<form class="details__form">
+<form [formGroup]="detailsForm" class="details__form">
   <div class="details__image">
     <img [src]="props.mainImg" width="455" height="300" alt="Usa">
   </div>
   <div class="details__info">
     <label class="label details__info-label">
-      <input type="text" class="details__input details__subtitle" name="title" [value]="props.title">
+      <input type="text" class="details__input details__subtitle" formControlName="title">
     </label>
     <label class="label details__info-label details__info-label--lessMb">
-      <input type="text" class="details__input details__date" name="dates" [value]="date || 'Дата'">
+      <input type="text" class="details__input details__date" formControlName="date">
     </label>
     <label class="label details__info-label">
       <span class="details__description-wrapper">
         <span class="details__description">Описание</span>
       </span>
-      <textarea class="textarea details__textarea" [value]="props.description || ''"></textarea>
+      <textarea class="textarea details__textarea" formControlName="description"></textarea>
     </label>
+  </div>
+  <div class="details__controls-outer">
+    <div class="details__stars stars">
+      <svg-icon (click)="starClickHandler(id)" class="stars__svg" *ngFor="let number of numbers, index as id"
+        [src]="star.icon"
+        [svgStyle]="{ 'width.px': star.size, 'height.px': star.size, 'fill': number > rating ? star.color : star.filledColor }">
+      </svg-icon>
+    </div>
+    <div class="details__controls">
+      <app-button [props]="saveButton" (click)="saveButtonHandler()"></app-button>
+      <app-button [props]="deleteButton" (click)="deleteButtonHandler()"></app-button>
+    </div>
   </div>
 </form>

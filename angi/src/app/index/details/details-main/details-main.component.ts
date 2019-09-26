@@ -1,6 +1,12 @@
 import { DetailsService } from "./../details.service";
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Trip } from "src/app/app.trip";
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators
+} from "@angular/forms";
 
 @Component({
   selector: "app-details-main",
@@ -9,11 +15,70 @@ import { Trip } from "src/app/app.trip";
 })
 export class DetailsMainComponent implements OnInit {
   @Input() props: Trip;
-  date: string = "";
+  @Output() starClickEmitter = new EventEmitter<number>();
+  @Output() deleteButtonEmitter = new EventEmitter<any>();
+  @Output() saveButtonEmitter = new EventEmitter<any>();
 
-  constructor(private detailsService: DetailsService) {}
+  star = {
+    icon: "assets/icons/star.svg",
+    color: "#02332f",
+    filledColor: "#019287",
+    size: 30
+  };
+  numbers: number[];
+  rating: number = 0;
+
+  saveButton = {
+    text: "Сохранить",
+    type: "button",
+    isDetailsButton: true
+  };
+
+  deleteButton = {
+    text: "Удалить",
+    type: "button",
+    isDetailsButton: true
+  };
+
+  detailsForm: FormGroup;
+
+  constructor(
+    private detailsService: DetailsService,
+    private formBuilder: FormBuilder
+  ) {
+    this.numbers = Array(5)
+      .fill(0)
+      .map((x, i) => i + 1);
+  }
+
+  initData() {
+    this.detailsForm = this.formBuilder.group({
+      title: [this.props.title, [Validators.required]],
+      description: [
+        this.props.description ? this.props.description : "Описание"
+      ],
+      date: [
+        this.detailsService.getParsedDates(this.props.date),
+        [Validators.required]
+      ]
+    });
+    if (this.props.rating) {
+      this.rating = this.props.rating;
+    }
+  }
+  saveButtonHandler() {
+    this.saveButtonEmitter.emit(this.detailsForm);
+  }
+  deleteButtonHandler() {
+    this.deleteButtonEmitter.emit();
+  }
+
+  starClickHandler(id: number) {
+    this.rating = id + 1;
+    this.starClickEmitter.emit(id + 1);
+  }
   ngOnInit() {}
   ngOnChanges() {
-    this.date = this.detailsService.getParsedDates(this.props.date);
+    this.initData();
   }
 }

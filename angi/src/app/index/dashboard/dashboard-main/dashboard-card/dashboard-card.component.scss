@@ -58,6 +58,7 @@
   margin-bottom: 0;
   font-size: 1.565rem;
   font-weight: 600;
+  word-break: break-all;
   @media (max-width: $screenMobileS) {
     margin-top: 8px;
   }

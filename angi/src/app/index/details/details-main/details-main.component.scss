@@ -7,7 +7,49 @@
 .details__form {
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
 }
+.details__controls-outer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  @media (max-width: $screenMobile) {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  @media (max-width: $screenMobileS) {
+    margin-top: 15px;
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.stars__svg {
+  margin-right: 3px;
+  margin-left: 3px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.details__stars {
+  display: flex;
+  justify-content: flex-start;
+  svg {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+}
+.details__controls {
+  display: flex;
+  flex-direction: column;
+  @media (max-width: $screenMobileS) {
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+
 .details__image {
   width: 35%;
   max-width: 455px;
@@ -37,98 +79,98 @@
     padding-right: 15px;
   }
   @media (max-width: $screenMobileS) {
-      padding-left: 0;
-      padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 .label {
-    width: 100%;
-	position: relative;
-	margin-bottom: 35px;
-	&:last-child {
-		margin-bottom: 0;
-	}
+  width: 100%;
+  position: relative;
+  margin-bottom: 35px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 .details__info-label {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    position: relative;
-    margin-bottom: 30px;
-    @media (max-width: $screenTabletBig) {
-        margin-bottom: 20px;
-    }
-    @media (max-width: $screenMobileS) {
-        margin-bottom: 10px;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+  @media (max-width: $screenTabletBig) {
+    margin-bottom: 20px;
+  }
+  @media (max-width: $screenMobileS) {
+    margin-bottom: 10px;
+  }
 }
 .details__input {
-    width: 100%;
-    max-width: 100%;
-    text-overflow: ellipsis;
-    font-family: $mainFont;
-    border: none;
-    background-color: transparent;
-    &:focus {
-        outline: none;
-    }
+  width: 100%;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  font-family: $mainFont;
+  border: none;
+  background-color: transparent;
+  &:focus {
+    outline: none;
+  }
 }
 .details__subtitle {
-    font-weight: 600;
-    font-size: 35px;
-    @media (max-width: $screenMobileS) {
-        font-size: 24px;
-    }
+  font-weight: 600;
+  font-size: 35px;
+  @media (max-width: $screenMobileS) {
+    font-size: 24px;
+  }
 }
 .details__date {
-    font-size: 2.1875rem;
-    @media (max-width: $screenMobileS) {
-        font-size: 1.3rem;
-    }
+  font-size: 2.1875rem;
+  @media (max-width: $screenMobileS) {
+    font-size: 1.3rem;
+  }
 }
 .label:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 .details__description-wrapper {
-    display: flex;
-    position: relative;
-    width: 100%;
-    font-weight: 600;
+  display: flex;
+  position: relative;
+  width: 100%;
+  font-weight: 600;
 }
 .details__description {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
 }
 .textarea {
-    font-family: $mainFont;
-    font-size: 16px;
-    padding: 5px 15px;
-    border: 1px solid $inputBorderColor;
-    border-radius: 4px;
-    resize: none;
+  font-family: $mainFont;
+  font-size: 16px;
+  padding: 5px 15px;
+  border: 1px solid $inputBorderColor;
+  border-radius: 4px;
+  resize: none;
+  & + .input__placeholder {
+    transform: none;
+    top: 15px;
+  }
+  &:hover {
+    outline-color: $inputButtonOutlineColor;
+  }
+  &:focus {
     & + .input__placeholder {
-        transform: none;
-        top: 15px;
+      transform: translate(-15px, -40px);
+      cursor: auto;
     }
-    &:hover {
-        outline-color: $inputButtonOutlineColor;
-    }
-    &:focus {
-		& + .input__placeholder {
-			transform: translate(-15px, -40px);
-			cursor: auto;
-		}
-		outline-color: $inputBorderColor;
-    }
-    &.input--filled + .input__placeholder {
-        transform: translate(-15px, -40px);
-        cursor: auto;
-    }
+    outline-color: $inputBorderColor;
+  }
+  &.input--filled + .input__placeholder {
+    transform: translate(-15px, -40px);
+    cursor: auto;
+  }
 }
 .details__textarea {
-    width: 100%;
-    min-height: 110px;
-    margin-top: 10px;
-    padding: 10px 15px;
+  width: 100%;
+  min-height: 110px;
+  margin-top: 10px;
+  padding: 10px 15px;
 }

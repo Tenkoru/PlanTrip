@@ -34,6 +34,7 @@ export class AuthService {
         let provider = new firebase.auth.FacebookAuthProvider();
         this.afAuth.auth.signInWithPopup(provider).then(
           res => {
+            console.log(res);
             resolve(res);
           },
           err => {
@@ -53,6 +54,7 @@ export class AuthService {
         provider.addScope("email");
         this.afAuth.auth.signInWithPopup(provider).then(res => {
           resolve(res);
+          console.log(res);
         });
       })
     );

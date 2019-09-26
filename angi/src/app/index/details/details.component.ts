@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { Trip } from "./../../app.trip";
 import { DatabaseService } from "src/app/database/database.service";
 import { UserService } from "./../../user/user.service";
@@ -15,21 +16,25 @@ export class DetailsComponent implements OnInit {
   trips: Trip[];
   tripId: number = +this.route.snapshot.paramMap.get("id");
   initData(): void {
-    this.dashboardService.getUserData().subscribe(user => {
+    this.dashboardService.getUserData().subscribe(() => {
       this.getTrips();
     });
   }
-  updateUserRating(): void {
-    this.dashboardService.updateUserData;
-  }
-  starClickEvent($event: number) {
+  starClickHandler($event: number) {
     this.trip.rating = $event;
   }
   deleteButtonHandler() {
     this.trip.type = "deleted";
     this.sendTripsData();
   }
-  saveButtonHandler() {
+  updateTripData(newData: any):void {
+    // this.trip.date = newData.date;
+    this.trip.title = newData.title;
+    this.trip.description = newData.description;
+    console.log(this.trips);
+  }
+  saveButtonHandler(formData: FormGroup) {
+    this.updateTripData(formData.value);
     this.sendTripsData();
   }
   sendTripsData() {

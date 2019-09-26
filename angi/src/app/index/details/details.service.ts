@@ -6,7 +6,7 @@ import * as moment from "moment";
 })
 export class DetailsService {
   constructor() {}
-  getParsedDates(dates: number[]) {
+  getParsedDates(dates: number[]): string {
     if (dates) {
       let date1 = dates[0];
       let date2 = dates[1];
@@ -25,8 +25,12 @@ export class DetailsService {
       if (date2) {
         result += ` - ${moment.unix(date2).format("DD/MMM/YYYY")}`;
       }
-
       return result;
+    } else {
+      return "Дата";
     }
+  }
+  parseDatesToTimestamp(): number[] {
+    return new Array();
   }
 }

@@ -21,9 +21,7 @@ export class LinkComponent implements OnInit {
   currentClasses: object;
 
   linkClickHandler() {
-    if (this.props.isButton) {
-      this.clickEventEmitter.emit();
-    }
+    this.clickEventEmitter.emit();
   }
 
   ngOnInit() {

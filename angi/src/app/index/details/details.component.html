@@ -1,4 +1,2 @@
-<app-details-main *ngIf="trip" [props]="trip"></app-details-main>
-<app-details-controls *ngIf="trip" [rating]="trip.rating" (starClickEmitter)="starClickEvent($event)"
-    (deleteButtonEmitter)="deleteButtonHandler()" (saveButtonEmitter)="saveButtonHandler()"></app-details-controls>
+<app-details-main (saveButtonEmitter)="saveButtonHandler($event)" (deleteButtonEmitter)="deleteButtonHandler()" (starClickEmitter)="starClickHandler($event)"  *ngIf="trip" [props]="trip"></app-details-main>
 <app-details-bottom *ngIf="trip" [props]="trip"></app-details-bottom>
