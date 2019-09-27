@@ -39,8 +39,8 @@ export class SidebarComponent implements OnInit {
     });
   }
   getUserAvatar() {
-    this.dashboardService.getUserData().subscribe(user => {
-      this.userAvatar = user.avatar ? user.avatar : this.userAvatar;
+    this.userService.getCurrentUser().subscribe(user => {
+      this.userAvatar = user.photoURL ? user.photoURL : this.userAvatar;
     });
   }
 

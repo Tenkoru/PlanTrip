@@ -6,7 +6,6 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 import { AppComponent } from "./app.component";
-import { InMemoryDataService } from "./InMemoryData.service";
 import { FormsModule } from "@angular/forms";
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from "@angular/fire";
@@ -24,10 +23,6 @@ import { AgmCoreModule } from '@agm/core';
     AppRoutingModule,
     IndexModule,
     FormsModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-      dataEncapsulation: false,
-      passThruUnknownUrl: true
-    }),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyArKkdLXF0Cpv3xhEVi3QYLuo1k-ZLU91c',
       libraries: ["places"],

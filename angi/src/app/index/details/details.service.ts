@@ -1,14 +1,16 @@
+import { HttpClient } from "@angular/common/http";
 import { Location } from "./app.location";
 import { Injectable } from "@angular/core";
 import * as moment from "moment";
 import { Place } from "./app.place";
 import { Region } from "./app.region";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class DetailsService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
   getParsedDates(dates: number[]): string {
     if (dates) {
       let date1 = dates[0];
@@ -35,6 +37,11 @@ export class DetailsService {
   }
   parseDatesToTimestamp(): number[] {
     return new Array();
+  }
+  getWiki(title: string): Observable<any> {
+    const tempTitle = title.replace(" ", "%20");
+    const baseUrl = `https://ru.wikipedia.org/w/api.php?action=query&origin=*&format=json&prop=extracts&exintro&explaintext&redirects=1&titles=${tempTitle}`;
+    return this.http.get<any>(baseUrl);
   }
   searchForPlaceByName(placeList: Place[], placeName: string) {
     let result: object;
@@ -65,109 +72,130 @@ export class DetailsService {
   addNewPlace(
     placeList: Place[],
     newPlaceData: google.maps.places.PlaceResult
-  ): Place[] {
-    if (!newPlaceData.address_components) {
-      return;
-    }
-    let newPlaceList = placeList;
-    let isNoLocation: boolean;
-    const addressComponents = newPlaceData.address_components;
-    const countryName = findType("country");
-    let regionName = findType("locality");
-    let locationName = newPlaceData.name;
-    const placeName = newPlaceData.name;
-    let newPlace: Place;
-    let newRegion: Region;
-    let newLocation: Location;
-
-    function findType(stringToFind: string) {
-      let result = "";
-      addressComponents.forEach((component, id) => {
-        component.types.forEach(type => {
-          if (type === stringToFind) {
-            result = component.long_name;
-          }
-        });
-      });
-      return result;
-    }
-
-    if (regionName === placeName || countryName === placeName) {
-      isNoLocation = true;
-    }
-
-    if (!regionName) {
-      regionName = findType("administrative_area_level_1");
-      if (!regionName) {
-        regionName = findType("administrative_area_level_3");
-      } 
-    }
-
-    newPlace = {
-      name: countryName,
-      type: "country",
-      regions: []
-    };
-
-    if (regionName) {
-      newRegion = {
-        name: regionName,
-        type: "region",
-        locations: []
-      };
-      newPlace.regions.push(newRegion);
-    }
-
-    if (!isNoLocation) {
-      newLocation = {
-        name: locationName,
-        type: "location"
-      };
-      if (typeof newRegion.locations === undefined) {
-        newRegion.locations = [];
+  ): Observable<any> {
+    return new Observable(subscriber => {
+      if (!newPlaceData.address_components) {
+        return;
       }
-      newRegion.locations.push(newLocation);
-    }
+      let newPlaceList = placeList;
+      let isNoLocation: boolean;
+      const addressComponents = newPlaceData.address_components;
+      const countryName = findType("country");
+      let regionName = findType("locality");
+      let locationName = newPlaceData.name;
+      const placeName = newPlaceData.name;
+      let newPlace: Place;
+      let newRegion: Region;
+      let newLocation: Location;
+      let locationDescription: string;
 
-    if (newPlaceList === undefined || !newPlaceList.length) {
-      newPlaceList = [];
-      newPlaceList.push(newPlace);
-    } else {
-      //FilterHell
-      let isNewCountry = true;
-      for (let i = 0; i < newPlaceList.length; i++) {
-        if (newPlaceList[i].name === countryName) {
-          isNewCountry = false;
-          if (newPlaceList[i].regions) {
-            let isNewRegion = true;
-            for (let j = 0; j < newPlaceList[i].regions.length; j++) {
-              if (newPlaceList[i].regions[j].name === regionName) {
-                isNewRegion = false;
-                if (newPlaceList[i].regions[j].locations && !isNoLocation) {
-                  for (let k = 0; k < newPlaceList[i].regions[j].locations.length; k++) {
-                    if (newPlaceList[i].regions[j].locations[k].name === locationName) {
-                      return newPlaceList;
-                    } else {
-                      newPlaceList[i].regions[k].locations.push(newLocation);
+      function findType(stringToFind: string) {
+        let result = "";
+        addressComponents.forEach((component, id) => {
+          component.types.forEach(type => {
+            if (type === stringToFind) {
+              result = component.long_name;
+            }
+          });
+        });
+        return result;
+      }
+
+      this.getWiki(placeName).subscribe(response => {
+        const key = Object.keys(response.query.pages)[0];
+        locationDescription = response.query.pages[key].extract;
+        if (typeof locationDescription === "undefined") {
+          locationDescription = "Описание";
+        }
+
+        if (regionName === placeName || countryName === placeName) {
+          isNoLocation = true;
+        }
+
+        if (!regionName) {
+          regionName = findType("administrative_area_level_1");
+          if (!regionName) {
+            regionName = findType("administrative_area_level_3");
+          }
+        }
+
+        newPlace = {
+          name: countryName,
+          type: "country",
+          regions: []
+        };
+
+        if (regionName) {
+          newRegion = {
+            name: regionName,
+            type: "region",
+            locations: []
+          };
+          newPlace.regions.push(newRegion);
+        }
+
+        if (!isNoLocation) {
+          newLocation = {
+            name: locationName,
+            type: "location",
+            description: locationDescription
+          };
+          if (typeof newRegion.locations === undefined) {
+            newRegion.locations = [];
+          }
+          newRegion.locations.push(newLocation);
+        }
+
+        if (newPlaceList === undefined || !newPlaceList.length) {
+          newPlaceList = [];
+          newPlaceList.push(newPlace);
+        } else {
+          //FilterHell
+          let isNewCountry = true;
+          for (let i = 0; i < newPlaceList.length; i++) {
+            if (newPlaceList[i].name === countryName) {
+              isNewCountry = false;
+              if (newPlaceList[i].regions) {
+                let isNewRegion = true;
+                for (let j = 0; j < newPlaceList[i].regions.length; j++) {
+                  if (newPlaceList[i].regions[j].name === regionName) {
+                    isNewRegion = false;
+                    if (newPlaceList[i].regions[j].locations && !isNoLocation) {
+                      for (
+                        let k = 0;
+                        k < newPlaceList[i].regions[j].locations.length;
+                        k++
+                      ) {
+                        if (
+                          newPlaceList[i].regions[j].locations[k].name ===
+                          locationName
+                        ) {
+                          return newPlaceList;
+                        } else {
+                          newPlaceList[i].regions[k].locations.push(
+                            newLocation
+                          );
+                        }
+                      }
                     }
                   }
                 }
+                if (isNewRegion) {
+                  newPlaceList[i].regions.push(newRegion);
+                }
+              } else {
+                newPlaceList[i].regions = [];
+                newPlaceList[i].regions.push(newRegion);
               }
             }
-            if (isNewRegion) {
-              newPlaceList[i].regions.push(newRegion);
-            }
-          } else {
-            newPlaceList[i].regions = [];
-            newPlaceList[i].regions.push(newRegion);
+          }
+          if (isNewCountry) {
+            newPlaceList.push(newPlace);
           }
         }
-      }
-      if (isNewCountry) {
-        newPlaceList.push(newPlace);
-      }
-    }
-    return newPlaceList;
+        subscriber.next(newPlaceList);
+      });
+    });
   }
   deletePlaceFromList(placeList: Place[], placeToDelete: any): Place[] {
     for (let i = 0; i < placeList.length; i++) {

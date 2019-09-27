@@ -43,17 +43,6 @@ export class DashboardService {
     };
   }
 
-  getUserData() {
-    const url = `${this.usersUrl}/${this.UserId}`;
-    return this.http
-      .get<User>(url)
-      .pipe(catchError(this.handleError<User>(`getHero id=${this.UserId}`)));
-  }
-  updateUserData(user: User): Observable<any> {
-    return this.http
-      .put(this.usersUrl, user, this.httpOptions)
-      .pipe(catchError(this.handleError<any>(`updateUser`)));
-  }
   getTripsStatus(): void {
     const statuses = {
       isFuture: false,

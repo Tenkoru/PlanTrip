@@ -50,7 +50,9 @@ export class DetailsSearchComponent implements OnInit {
       autocomplete.addListener("place_changed", function() {
         let place: google.maps.places.PlaceResult = autocomplete.getPlace();
         let updatedList = currentComponent.detailsService.addNewPlace(currentComponent.list, place);
-        currentComponent.searchEmitter.emit(updatedList);
+        updatedList.subscribe(val => {
+          currentComponent.searchEmitter.emit(val);
+        })
       });
     });
   }

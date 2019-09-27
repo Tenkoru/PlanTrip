@@ -1,11 +1,11 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup } from "@angular/forms";
 import { Trip } from "./../../app.trip";
 import { DatabaseService } from "src/app/database/database.service";
 import { UserService } from "./../../user/user.service";
 import { Component, OnInit } from "@angular/core";
 import { DashboardService } from "src/app/services/dashboard.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Place } from './app.place';
+import { Place } from "./app.place";
 
 @Component({
   selector: "app-details",
@@ -17,9 +17,7 @@ export class DetailsComponent implements OnInit {
   trips: Trip[];
   tripId: number = +this.route.snapshot.paramMap.get("id");
   initData(): void {
-    this.dashboardService.getUserData().subscribe(() => {
-      this.getTrips();
-    });
+    this.getTrips();
   }
   starClickHandler($event: number) {
     this.trip.rating = $event;
@@ -28,28 +26,32 @@ export class DetailsComponent implements OnInit {
     this.trip.type = "deleted";
     this.sendTripsData();
   }
-  updateTripData(newData: any):void {
+  updateTripData(newData: any): void {
     // this.trip.date = newData.date;
     this.trip.title = newData.title;
     this.trip.description = newData.description;
-    console.log(this.trips);
   }
   updatePlaceHandler(updatedPlaces: Place[]) {
     this.trip.places = updatedPlaces;
-    console.log(this.trip);
-    this.sendTripsData();
-
+    this.updatePlaceData();
   }
   saveButtonHandler(formData: FormGroup) {
     this.updateTripData(formData.value);
     this.sendTripsData();
+  }
+  updatePlaceData() {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.databaseService
+        .updateTripsData(user.email, { trips: this.trips })
+        .subscribe();
+    });
   }
   sendTripsData() {
     this.userService.getCurrentUser().subscribe(user => {
       this.databaseService
         .updateTripsData(user.email, { trips: this.trips })
         .subscribe(() => {
-          // this.router.navigateByUrl("/dashboard");
+          this.router.navigateByUrl("/dashboard");
         });
     });
   }
@@ -75,6 +77,6 @@ export class DetailsComponent implements OnInit {
     this.initData();
   }
   ngOnChanges() {
-    console.log(123)
+    console.log(123);
   }
 }
