@@ -1,3 +1,5 @@
+import { UserService } from 'src/app/user/user.service';
+import { DatabaseService } from './../../database/database.service';
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/authentication/auth.service";
 import { Router } from "@angular/router";
@@ -28,16 +30,20 @@ export class LoginSocialComponent implements OnInit {
   };
   iconColor: string = "#435A59";
 
+
+
   socialLogin(socialName: string) {
     switch (socialName) {
       case this.socialNames.facebook: {
         this.authService.doFacebookLogin().subscribe(res => {
+          this.databaseService.tryCreateNewUser(res);
           this.redirect();
         });
         break;
       }
       case this.socialNames.google: {
         this.authService.doGoogleLogin().subscribe(res => {
+          this.databaseService.tryCreateNewUser(res);
           this.redirect();
         });
         break;
@@ -55,7 +61,7 @@ export class LoginSocialComponent implements OnInit {
     this.router.navigateByUrl(redirect);
   }
 
-  constructor(private authService: AuthService, public router: Router) {}
+  constructor(private authService: AuthService, public router: Router, private databaseService: DatabaseService) {}
 
   ngOnInit() {}
 }
