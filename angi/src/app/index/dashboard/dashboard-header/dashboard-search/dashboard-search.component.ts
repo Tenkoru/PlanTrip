@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class DashboardSearchComponent implements OnInit {
 
-  @Input() selectProps: FormGroup;
+  @Input() searchProps: FormGroup;
 
   buttonImage: string = "assets/icons/searchIcon.svg";
 
@@ -19,7 +19,7 @@ export class DashboardSearchComponent implements OnInit {
 
 
   ngOnInit() {
-    this.filterSubscription = this.selectProps.valueChanges.subscribe(() => {}) 
+    this.filterSubscription = this.searchProps.valueChanges.subscribe(() => {}) 
   }
   ngOnDestroy() {
     this.filterSubscription.unsubscribe();
