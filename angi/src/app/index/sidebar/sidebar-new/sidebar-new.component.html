@@ -1,8 +1,20 @@
 <h3 class="sidebar__new-title">{{ title }}</h3>
-<form action="" class="sidebar__form">
-    <app-label [props]="nameProps"></app-label>
-    <app-label [ngClass]="'sidebar__date-label'" [props]="dateStartProps"></app-label>
-    <app-label [ngClass]="'sidebar__date-label'" [props]="dateEndProps"></app-label>
-    <app-textarea [props]="textareaProps"></app-textarea>
-    <app-button [props]="submitButtonProps"></app-button>
+<form [formGroup]="newTripForm" class="sidebar__form" (ngSubmit)=submitHandler()>
+    <label [ngClass]="'label'">
+        <input type="text" [ngClass]="'input'" formControlName="title" required>
+        <span class="input__placeholder">{{nameText}}</span>
+    </label>
+    <label [ngClass]="'label sidebar__date-label'">
+        <input type="text" [ngClass]="'input'" formControlName="dateStart" required>
+        <span class="input__placeholder">{{dateStartText}}</span>
+    </label>
+    <label [ngClass]="'label sidebar__date-label'">
+        <input type="text" [ngClass]="'input'" formControlName="dateEnd">
+        <span class="input__placeholder">{{dateEndText}}</span>
+    </label>
+    <label [ngClass]="'label'">
+        <textarea [ngClass]="'textarea sidebar__textarea'" formControlName="description"></textarea>
+        <span class="input__placeholder">{{textareaText}}</span>
+    </label>
+    <button [ngClass]="'button sidebar__new-submit'"  type="submit">{{submitButtonText}}</button>
 </form>

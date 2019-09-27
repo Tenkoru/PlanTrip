@@ -1,8 +1,9 @@
+import { element } from 'protractor';
+import { FormGroup } from '@angular/forms';
 import { Trip } from './../app.trip';
-import { UserService } from './../user/user.service';
-import { AngularFirestore, Action } from "@angular/fire/firestore";
+import { AngularFirestore, Action, DocumentData } from "@angular/fire/firestore";
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs';
+import { Observable, Subscriber } from 'rxjs';
 import { firestore } from 'firebase';
 
 @Injectable({
@@ -35,5 +36,37 @@ export class DatabaseService {
     if (userData.additionalUserInfo.isNewUser) {
       this.createUserData(userData.user.email);
     }
+  }
+  generateId(trips: DocumentData): number {
+    let maxId = 0;
+    trips.trips.forEach(element => {
+      if (element.id && element.id > maxId) {
+        maxId = element.id;
+      }
+    });
+    return maxId + 1;
+  }
+  createNewTrip(userId: string, formData: FormGroup): Observable<number> {
+    return new Observable(subscriber => {
+      const formDataValues = formData.value;
+      this.db.collection("users").doc(userId).get().subscribe(data => {
+        let trips = data.data();
+        const tripId = this.generateId(trips)
+        let newTrip: Trip;
+        newTrip = {
+          id: tripId,
+          title: formDataValues.title,
+          date: [formDataValues.dateStart, formDataValues.dateEnd],
+          description: formDataValues.description,
+          mainImg: "assets/images/tripDefault.jpg",
+          type: "future",
+          rating: 5,
+        };
+        trips.trips.push(newTrip);
+        this.updateTripsData(userId, trips).subscribe(() => {
+          subscriber.next(tripId);
+        });
+      });
+    })
   }
 }

@@ -16,6 +16,7 @@ export class DetailsComponent implements OnInit {
   trip: Trip;
   trips: Trip[];
   tripId: number = +this.route.snapshot.paramMap.get("id");
+  routerSubscription = this.router.events;
   initData(): void {
     this.getTrips();
   }
@@ -71,12 +72,16 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private databaseService: DatabaseService,
-    private userService: UserService
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute
   ) {}
   ngOnInit() {
+    this.activatedRoute.params.subscribe(routeParams => {
+      this.tripId = +routeParams.id;
+    });
     this.initData();
   }
   ngOnChanges() {
-    console.log(123);
+    console.log("changes")
   }
 }
