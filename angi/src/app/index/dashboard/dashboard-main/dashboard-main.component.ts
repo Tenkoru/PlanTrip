@@ -1,5 +1,5 @@
 import { UserService } from "./../../../user/user.service";
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit, HostListener, Input } from "@angular/core";
 import { DashboardService } from "src/app/services/dashboard.service";
 import { Trip } from "src/app/app.trip";
 import { DatabaseService } from "src/app/database/database.service";
@@ -11,7 +11,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ["./dashboard-main.component.scss"]
 })
 export class DashboardMainComponent implements OnInit {
-  trips: Trip[];
+  @Input() trips: Trip[];
+  
   statuses = {
     isFuture: false,
     isPast: false,
@@ -21,12 +22,9 @@ export class DashboardMainComponent implements OnInit {
   futureListTitle: string = "Предстоящие поездки:";
   pastListTitle: string = "Прошедшие поездки:";
   deletedListTitle: string = "Удаленные поездки:";
-  tripsSubscription: Subscription;
 
   constructor(
     private dashboardService: DashboardService,
-    private databaseService: DatabaseService,
-    private userService: UserService
   ) {
     this.isGrid = dashboardService.isGrid;
   }
@@ -41,15 +39,7 @@ export class DashboardMainComponent implements OnInit {
     }
   }
 
-  getTrips(): void {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.tripsSubscription = this.databaseService.getUserData(user.email).subscribe(userdata => {
-        if (userdata.payload.data()) {
-          this.trips = userdata.payload.data().trips;
-        }
-      });
-    });
-  }
+  
   getGridStatus(): void {
     this.dashboardService.gridDisplayChange.subscribe(value => {
       this.isGrid = value;
@@ -62,13 +52,9 @@ export class DashboardMainComponent implements OnInit {
 
   ngOnInit() {
     this.getGridStatus();
-    this.getTrips();
     this.getTripStatus();
     this.dashboardService.tripsStatusesChange.subscribe(value => {
       this.statuses = value;
     })
-  }
-  ngOnDestroy() {
-    this.tripsSubscription.unsubscribe();
   }
 }

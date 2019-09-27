@@ -1,3 +1,5 @@
-<app-dashboard-search></app-dashboard-search>
-<app-dashboard-filter></app-dashboard-filter>
+<form [formGroup]="filterGroup">
+    <app-dashboard-search [selectProps]="filterGroup.get('search')"></app-dashboard-search>
+    <app-dashboard-filter></app-dashboard-filter>
+</form>
 <app-dashboard-grid></app-dashboard-grid>

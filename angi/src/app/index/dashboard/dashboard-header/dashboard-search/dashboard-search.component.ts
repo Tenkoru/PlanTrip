@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-search',
@@ -7,11 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardSearchComponent implements OnInit {
 
+  @Input() selectProps: FormGroup;
+
   buttonImage: string = "assets/icons/searchIcon.svg";
+
+  filterSubscription: Subscription;
 
   constructor() { }
 
+
   ngOnInit() {
+    this.filterSubscription = this.selectProps.valueChanges.subscribe(() => {}) 
+  }
+  ngOnDestroy() {
+    this.filterSubscription.unsubscribe();
   }
 
 }

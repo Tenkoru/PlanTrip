@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { DatabaseService } from 'src/app/database/database.service';
+import { UserService } from './../../user/user.service';
 import { HttpClient } from "@angular/common/http";
 import { Location } from "./app.location";
 import { Injectable } from "@angular/core";
@@ -5,12 +8,29 @@ import * as moment from "moment";
 import { Place } from "./app.place";
 import { Region } from "./app.region";
 import { Observable } from "rxjs";
+import { Trip } from 'src/app/app.trip';
 
 @Injectable({
   providedIn: "root"
 })
 export class DetailsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService, private databaseService: DatabaseService) {}
+  updatePlaceData(updatedTrips: Trip[]) {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.databaseService
+        .updateTripsData(user.email, { trips: updatedTrips })
+        .subscribe();
+    });
+  }
+  sendTripsData(updatedTrips: Trip[], router: Router) {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.databaseService
+        .updateTripsData(user.email, { trips: updatedTrips })
+        .subscribe(() => {
+          router.navigateByUrl("/dashboard");
+        });
+    });
+  }
   getParsedDates(dates: number[]): string {
     if (dates) {
       let date1 = dates[0];
@@ -78,7 +98,7 @@ export class DetailsService {
         return;
       }
       let newPlaceList = placeList;
-      let isNoLocation: boolean;
+      let isNoLocation = false;
       const addressComponents = newPlaceData.address_components;
       const countryName = findType("country");
       let regionName = findType("locality");
@@ -161,20 +181,17 @@ export class DetailsService {
                   if (newPlaceList[i].regions[j].name === regionName) {
                     isNewRegion = false;
                     if (newPlaceList[i].regions[j].locations && !isNoLocation) {
-                      for (
-                        let k = 0;
-                        k < newPlaceList[i].regions[j].locations.length;
-                        k++
-                      ) {
-                        if (
-                          newPlaceList[i].regions[j].locations[k].name ===
-                          locationName
-                        ) {
-                          return newPlaceList;
-                        } else {
-                          newPlaceList[i].regions[k].locations.push(
-                            newLocation
-                          );
+                      if (newPlaceList[i].regions[j].locations.length === 0) {
+                        newPlaceList[i].regions[j].locations.push(newLocation);
+                      } else {
+                        for (let k = 0; k < newPlaceList[i].regions[j].locations.length; k++) {
+                          if (newPlaceList[i].regions[j].locations[k].name === locationName) {
+                            isNoLocation = true;
+                            return newPlaceList;
+                          }
+                        }
+                        if (!isNoLocation) {
+                          newPlaceList[i].regions[j].locations.push(newLocation);
                         }
                       }
                     }

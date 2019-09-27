@@ -4,6 +4,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Trip } from "src/app/app.trip";
 import * as moment from "moment";
 import { UserService } from "src/app/user/user.service";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-dashboard-card",
@@ -30,6 +31,8 @@ export class DashboardCardComponent implements OnInit {
   };
   mainImg = "assets/images/tripDefault.jpg";
   dates: string = "";
+  userServiceSubscription: Subscription;
+  databaseSubscription: Subscription;
 
   getLinkProps(): void {
     this.linkProps.text =
@@ -38,12 +41,12 @@ export class DashboardCardComponent implements OnInit {
   }
 
   clickRestoreHandler() {
-    this.userService.getCurrentUser().subscribe(user => {
+    this.userServiceSubscription = this.userService.getCurrentUser().subscribe(user => {
       let trip = this.tripList.find(item => item.id === this.props.id);
       trip.type = "future";
-      this.databaseService
+      this.databaseSubscription = this.databaseService
         .updateTripsData(user.email, { trips: this.tripList })
-        .subscribe();
+        .subscribe(() => {});
     });
   }
 
@@ -75,5 +78,13 @@ export class DashboardCardComponent implements OnInit {
     this.linkProps.isGrid = this.isGrid;
     this.setLinkPath();
     this.setNewImage();
+  }
+  ngOnDestroy() {
+    if (typeof this.userServiceSubscription !== "undefined") {
+      this.userServiceSubscription.unsubscribe();
+    }
+    if (typeof this.databaseSubscription !== "undefined") {
+      this.databaseSubscription.unsubscribe();
+    }
   }
 }

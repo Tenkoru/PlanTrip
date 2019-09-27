@@ -1,3 +1,4 @@
+import { DetailsService } from './details.service';
 import { FormGroup } from "@angular/forms";
 import { Trip } from "./../../app.trip";
 import { DatabaseService } from "src/app/database/database.service";
@@ -25,7 +26,7 @@ export class DetailsComponent implements OnInit {
   }
   deleteButtonHandler() {
     this.trip.type = "deleted";
-    this.sendTripsData();
+    this.detailsService.sendTripsData(this.trips, this.router);
   }
   updateTripData(newData: any): void {
     // this.trip.date = newData.date;
@@ -34,28 +35,13 @@ export class DetailsComponent implements OnInit {
   }
   updatePlaceHandler(updatedPlaces: Place[]) {
     this.trip.places = updatedPlaces;
-    this.updatePlaceData();
+    this.detailsService.updatePlaceData(this.trips);
   }
   saveButtonHandler(formData: FormGroup) {
     this.updateTripData(formData.value);
-    this.sendTripsData();
+    this.detailsService.sendTripsData(this.trips, this.router);
   }
-  updatePlaceData() {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.databaseService
-        .updateTripsData(user.email, { trips: this.trips })
-        .subscribe();
-    });
-  }
-  sendTripsData() {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.databaseService
-        .updateTripsData(user.email, { trips: this.trips })
-        .subscribe(() => {
-          this.router.navigateByUrl("/dashboard");
-        });
-    });
-  }
+
   getTrips(): void {
     this.userService.getCurrentUser().subscribe(user => {
       this.databaseService.getUserData(user.email).subscribe(userdata => {
@@ -68,20 +54,17 @@ export class DetailsComponent implements OnInit {
   }
 
   constructor(
-    private dashboardService: DashboardService,
     private route: ActivatedRoute,
     private router: Router,
     private databaseService: DatabaseService,
     private userService: UserService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private detailsService: DetailsService,
   ) {}
   ngOnInit() {
     this.activatedRoute.params.subscribe(routeParams => {
       this.tripId = +routeParams.id;
     });
     this.initData();
-  }
-  ngOnChanges() {
-    console.log("changes")
   }
 }

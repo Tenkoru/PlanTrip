@@ -1,2 +1,2 @@
-<app-dashboard-header></app-dashboard-header>
-<app-dashboard-main></app-dashboard-main>
+<app-dashboard-header (filterEmitter)=filterChangeHandler($event)></app-dashboard-header>
+<app-dashboard-main [trips]=trips></app-dashboard-main>

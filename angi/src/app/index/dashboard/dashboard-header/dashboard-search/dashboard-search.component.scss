@@ -47,7 +47,7 @@
     outline-color: $inputBorderColor;
   }
 }
-.input--filled {
+.ng-valid {
   & + .input__placeholder {
     transform: translate(-15px, -45px);
     cursor: auto;
@@ -112,7 +112,7 @@
     outline-color: $inputBorderColor;
   }
 }
-.input--filled {
+.ng-valid {
   & + .input__placeholder {
     transform: translate(-15px, -45px);
     cursor: auto;
@@ -153,6 +153,7 @@
   &:focus {
     outline-color: $inputButtonOutlineColor;
   }
+  pointer-events: none;
   background-size: 25px;
   background-position: center center;
   background-repeat: no-repeat;
@@ -173,7 +174,7 @@
     width: 100%;
   }
 }
-.input--filled + .searchForm__input-placeholder {
+.ng-valid + .searchForm__input-placeholder {
   transform: translate(-40px, -45px);
 }
 .searchForm__input-placeholder {

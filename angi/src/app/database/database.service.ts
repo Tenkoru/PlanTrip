@@ -27,7 +27,6 @@ export class DatabaseService {
         let newUserData = {
           trips: [],
         }
-        debugger;
         this.db.collection("users").doc(userId).set(newUserData);
       }
     })

@@ -9,3 +9,13 @@
         flex-wrap: wrap;
     }
 }
+form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-start;
+    @media (max-width: $screenMobileS) {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}
