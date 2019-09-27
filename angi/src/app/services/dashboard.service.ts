@@ -1,12 +1,7 @@
-import { UserService } from "./../user/user.service";
-import { DatabaseService } from "./../database/database.service";
 import { Injectable } from "@angular/core";
 import { Trip } from "../app.trip";
-import { Subject, Observable, of } from "rxjs";
-import { Component, OnInit } from "@angular/core";
-import { User } from "../user/app.user";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { catchError, map, tap } from "rxjs/operators";
+import { Subject } from "rxjs";
+import { HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
@@ -18,8 +13,6 @@ export class DashboardService {
     isDeleted: false
   };
   isGrid = true;
-  UserId: number = 1;
-  private usersUrl = "api/USERS";
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -36,53 +29,36 @@ export class DashboardService {
     this.gridDisplayChange.next(value);
   }
 
-  private handleError<T>(operation = "operation", result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
-  }
-
-  getTripsStatus(): void {
+  setTripsStatus(trips: Trip[]): void {
     const statuses = {
       isFuture: false,
       isPast: false,
       isDeleted: false
     };
-    this.userService.getCurrentUser().subscribe(user => {
-      this.databaseService.getUserData(user.email).subscribe(userdata => {
-        if (userdata.payload.data()) {
-          userdata.payload.data().trips.forEach(function(item) {
-            switch (item.type) {
-              case "future": {
-                statuses.isFuture = true;
-                break;
-              }
-              case "past": {
-                statuses.isPast = true;
-                break;
-              }
-              case "deleted": {
-                statuses.isDeleted = true;
-                break;
-              }
-              default: {
-                statuses.isDeleted = true;
-                break;
-              }
-            }
-          });
+    trips.forEach(function(item) {
+      switch (item.type) {
+        case "future": {
+          statuses.isFuture = true;
+          break;
         }
-        this.tripsStatusesChange.next(statuses);
-      });
+        case "past": {
+          statuses.isPast = true;
+          break;
+        }
+        case "deleted": {
+          statuses.isDeleted = true;
+          break;
+        }
+        default: {
+          statuses.isDeleted = true;
+          break;
+        }
+      }
     });
+    this.tripsStatusesChange.next(statuses);
   }
 
-  constructor(
-    private http: HttpClient,
-    private databaseService: DatabaseService,
-    private userService: UserService
-  ) {
+  constructor() {
     this.gridDisplayChange.subscribe(value => {
       this.isGrid = value;
     });

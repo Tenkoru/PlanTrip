@@ -12,12 +12,8 @@ import { Subscription } from 'rxjs';
 })
 export class DashboardMainComponent implements OnInit {
   @Input() trips: Trip[];
-  
-  statuses = {
-    isFuture: false,
-    isPast: false,
-    isDeleted: false
-  };
+  @Input() statuses: any;
+
   isGrid: boolean;
   futureListTitle: string = "Предстоящие поездки:";
   pastListTitle: string = "Прошедшие поездки:";
@@ -46,15 +42,7 @@ export class DashboardMainComponent implements OnInit {
     });
   }
 
-  getTripStatus(): void {
-    this.dashboardService.getTripsStatus();
-  }
-
   ngOnInit() {
     this.getGridStatus();
-    this.getTripStatus();
-    this.dashboardService.tripsStatusesChange.subscribe(value => {
-      this.statuses = value;
-    })
   }
 }
