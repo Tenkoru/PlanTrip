@@ -57,12 +57,10 @@
 }
 .friends__link {
   display: block;
-  margin-top: 13px;
   text-decoration: none;
   margin-left: auto;
   min-width: 170px;
   @media (max-width: $screenMobileS) {
-    margin-top: 0;
     min-width: 130px;
   }
 }

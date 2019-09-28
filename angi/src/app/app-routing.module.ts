@@ -11,6 +11,7 @@ import { AuthGuard } from "./authentication/auth.guard";
 import { DashboardComponent } from "./index/dashboard/dashboard.component";
 import { DetailsComponent } from "./index/details/details.component";
 import { FriendsComponent } from "./index/friends/friends.component";
+import { FriendsTripsComponent } from './index/friends/friendsTrips/friendsTrips.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "index", pathMatch: "full" },
@@ -47,6 +48,10 @@ const routes: Routes = [
       {
         path: "details/:id",
         component: DetailsComponent
+      },
+      {
+        path: "friends/friendsTrips/:id",
+        component: FriendsTripsComponent,
       },
       { path: "friends", component: FriendsComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" }

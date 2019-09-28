@@ -2,7 +2,6 @@ import { DatabaseService } from "src/app/database/database.service";
 import { DetailsService } from "./../../../details/details.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { Trip } from "src/app/app.trip";
-import * as moment from "moment";
 import { UserService } from "src/app/user/user.service";
 import { Subscription } from 'rxjs';
 

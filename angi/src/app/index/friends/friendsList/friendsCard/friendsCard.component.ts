@@ -11,6 +11,7 @@ export class FriendsCardComponent implements OnInit {
 
   @Input() card: Friend;
   @Input() isAccepted: boolean;
+  link = "";
 
   constructor(private friendsService: FriendsService) { }
 
@@ -21,6 +22,7 @@ export class FriendsCardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.link = `friendsTrips/${this.card.email}`;
   }
 
 }
