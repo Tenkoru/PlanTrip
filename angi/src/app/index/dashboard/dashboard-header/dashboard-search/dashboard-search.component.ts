@@ -19,10 +19,6 @@ export class DashboardSearchComponent implements OnInit {
 
 
   ngOnInit() {
-    this.filterSubscription = this.searchProps.valueChanges.subscribe(() => {}) 
-  }
-  ngOnDestroy() {
-    this.filterSubscription.unsubscribe();
   }
 
 }

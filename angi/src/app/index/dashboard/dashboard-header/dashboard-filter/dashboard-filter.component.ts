@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-filter',
@@ -7,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardFilterComponent implements OnInit {
 
+  @Input() selectProps: FormGroup;
+
   buttonImage: string = "assets/icons/dropdownArrow.svg";
   sortArrowImg: string = "assets/icons/backArrow.svg";
-  isArrowUp: boolean = true;
-  filterOptions: object[] = [
+  isArrowUp: boolean;
+  filterOptions: any[] = [
     {
       text: "Сортировать по названию",
       value: "name",
@@ -24,14 +27,22 @@ export class DashboardFilterComponent implements OnInit {
       value: "stars",
     },
   ];
+  defaultOption: string = this.filterOptions[0].value;
+
+  changeSelectHandler($event: Event) {
+    this.selectProps.controls.select.setValue(($event.target as HTMLElement).value.split(" ")[1]);
+  }
 
   ButtonclickListener(): void {
+    this.selectProps.controls.isAscending.setValue(!this.isArrowUp);
     this.isArrowUp = !this.isArrowUp;
   }
 
   constructor() { }
 
   ngOnInit() {
+    this.isArrowUp = this.selectProps.controls.isAscending.value;
+    this.selectProps.controls.select.setValue(this.defaultOption);
   }
 
 }

@@ -28,8 +28,9 @@ export class DashboardComponent implements OnInit {
   userServiceSubscription: Subscription;
   databaseSubscription: Subscription;
 
-  filterChangeHandler($event): void {
+  filterChangeHandler($event: any): void {
     this.filterArguments.searchFilterString = $event.search.search;
+    console.log($event);
     this.getTrips();
   }
 

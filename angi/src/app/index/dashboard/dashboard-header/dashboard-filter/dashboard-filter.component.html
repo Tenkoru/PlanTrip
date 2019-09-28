@@ -1,6 +1,6 @@
-<div class="select__wrapper list__sort">
-  <select name="sortType" class="select">
-    <option *ngFor="let option of filterOptions" value="{{ option.value }}">{{ option.text }}</option>
+<div class="select__wrapper list__sort" [formGroup]="selectProps">
+  <select name="sortType" class="select" formControlName="select" (change)="changeSelectHandler($event)">
+    <option *ngFor="let option of filterOptions" [ngValue]="option.value">{{ option.text }}</option>
   </select>
   <svg-icon [src]="buttonImage"
     [svgStyle]="{ 'width.px': 18, 'height.px': 18, 'fill': iconColor }">

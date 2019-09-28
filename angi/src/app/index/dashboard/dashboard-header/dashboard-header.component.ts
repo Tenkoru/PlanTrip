@@ -25,20 +25,7 @@ export class DashboardHeaderComponent implements OnInit {
       }),
       filter: this.formbuilder.group({
         select: [""],
-        options: [
-          {
-            text: "Сортировать по названию",
-            value: "name"
-          },
-          {
-            text: "Сортировать по дате",
-            value: "date"
-          },
-          {
-            text: "Сортировать по рейтингу",
-            value: "stars"
-          }
-        ]
+        isAscending: [true],
       })
     });
   }
