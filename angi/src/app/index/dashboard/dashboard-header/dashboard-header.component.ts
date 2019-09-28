@@ -1,8 +1,8 @@
 import { FormBuilder, Validators } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { Subscription, pipe, interval } from 'rxjs';
-import { debounce, debounceTime } from 'rxjs/operators';
+import { Subscription, pipe, interval } from "rxjs";
+import { debounce, debounceTime } from "rxjs/operators";
 
 @Component({
   selector: "app-dashboard-header",
@@ -21,25 +21,24 @@ export class DashboardHeaderComponent implements OnInit {
   initForm(): void {
     this.filterGroup = this.formbuilder.group({
       search: this.formbuilder.group({
-        search: ["", [Validators.required]],
+        search: ["", [Validators.required]]
       }),
       filter: this.formbuilder.group({
         select: [""],
-        isAscending: [true],
+        isAscending: [true]
       })
     });
   }
 
   ngOnInit() {
     this.initForm();
-    this.filterSubscription = this.filterGroup.valueChanges.pipe(
-      debounceTime(400),
-    ).subscribe(value => {
+    this.filterSubscription = this.filterGroup.valueChanges.pipe(debounceTime(400)).subscribe(value => {
       this.filterEmitter.emit(value);
     });
-    
   }
   ngOnDestroy() {
-    this.filterSubscription.unsubscribe();
+    if (typeof this.filterSubscription !== "undefined") {
+      this.filterSubscription.unsubscribe();
+    }
   }
 }

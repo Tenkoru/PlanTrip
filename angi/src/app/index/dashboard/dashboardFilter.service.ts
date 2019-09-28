@@ -50,7 +50,6 @@ export class DashboardFilterService {
       }
       return 0;
     });
-    console.log(trips);
     return sortedTrip;
   }
   filterAndSortTrips(trips: Trip[], filterArguments: FilterArguments): Trip[] {
