@@ -8,25 +8,12 @@ import * as firebase from "firebase/app";
   providedIn: "root"
 })
 export class AuthService {
-  isLoggedIn = false;
-
   redirectUrl: string;
 
   socialNames = {
     facebook: "Facebook",
     google: "Google"
   };
-
-  login(): Observable<boolean> {
-    return of(true).pipe(
-      delay(1000),
-      tap(val => (this.isLoggedIn = true))
-    );
-  }
-
-  logout(): void {
-    this.isLoggedIn = false;
-  }
 
   doFacebookLogin(): Observable<any> {
     return from(

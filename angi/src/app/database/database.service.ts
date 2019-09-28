@@ -1,3 +1,4 @@
+import { Friends } from './../index/friends/friends';
 import { element } from 'protractor';
 import { FormGroup } from '@angular/forms';
 import { Trip } from './../app.trip';
@@ -26,6 +27,10 @@ export class DatabaseService {
       if (!documentInfo.exists) {
         let newUserData = {
           trips: [],
+          friends: {
+            accepted: [],
+            unaccepted: [],
+          },
         }
         this.db.collection("users").doc(userId).set(newUserData);
       }

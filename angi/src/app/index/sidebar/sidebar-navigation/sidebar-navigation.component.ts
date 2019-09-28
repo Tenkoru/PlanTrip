@@ -10,13 +10,13 @@ export class SidebarNavigationComponent implements OnInit {
 
   links = [
     {
-      text: "Мои друзья",
-      link: "friends",
+      text: "Мои поездки",
+      link: "dashboard",
       isSidebarLink: true
     },
     {
-      text: "Мои поездки",
-      link: "dashboard",
+      text: "Мои друзья",
+      link: "friends",
       isSidebarLink: true
     }
   ];

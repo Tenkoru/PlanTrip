@@ -1,4 +1,4 @@
-import { IndexGuard } from './authentication/index.guard';
+import { IndexGuard } from "./authentication/index.guard";
 import { LoginComponent } from "./auth/login/login.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -10,6 +10,7 @@ import { ResetComponent } from "./auth/reset/reset.component";
 import { AuthGuard } from "./authentication/auth.guard";
 import { DashboardComponent } from "./index/dashboard/dashboard.component";
 import { DetailsComponent } from "./index/details/details.component";
+import { FriendsComponent } from "./index/friends/friends.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "index", pathMatch: "full" },
@@ -47,6 +48,7 @@ const routes: Routes = [
         path: "details/:id",
         component: DetailsComponent
       },
+      { path: "friends", component: FriendsComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" }
     ]
   },

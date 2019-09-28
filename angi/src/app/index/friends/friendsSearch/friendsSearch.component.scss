@@ -1,40 +1,13 @@
 @import "variables.scss";
 
 :host {
-  @media (max-width: $screenMobileS) {
-    display: block;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-}
-.label {
+  margin-top: 35px;
   width: 100%;
-  position: relative;
-  margin-bottom: 35px;
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-.button {
-  height: 41px;
-  padding: 0 15px;
-  border: none;
-  border-radius: 4px;
-  font-family: $mainFont;
-  background-color: $buttonBgColor;
-  font-size: 1.25rem;
-  line-height: 41px;
-  font-weight: 400;
-  text-align: center;
-  color: #fff;
-  text-transform: lowercase;
-  cursor: pointer;
-  transition: all 0.3s;
-  &:hover {
-    background-color: $buttonBgHoverColor;
-  }
-  @media (max-width: $screenMobile) {
-    font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  @media (max-width: $screenMobileS) {
+    flex-direction: column;
   }
 }
 .label {
@@ -93,6 +66,7 @@
 }
 .searchForm {
   position: relative;
+  display: flex;
 }
 .searchForm__submit {
   position: absolute;
@@ -133,4 +107,38 @@
 }
 .searchForm__input-placeholder {
   left: 40px;
+}
+.friends__label {
+  max-width: 340px;
+  min-width: 340px;
+  @media (max-width: $screenTabletBig) {
+    margin-bottom: 0;
+  }
+  @media (max-width: $screenMobileS) {
+    min-width: 250px;
+  }
+  @media (max-width: $screenMobileXS) {
+    min-width: 0;
+  }
+}
+.friends__submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 41px;
+  min-width: 41px;
+  height: 41px;
+  margin-left: 12px;
+  border: 1px solid $inputBorderColor;
+  background-color: transparent;
+  border-radius: 4px;
+  transition: all 0.3s;
+  cursor: pointer;
+  padding: 0;
+  &:hover {
+    background-color: $inputBorderColor;
+  }
+  &:focus {
+      outline-color: $inputBorderColor;
+  }
 }

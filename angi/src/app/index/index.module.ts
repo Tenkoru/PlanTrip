@@ -1,3 +1,4 @@
+import { FriendsModule } from './friends/friends.module';
 import { AppRoutingModule } from './../app-routing.module';
 import { DetailsListComponent } from './details/details-bottom/details-list/details-list.component';
 import { DashboardModule } from "./dashboard/dashboard.module";
@@ -30,6 +31,7 @@ import { DetailsBottomComponent } from './details/details-bottom/details-bottom.
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    FriendsModule,
   ],
   declarations: [
     IndexComponent,
