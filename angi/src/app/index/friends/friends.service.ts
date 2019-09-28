@@ -49,6 +49,38 @@ export class FriendsService {
       });
     });
   }
+  sendRequesAcception(requestedFriend: Friend): Observable<any> {
+    return new Observable(subscriber => {
+      const userSubscription = this.userService.getCurrentUser().subscribe(currentUser => {
+        const databaseSubscription = this.databaseService
+          .getUserData(currentUser.email)
+          .subscribe(userData => {
+            const friends: Friends = userData.payload.data().friends;
+            const friendToMove = friends.unaccepted.find((friend: Friend) => {
+              return friend.email === requestedFriend.email;
+            });
+            friends.unaccepted.splice(friends.unaccepted.indexOf(friendToMove), 1);
+            friends.accepted.push(friendToMove);
+            this.databaseService.updateFriendsData(currentUser.email, { friends: friends }).subscribe();
+            databaseSubscription.unsubscribe();
+          });
+        const friendDatabaseSubscription = this.databaseService.getUserData(requestedFriend.email).subscribe(friendData => {
+          const friends: Friends = friendData.payload.data().friends;
+          const newFriend: Friend = {
+            name: currentUser.displayName,
+            email: currentUser.email,
+            avatar: currentUser.photoURL,
+          }
+          friends.accepted.push(newFriend);
+          this.databaseService.updateFriendsData(requestedFriend.email, { friends: friends }).subscribe();
+          friendDatabaseSubscription.unsubscribe();
+        })
+        userSubscription.unsubscribe();
+      });
+      subscriber.next();
+      subscriber.complete();
+    });
+  }
   trySubmitRequest(requestForm: FormGroup): Observable<any> {
     return new Observable(subscriber => {
       const requestAnswer = {
@@ -56,7 +88,6 @@ export class FriendsService {
         submitError: false,
         submitMessageText: ""
       };
-      console.log(123)
       if (requestForm.status === "INVALID") {
         if (typeof requestForm.controls.input.errors.required !== "undefined") {
           requestAnswer.submitOk = false;
@@ -112,7 +143,7 @@ export class FriendsService {
     return new Observable(subscriber => {
       const friendSubscription = this.isFriendRegistered(email).subscribe(value => {
         if (value) {
-          const friendSubscription = this.userService.getCurrentUser().subscribe(currentUser => {
+          const userSubscription = this.userService.getCurrentUser().subscribe(currentUser => {
             const databaseSubscription = this.databaseService.getUserData(email).subscribe(userData => {
               const friends: Friends = userData.payload.data().friends;
               const isMessageAlreadySent = friends.unaccepted.find((friend: Friend) => {
@@ -141,7 +172,7 @@ export class FriendsService {
               }
               databaseSubscription.unsubscribe();
             });
-            friendSubscription.unsubscribe();
+            userSubscription.unsubscribe();
           });
         } else {
           subscriber.next("noFriend");

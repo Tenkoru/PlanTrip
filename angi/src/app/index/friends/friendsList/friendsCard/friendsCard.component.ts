@@ -1,5 +1,6 @@
 import { Friend } from './../../friend';
 import { Component, OnInit, Input } from '@angular/core';
+import { FriendsService } from '../../friends.service';
 
 @Component({
   selector: 'app-friendsCard',
@@ -11,7 +12,13 @@ export class FriendsCardComponent implements OnInit {
   @Input() card: Friend;
   @Input() isAccepted: boolean;
 
-  constructor() { }
+  constructor(private friendsService: FriendsService) { }
+
+  buttonHandler() {
+    this.friendsService.sendRequesAcception(this.card).subscribe(() => {
+      console.log("sendRequesAcception")
+    });
+  }
 
   ngOnInit() {
   }
