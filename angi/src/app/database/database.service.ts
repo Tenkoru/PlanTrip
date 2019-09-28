@@ -22,6 +22,12 @@ export class DatabaseService {
       subscriber.complete();
     }) 
   }
+  updateFriendsData(userId: string, friends: object): Observable<Promise<void>> {
+    return new Observable(subscriber => {
+      subscriber.next(this.db.collection("users").doc(userId).update(friends));
+      subscriber.complete();
+    }) 
+  }
   createUserData(userId: string) {
     this.db.collection("users").doc(userId).get().subscribe(documentInfo => {
       if (!documentInfo.exists) {

@@ -6,17 +6,13 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  @media (max-width: $screenMobileS) {
-    flex-direction: column;
-  }
+  flex-direction: column;
 }
 .label {
   width: 100%;
   position: relative;
-  margin-bottom: 35px;
-  &:last-child {
-    margin-bottom: 0;
-  }
+  display: flex;
+  flex-wrap: wrap;
 }
 .input {
   width: 100%;
@@ -39,7 +35,7 @@
     outline-color: $inputBorderColor;
   }
 }
-.ng-valid {
+.isFilled {
   & + .input__placeholder {
     transform: translate(-15px, -45px);
     cursor: auto;
@@ -102,7 +98,7 @@
     width: 100%;
   }
 }
-.ng-valid + .searchForm__input-placeholder {
+.isFilled + .searchForm__input-placeholder {
   transform: translate(-40px, -45px);
 }
 .searchForm__input-placeholder {
@@ -141,4 +137,17 @@
   &:focus {
       outline-color: $inputBorderColor;
   }
+}
+.submitText {
+  width: 100%;
+  min-height: 18px;
+  font-size: 16px;
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+.submitOk {
+  color: #3C9891;
+}
+.submitError {
+  color: #ea3e3e;
 }

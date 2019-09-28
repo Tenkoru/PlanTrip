@@ -1,3 +1,4 @@
+import { FriendsService } from "./../friends.service";
 import { Validators } from "@angular/forms";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
@@ -14,18 +15,43 @@ export class FriendsSearchComponent implements OnInit {
   iconHoverColor = "#ffffff";
   iconCurrentColor = this.iconColor;
 
+  submitClasses = {
+    submitText: true,
+    submitOk: false,
+    submitError: true
+  };
+  inputClasses = {
+    "input input__common friends_input": true,
+    isFilled: ""
+  };
+  submitMessageText = "";
+  currentUserEmail: string;
+
+  submitError: string;
+
   mousehover(): void {
     this.iconCurrentColor = this.iconHoverColor;
   }
   mouseleave(): void {
     this.iconCurrentColor = this.iconColor;
   }
+  submit() {
+    this.friendsService.trySubmitRequest(this.requestForm).subscribe(submitAnswer => {
+      console.log(submitAnswer);
+      this.submitClasses.submitOk = submitAnswer.submitOk;
+      this.submitClasses.submitError = submitAnswer.submitError;
+      this.submitMessageText = submitAnswer.submitMessageText;
+    })
+  }
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private friendsService: FriendsService) {}
 
   ngOnInit() {
     this.requestForm = this.formBuilder.group({
-      input: ["", [Validators.required]]
+      input: ["", [Validators.required, Validators.email]]
+    });
+    this.requestForm.valueChanges.subscribe(value => {
+      this.inputClasses.isFilled = value.input;
     });
   }
 }
