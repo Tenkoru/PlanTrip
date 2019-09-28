@@ -30,7 +30,7 @@ export class DashboardFilterComponent implements OnInit {
   defaultOption: string = this.filterOptions[0].value;
 
   changeSelectHandler($event: Event) {
-    this.selectProps.controls.select.setValue(($event.target as HTMLElement).value.split(" ")[1]);
+    this.selectProps.controls.select.setValue((<HTMLInputElement>$event.target).value.split(" ")[1]);
   }
 
   ButtonclickListener(): void {
