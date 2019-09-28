@@ -40,13 +40,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     event.preventDefault();
-    this.authService.login().subscribe(() => {
-      if (this.authService.isLoggedIn) {
-        let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl): '/index/dashboard';
-
-        this.router.navigateByUrl(redirect);
-      }
-    })
   }
 
   constructor(public authService: AuthService, public router: Router) {}
