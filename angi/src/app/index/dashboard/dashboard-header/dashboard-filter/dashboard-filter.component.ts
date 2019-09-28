@@ -24,7 +24,7 @@ export class DashboardFilterComponent implements OnInit {
     },
     {
       text: "Сортировать по рейтингу",
-      value: "stars",
+      value: "rating",
     },
   ];
   defaultOption: string = this.filterOptions[0].value;

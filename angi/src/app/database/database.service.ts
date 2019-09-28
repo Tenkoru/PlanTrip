@@ -59,7 +59,7 @@ export class DatabaseService {
           description: formDataValues.description,
           mainImg: "assets/images/tripDefault.jpg",
           type: "future",
-          rating: 5,
+          rating: 0,
         };
         trips.trips.push(newTrip);
         this.updateTripsData(userId, trips).subscribe(() => {

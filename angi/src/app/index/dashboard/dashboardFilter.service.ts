@@ -9,7 +9,7 @@ export class DashboardFilterService {
   constructor() {}
   filterTrips(trips: Trip[], filterString: string): Trip[] {
     let filteredTrips: Trip[] = [];
-    const regExp = new RegExp(filterString, 'i');
+    const regExp = new RegExp(filterString, "i");
     trips.forEach(trip => {
       if (trip.title.match(regExp)) {
         filteredTrips.push(trip);
@@ -33,16 +33,34 @@ export class DashboardFilterService {
     });
     return filteredTrips;
   }
+  sortTrips(trips: Trip[], sortType: string, isAscending: boolean): Trip[] {
+    let sortedTrip: Trip[];
+    let isSortAscending = -1;
+
+    if (isAscending) {
+      isSortAscending = -isSortAscending;
+    }
+
+    sortedTrip = trips.sort((a: Trip, b: Trip) => {
+      if (a[sortType] < b[sortType]) {
+        return -isSortAscending;
+      }
+      if (a[sortType] > b[sortType]) {
+        return isSortAscending;
+      }
+      return 0;
+    });
+    console.log(trips);
+    return sortedTrip;
+  }
   filterAndSortTrips(trips: Trip[], filterArguments: FilterArguments): Trip[] {
     let filteredTrips: Trip[] = [];
-    if (filterArguments.searchFilterString.length >= 3) {
-      filteredTrips = this.filterTrips(
-        trips,
-        filterArguments.searchFilterString
-      );
-    } else {
-      filteredTrips = trips;
-    }
+    filteredTrips = this.filterTrips(trips, filterArguments.searchFilterString);
+    filteredTrips = this.sortTrips(
+      filteredTrips,
+      filterArguments.sortType,
+      filterArguments.sortDirectionAscending
+    );
 
     return filteredTrips;
   }

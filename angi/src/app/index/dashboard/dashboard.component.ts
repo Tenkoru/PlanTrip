@@ -30,27 +30,21 @@ export class DashboardComponent implements OnInit {
 
   filterChangeHandler($event: any): void {
     this.filterArguments.searchFilterString = $event.search.search;
-    console.log($event);
+    this.filterArguments.sortType = $event.filter.select;
+    this.filterArguments.sortDirectionAscending = $event.filter.isAscending;
     this.getTrips();
   }
 
   getTrips(): void {
-    this.userServiceSubscription = this.userService
-      .getCurrentUser()
-      .subscribe(user => {
-        this.databaseSubscription = this.databaseService
-          .getUserData(user.email)
-          .subscribe(userdata => {
-            if (userdata.payload.data()) {
-              let trips = userdata.payload.data().trips;
-              this.trips = this.dashboardFilterService.filterAndSortTrips(
-                trips,
-                this.filterArguments
-              );
-              this.dashboardService.setTripsStatus(this.trips);
-            }
-          });
+    this.userServiceSubscription = this.userService.getCurrentUser().subscribe(user => {
+      this.databaseSubscription = this.databaseService.getUserData(user.email).subscribe(userdata => {
+        if (userdata.payload.data()) {
+          let trips = userdata.payload.data().trips;
+          this.trips = this.dashboardFilterService.filterAndSortTrips(trips, this.filterArguments);
+          this.dashboardService.setTripsStatus(this.trips);
+        }
       });
+    });
   }
   constructor(
     private userService: UserService,
@@ -60,7 +54,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getTrips();
+    // this.getTrips();
     this.dashboardService.tripsStatusesChange.subscribe(value => {
       this.statuses = value;
     });
