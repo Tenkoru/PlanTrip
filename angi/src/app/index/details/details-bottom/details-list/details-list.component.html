@@ -11,7 +11,7 @@
                 <p *ngIf="place.name" class="destinations__name">{{place.name}}</p>
                 <p *ngIf="place.date" class="destinations__date">{{getDate(place.date)}}</p>
                 <div class="destinations__controls">
-                    <button class="destination__edit" (click)="destinationDeleteHandler(place)" type="button">
+                    <button *ngIf="!isNotEditable" class="destination__edit" (click)="destinationDeleteHandler(place)" type="button">
                         <svg-icon [src]="editIconImage" [svgStyle]="{ 'width.px': editIconsSize, 'height.px': editIconsSize, 'fill': editIconsColor}"></svg-icon>
                     </button>
                 </div>
@@ -30,7 +30,7 @@
                         <p *ngIf="region.name" class="destinations__name">{{region.name}}</p>
                         <p *ngIf="region.date" class="destinations__date">{{getDate(region.date)}}</p>
                         <div class="destinations__controls">
-                            <button class="destination__edit" (click)="destinationDeleteHandler(region)" type="button">
+                            <button *ngIf="!isNotEditable" class="destination__edit" (click)="destinationDeleteHandler(region)" type="button">
                                 <svg-icon [src]="editIconImage" [svgStyle]="{ 'width.px': editIconsSize, 'height.px': editIconsSize, 'fill': editIconsColor}"></svg-icon>
                             </button>
                         </div>
@@ -51,7 +51,7 @@
                                 <p *ngIf="location.name" class="destinations__name">{{location.name}}</p>
                                 <p *ngIf="location.date" class="destinations__date">{{getDate(location.date)}}</p>
                                 <div class="destinations__controls">
-                                    <button class="destination__edit" (click)="destinationDeleteHandler(location)" type="button">
+                                    <button *ngIf="!isNotEditable" class="destination__edit" (click)="destinationDeleteHandler(location)" type="button">
                                         <svg-icon [src]="editIconImage" [svgStyle]="{ 'width.px': editIconsSize, 'height.px': editIconsSize, 'fill': editIconsColor}"></svg-icon>
                                     </button>
                                 </div>

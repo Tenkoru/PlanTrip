@@ -1,6 +1,6 @@
-import { Router } from '@angular/router';
-import { DatabaseService } from 'src/app/database/database.service';
-import { UserService } from './../../user/user.service';
+import { Router, ActivatedRoute } from "@angular/router";
+import { DatabaseService } from "src/app/database/database.service";
+import { UserService } from "./../../user/user.service";
 import { HttpClient } from "@angular/common/http";
 import { Location } from "./app.location";
 import { Injectable } from "@angular/core";
@@ -8,27 +8,27 @@ import * as moment from "moment";
 import { Place } from "./app.place";
 import { Region } from "./app.region";
 import { Observable } from "rxjs";
-import { Trip } from 'src/app/app.trip';
+import { Trip } from "src/app/app.trip";
 
 @Injectable({
   providedIn: "root"
 })
 export class DetailsService {
-  constructor(private http: HttpClient, private userService: UserService, private databaseService: DatabaseService) {}
+  constructor(
+    private http: HttpClient,
+    private userService: UserService,
+    private databaseService: DatabaseService,
+  ) {}
   updatePlaceData(updatedTrips: Trip[]) {
     this.userService.getCurrentUser().subscribe(user => {
-      this.databaseService
-        .updateTripsData(user.email, { trips: updatedTrips })
-        .subscribe();
+      this.databaseService.updateTripsData(user.email, { trips: updatedTrips }).subscribe();
     });
   }
   sendTripsData(updatedTrips: Trip[], router: Router) {
     this.userService.getCurrentUser().subscribe(user => {
-      this.databaseService
-        .updateTripsData(user.email, { trips: updatedTrips })
-        .subscribe(() => {
-          router.navigateByUrl("/dashboard");
-        });
+      this.databaseService.updateTripsData(user.email, { trips: updatedTrips }).subscribe(() => {
+        router.navigateByUrl("/dashboard");
+      });
     });
   }
   getParsedDates(dates: number[]): string {
@@ -88,11 +88,14 @@ export class DetailsService {
     });
     return result;
   }
+  isAtFriendDetails(router: ActivatedRoute): boolean {
+    return router.snapshot.url[router.snapshot.url.length - 2].path !== "details";
+  }
+  getEmailFromRoute(router: ActivatedRoute): string {
+    return router.snapshot.url[router.snapshot.url.length - 2].path;
+  }
 
-  addNewPlace(
-    placeList: Place[],
-    newPlaceData: google.maps.places.PlaceResult
-  ): Observable<any> {
+  addNewPlace(placeList: Place[], newPlaceData: google.maps.places.PlaceResult): Observable<any> {
     return new Observable(subscriber => {
       if (!newPlaceData.address_components) {
         return;
@@ -225,11 +228,7 @@ export class DetailsService {
               placeList[i].regions.splice(j, 1);
             } else {
               if (typeof placeList[i].regions[j].locations != "undefined") {
-                for (
-                  let k = 0;
-                  k < placeList[i].regions[j].locations.length;
-                  k++
-                ) {
+                for (let k = 0; k < placeList[i].regions[j].locations.length; k++) {
                   if (placeList[i].regions[j].locations[k] === placeToDelete) {
                     placeList[i].regions[j].locations.splice(k, 1);
                   }

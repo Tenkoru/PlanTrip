@@ -4,16 +4,16 @@
   </div>
   <div class="details__info">
     <label class="label details__info-label">
-      <input type="text" class="details__input details__subtitle" formControlName="title">
+      <input type="text" class="details__input details__subtitle" formControlName="title" readonly="isNotEditable">
     </label>
     <label class="label details__info-label details__info-label--lessMb">
-      <input type="text" class="details__input details__date" formControlName="date">
+      <input type="text" class="details__input details__date" formControlName="date" readonly="isNotEditable">
     </label>
     <label class="label details__info-label">
       <span class="details__description-wrapper">
         <span class="details__description">Описание</span>
       </span>
-      <textarea class="textarea details__textarea" formControlName="description"></textarea>
+      <textarea class="textarea details__textarea" formControlName="description" readonly="isNotEditable"></textarea>
     </label>
   </div>
   <div class="details__controls-outer">
@@ -23,7 +23,7 @@
         [svgStyle]="{ 'width.px': star.size, 'height.px': star.size, 'fill': number > rating ? star.color : star.filledColor }">
       </svg-icon>
     </div>
-    <div class="details__controls">
+    <div class="details__controls" *ngIf="!isNotEditable">
       <app-button [props]="saveButton" (click)="saveButtonHandler()"></app-button>
       <app-button [props]="deleteButton" (click)="deleteButtonHandler()"></app-button>
     </div>

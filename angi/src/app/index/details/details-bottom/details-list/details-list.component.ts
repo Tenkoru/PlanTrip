@@ -9,6 +9,7 @@ import { Place } from "../../app.place";
 })
 export class DetailsListComponent implements OnInit {
   @Input() list: Place[];
+  @Input() isNotEditable: boolean;
   @Output() deleteEmitter = new EventEmitter;
 
   dropdownIconImg = "assets/icons/down-chevron.svg";

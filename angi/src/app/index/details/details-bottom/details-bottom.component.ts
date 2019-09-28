@@ -11,6 +11,7 @@ import { Place } from '../app.place';
 export class DetailsBottomComponent implements OnInit {
 
   @Input() props: Trip;
+  @Input() isNotEditable: boolean;
   @Output() updatePlaceEmitter = new EventEmitter;
 
   detailsBottomTitle: string = "Подробный план моего путешествия:";

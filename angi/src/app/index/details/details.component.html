@@ -1,2 +1,2 @@
-<app-details-main (saveButtonEmitter)="saveButtonHandler($event)" (deleteButtonEmitter)="deleteButtonHandler()" (starClickEmitter)="starClickHandler($event)"  *ngIf="trip" [props]="trip"></app-details-main>
-<app-details-bottom (updatePlaceEmitter)=updatePlaceHandler($event) *ngIf="trip" [props]="trip"></app-details-bottom>
+<app-details-main [isNotEditable]="friendEmail" (saveButtonEmitter)="saveButtonHandler($event)" (deleteButtonEmitter)="deleteButtonHandler()" (starClickEmitter)="starClickHandler($event)"  *ngIf="trip" [props]="trip"></app-details-main>
+<app-details-bottom [isNotEditable]="friendEmail" (updatePlaceEmitter)=updatePlaceHandler($event) *ngIf="trip" [props]="trip"></app-details-bottom>

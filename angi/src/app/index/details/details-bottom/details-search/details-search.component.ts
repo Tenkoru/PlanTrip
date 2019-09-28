@@ -11,6 +11,7 @@ import { DetailsService } from '../../details.service';
 })
 export class DetailsSearchComponent implements OnInit {
   @Input() list: Place[];
+  @Input() isNotEditable: boolean;
   @Output() searchEmitter = new EventEmitter;
 
   searchButtonImage: string = "assets/icons/searchIcon.svg";

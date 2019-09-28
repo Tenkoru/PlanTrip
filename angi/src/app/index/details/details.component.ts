@@ -1,10 +1,10 @@
-import { DetailsService } from './details.service';
+import { FriendsService } from "./../friends/friends.service";
+import { DetailsService } from "./details.service";
 import { FormGroup } from "@angular/forms";
 import { Trip } from "./../../app.trip";
 import { DatabaseService } from "src/app/database/database.service";
 import { UserService } from "./../../user/user.service";
 import { Component, OnInit } from "@angular/core";
-import { DashboardService } from "src/app/services/dashboard.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Place } from "./app.place";
 
@@ -18,9 +18,7 @@ export class DetailsComponent implements OnInit {
   trips: Trip[];
   tripId: number = +this.route.snapshot.paramMap.get("id");
   routerSubscription = this.router.events;
-  initData(): void {
-    this.getTrips();
-  }
+  friendEmail: string = "";
   starClickHandler($event: number) {
     this.trip.rating = $event;
   }
@@ -43,14 +41,47 @@ export class DetailsComponent implements OnInit {
   }
 
   getTrips(): void {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.databaseService.getUserData(user.email).subscribe(userdata => {
+    if (this.friendEmail) {
+      this.databaseService.getUserData(this.friendEmail).subscribe(userdata => {
         if (userdata.payload.data()) {
           this.trips = userdata.payload.data().trips;
           this.trip = this.trips.find(item => item.id === this.tripId);
         }
       });
-    });
+    } else {
+      this.userService.getCurrentUser().subscribe(user => {
+        this.databaseService.getUserData(user.email).subscribe(userdata => {
+          if (userdata.payload.data()) {
+            this.trips = userdata.payload.data().trips;
+            this.trip = this.trips.find(item => item.id === this.tripId);
+          }
+        });
+      });
+    }
+  }
+  checkRouterParams(): void {
+    if (this.detailsService.isAtFriendDetails(this.route)) {
+      this.route.params.subscribe(routeParams => {
+        if (routeParams.id) {
+          this.friendEmail = this.detailsService.getEmailFromRoute(this.route);
+          this.friendsService.isFriend(this.friendEmail).subscribe((isFriend: boolean) => {
+            if (isFriend) {
+              this.trip = routeParams.id;
+              this.getTrips();
+            } else {
+              this.router.navigate(["/index"]);
+            }
+          });
+        } else {
+          this.getTrips();
+        }
+      });
+    } else {
+      this.route.params.subscribe(routeParams => {
+        this.trip = routeParams.id;
+        this.getTrips();
+      });
+    }
   }
 
   constructor(
@@ -58,13 +89,10 @@ export class DetailsComponent implements OnInit {
     private router: Router,
     private databaseService: DatabaseService,
     private userService: UserService,
-    private activatedRoute: ActivatedRoute,
     private detailsService: DetailsService,
+    private friendsService: FriendsService
   ) {}
   ngOnInit() {
-    this.activatedRoute.params.subscribe(routeParams => {
-      this.tripId = +routeParams.id;
-    });
-    this.initData();
+    this.checkRouterParams();
   }
 }
