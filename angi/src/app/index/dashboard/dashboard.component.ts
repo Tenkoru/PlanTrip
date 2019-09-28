@@ -61,7 +61,11 @@ export class DashboardComponent implements OnInit {
   }
   ngOnDestroy() {
     this.filterArguments.searchFilterString = "";
-    this.databaseSubscription.unsubscribe();
-    this.userServiceSubscription.unsubscribe();
+    if (typeof this.databaseSubscription !== "undefined") {
+      this.databaseSubscription.unsubscribe();
+    }
+    if (typeof this.userServiceSubscription !== "undefined") {
+      this.userServiceSubscription.unsubscribe();
+    }
   }
 }
