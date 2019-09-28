@@ -22,7 +22,6 @@ export class FriendsCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.link = `friendsTrips/${this.card.email}`;
+    this.link = `dashboard/${this.card.email}`;
   }
-
 }

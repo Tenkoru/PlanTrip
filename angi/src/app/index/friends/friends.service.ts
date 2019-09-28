@@ -10,6 +10,22 @@ import { FormGroup } from "@angular/forms";
   providedIn: "root"
 })
 export class FriendsService {
+  isFriend(friendEmail: string): Observable<boolean> {
+    return new Observable(subscriber => {
+      const userSubscription = this.userService.getCurrentUser().subscribe(user => {
+        const databaseSubscription = this.databaseService.getUserData(friendEmail).subscribe(userdata => {
+          const friendList = userdata.payload.data().friends.accepted;
+          const isFriend = friendList.find((friend: Friend) => {
+            return friend.email === user.email;
+          });
+          subscriber.next(isFriend);
+          subscriber.complete();
+          databaseSubscription.unsubscribe();
+        });
+        userSubscription.unsubscribe();
+      });
+    });
+  }
   sortFriendsList(friends: Friends): Friends {
     function sortFunction(a: Friend, b: Friend): number {
       if (a.name < b.name) {
@@ -64,17 +80,21 @@ export class FriendsService {
             this.databaseService.updateFriendsData(currentUser.email, { friends: friends }).subscribe();
             databaseSubscription.unsubscribe();
           });
-        const friendDatabaseSubscription = this.databaseService.getUserData(requestedFriend.email).subscribe(friendData => {
-          const friends: Friends = friendData.payload.data().friends;
-          const newFriend: Friend = {
-            name: currentUser.displayName,
-            email: currentUser.email,
-            avatar: currentUser.photoURL,
-          }
-          friends.accepted.push(newFriend);
-          this.databaseService.updateFriendsData(requestedFriend.email, { friends: friends }).subscribe();
-          friendDatabaseSubscription.unsubscribe();
-        })
+        const friendDatabaseSubscription = this.databaseService
+          .getUserData(requestedFriend.email)
+          .subscribe(friendData => {
+            const friends: Friends = friendData.payload.data().friends;
+            const newFriend: Friend = {
+              name: currentUser.displayName,
+              email: currentUser.email,
+              avatar: currentUser.photoURL
+            };
+            friends.accepted.push(newFriend);
+            this.databaseService
+              .updateFriendsData(requestedFriend.email, { friends: friends })
+              .subscribe();
+            friendDatabaseSubscription.unsubscribe();
+          });
         userSubscription.unsubscribe();
       });
       subscriber.next();

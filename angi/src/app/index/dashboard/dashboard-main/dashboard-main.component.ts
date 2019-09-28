@@ -1,9 +1,6 @@
-import { UserService } from "./../../../user/user.service";
 import { Component, OnInit, HostListener, Input } from "@angular/core";
 import { DashboardService } from "src/app/services/dashboard.service";
 import { Trip } from "src/app/app.trip";
-import { DatabaseService } from "src/app/database/database.service";
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-dashboard-main",
@@ -13,6 +10,7 @@ import { Subscription } from 'rxjs';
 export class DashboardMainComponent implements OnInit {
   @Input() trips: Trip[];
   @Input() statuses: any;
+  @Input() tripsId: string;
 
   isGrid: boolean;
   futureListTitle: string = "Предстоящие поездки:";

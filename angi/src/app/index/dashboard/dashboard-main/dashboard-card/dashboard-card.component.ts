@@ -3,7 +3,7 @@ import { DetailsService } from "./../../../details/details.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { Trip } from "src/app/app.trip";
 import { UserService } from "src/app/user/user.service";
-import { Subscription } from 'rxjs';
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-dashboard-card",
@@ -14,6 +14,7 @@ export class DashboardCardComponent implements OnInit {
   @Input() props: Trip;
   @Input() tripList: Trip[];
   @Input() isGrid: boolean;
+  @Input() tripsId: string;
 
   numbers: number[];
   star = {
@@ -34,9 +35,13 @@ export class DashboardCardComponent implements OnInit {
   databaseSubscription: Subscription;
 
   getLinkProps(): void {
-    this.linkProps.text =
-      this.props.type === "deleted" ? "Восстановить" : "Редактировать";
-    this.linkProps.isButton = this.props.type === "deleted" ? true : false;
+    if (this.tripsId) {
+      this.linkProps.text = "Посмотреть";
+      this.linkProps.isButton = false;
+    } else {
+      this.linkProps.text = this.props.type === "deleted" ? "Восстановить" : "Редактировать";
+      this.linkProps.isButton = this.props.type === "deleted" ? true : false;
+    }
   }
 
   clickRestoreHandler() {
@@ -60,7 +65,11 @@ export class DashboardCardComponent implements OnInit {
   }
 
   setLinkPath() {
-    this.linkProps.link = `../details/${this.props.id}`;
+    if (this.tripsId) {
+      this.linkProps.link = `../../details/${this.tripsId}/${this.props.id}`;
+    } else {
+      this.linkProps.link = `../details/${this.props.id}`;
+    }
   }
   formatDates() {
     this.dates = this.detailsService.getParsedDates(this.props.date);
