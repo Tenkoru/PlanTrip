@@ -16,7 +16,7 @@ export class DashboardFilterComponent implements OnInit {
   filterOptions: any[] = [
     {
       text: "Сортировать по названию",
-      value: "name",
+      value: "title",
     },
     {
       text: "Сортировать по дате",

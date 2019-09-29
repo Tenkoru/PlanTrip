@@ -1,5 +1,6 @@
-<ul class="details__table destinations">
-    <ng-container *ngIf="list">
+<ng-container *ngIf="list">
+    <ul class="details__table destinations" *ngIf="list.length">
+
         <li *ngFor="let place of list" class="destinations__place destinations__place--country">
             <div class="destinations__place-info">
                 <button [ngClass]="{'destination__dropdown' : true, 'destination__dropdown--up' : place.hidden}"
@@ -62,7 +63,7 @@
                                     <button *ngIf="!isNotEditable" class="destination__edit destination__edit--pen"
                                         (click)="editDescriptionHandler(editDescription, location)">
                                         <svg-icon [src]=" editIconImage"
-                                        [svgStyle]="{ 'width.px': editIconsSize, 'height.px': editIconsSize, 'fill': editIconsColor}">
+                                            [svgStyle]="{ 'width.px': editIconsSize, 'height.px': editIconsSize, 'fill': editIconsColor}">
                                         </svg-icon>
                                     </button>
                                     <button *ngIf="!isNotEditable" class="destination__edit"
@@ -83,9 +84,9 @@
                 </li>
             </ul>
         </li>
-    </ng-container>
-</ul>
 
+    </ul>
+</ng-container>
 <ng-template #confirmDeletion let-modal>
     <p class="modal__text">Вы уверенны что хотите удалить место и все его вложения?</p>
     <div class="modal__buttons">
