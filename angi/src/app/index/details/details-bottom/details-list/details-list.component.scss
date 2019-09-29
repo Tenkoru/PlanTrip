@@ -64,9 +64,10 @@
   }
 }
 .destinations__controls {
-  width: 40px;
-  height: 40px;
+  display: flex;
+  min-width: 90px;
   margin-left: 20px;
+  justify-content: flex-end;
   @media (max-width: $screenMobile) {
     margin-left: 10px;
   }
@@ -80,6 +81,9 @@
   &:focus {
     outline: none;
   }
+}
+.destination__edit--pen {
+  margin-right: auto;
 }
 .destinations__button {
   width: 40px;
@@ -128,6 +132,7 @@
   display: flex;
   border-bottom: 1px solid $inputBorderColor;
   border-radius: 3px;
+  position: relative;
 }
 .destinations__place-title {
   min-width: 120px;
@@ -187,4 +192,3 @@
   max-height: 0;
   overflow: hidden;
 }
-

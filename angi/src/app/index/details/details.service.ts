@@ -17,7 +17,7 @@ export class DetailsService {
   constructor(
     private http: HttpClient,
     private userService: UserService,
-    private databaseService: DatabaseService,
+    private databaseService: DatabaseService
   ) {}
   updatePlaceData(updatedTrips: Trip[]) {
     this.userService.getCurrentUser().subscribe(user => {
@@ -194,18 +194,38 @@ export class DetailsService {
     for (let i = 0; i < placeList.length; i++) {
       if (placeList[i] === placeToDelete) {
         placeList.splice(i, 1);
+        break;
       } else {
         if (typeof placeList[i].regions != "undefined") {
           for (let j = 0; j < placeList[i].regions.length; j++) {
             if (placeList[i].regions[j] === placeToDelete) {
               placeList[i].regions.splice(j, 1);
+              break;
             } else {
               if (typeof placeList[i].regions[j].locations != "undefined") {
                 for (let k = 0; k < placeList[i].regions[j].locations.length; k++) {
                   if (placeList[i].regions[j].locations[k] === placeToDelete) {
                     placeList[i].regions[j].locations.splice(k, 1);
+                    break;
                   }
                 }
+              }
+            }
+          }
+        }
+      }
+    }
+    return placeList;
+  }
+  updateLocationDescription(placeList: Place[], Location: Location, description: string): Place[] {
+    for (let i = 0; i < placeList.length; i++) {
+      if (typeof placeList[i].regions != "undefined") {
+        for (let j = 0; j < placeList[i].regions.length; j++) {
+          if (typeof placeList[i].regions[j].locations != "undefined") {
+            for (let k = 0; k < placeList[i].regions[j].locations.length; k++) {
+              if (placeList[i].regions[j].locations[k] === Location) {
+                placeList[i].regions[j].locations[k].description = description;
+                break;
               }
             }
           }

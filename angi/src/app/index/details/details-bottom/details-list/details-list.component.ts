@@ -1,8 +1,11 @@
+import { Location } from "./../../app.location";
+import { FormBuilder } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 import { DateService } from "../../../../shared/services/date.service";
 import { DetailsService } from "./../../details.service";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Place } from "../../app.place";
-import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-details-list",
@@ -15,11 +18,13 @@ export class DetailsListComponent implements OnInit {
   @Output() deleteEmitter = new EventEmitter();
 
   dropdownIconImg = "assets/icons/down-chevron.svg";
-  editIconImage = "assets/icons/closeIcon.svg";
+  editIconImage = "assets/icons/pen.svg";
+  removeIconImage = "assets/icons/closeIcon.svg";
   dropdownIconColor = "#10645D";
   editIconsColor = "#10645D";
 
   placeToDelete: object;
+  locationToUpdate: Location;
 
   dropdownIconBigSize = 38;
   dropdownIconMediumSize = 28;
@@ -38,6 +43,20 @@ export class DetailsListComponent implements OnInit {
     isModalDecline: true
   };
 
+  modalEditProps = {
+    text: "Изменить",
+    type: "button",
+    isFullWidth: true
+  };
+
+  modalNoEditProps = {
+    text: "Отменить",
+    type: "button",
+    isFullWidth: true
+  };
+
+  locationDescriptionForm: FormGroup;
+
   dropdownButtonClickListener(place: any) {
     if (typeof place.hidden === "undefined") {
       place.hidden = true;
@@ -46,13 +65,29 @@ export class DetailsListComponent implements OnInit {
     }
   }
 
-  destinationDeleteHandler(confirmDeletion: any, place: object) {
+  destinationDeleteHandler(modalContent: any, place: object) {
     this.placeToDelete = place;
-    this.open(confirmDeletion);
+    this.open(modalContent);
+  }
+
+  editDescriptionHandler(modalContent: any, location: Location) {
+    this.locationToUpdate = location;
+    this.locationDescriptionForm.setValue({
+      description: location.description
+    });
+    this.openEditModal(modalContent);
   }
 
   emitPlaceToDelete(): void {
     let updatedList = this.detailsService.deletePlaceFromList(this.list, this.placeToDelete);
+    this.deleteEmitter.emit(updatedList);
+  }
+  emitLocationDescription(): void {
+    let updatedList = this.detailsService.updateLocationDescription(
+      this.list,
+      this.locationToUpdate,
+      this.locationDescriptionForm.value.description
+    );
     this.deleteEmitter.emit(updatedList);
   }
 
@@ -61,8 +96,19 @@ export class DetailsListComponent implements OnInit {
     windowClass: "modalDelete"
   };
 
-  open(confirmDeletion: any) {
-    this.modalService.open(confirmDeletion, this.modalOptions).result.then(
+  openEditModal(modalContent: any) {
+    this.modalService.open(modalContent, this.modalOptions).result.then(
+      result => {
+        if (result === "accept") {
+          this.emitLocationDescription();
+        }
+      },
+      reason => {}
+    );
+  }
+
+  open(modalContent: any) {
+    this.modalService.open(modalContent, this.modalOptions).result.then(
       result => {
         if (result === "accept") {
           this.emitPlaceToDelete();
@@ -76,21 +122,16 @@ export class DetailsListComponent implements OnInit {
     return this.dateService.getParsedDates(dates);
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return "by pressing ESC";
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return "by clicking on a backdrop";
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
   constructor(
     private dateService: DateService,
     private detailsService: DetailsService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private formBuilder: FormBuilder
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.locationDescriptionForm = this.formBuilder.group({
+      description: [""]
+    });
+  }
 }
