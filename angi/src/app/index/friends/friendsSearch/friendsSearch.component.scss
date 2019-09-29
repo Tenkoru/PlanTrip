@@ -146,8 +146,8 @@
   margin-bottom: 0;
 }
 .submitOk {
-  color: #3C9891;
+  color: $buttonBgColor;
 }
 .submitError {
-  color: #ea3e3e;
+  color: $invalidColor;
 }

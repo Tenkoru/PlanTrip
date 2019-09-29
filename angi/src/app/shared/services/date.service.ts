@@ -17,6 +17,11 @@ export class DateService {
     } else {
       parsedDates[1] = 0;
     }
+    if (parsedDates[0] && parsedDates[1] && parsedDates[0] > parsedDates[1]) {
+      const tmp = parsedDates[0];
+      parsedDates[0] = parsedDates[1];
+      parsedDates[1] = tmp;
+    }
 
     return parsedDates;
   }

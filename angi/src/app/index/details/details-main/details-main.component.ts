@@ -1,10 +1,10 @@
-import { DateService } from '../../../shared/services/date.service';
+import { DateService } from "../../../shared/services/date.service";
 import { Subscription } from "rxjs";
 import { DetailsService } from "./../details.service";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Trip } from "src/app/app.trip";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { IDatePickerConfig } from 'ng2-date-picker';
+import { IDatePickerConfig } from "ng2-date-picker";
 
 @Component({
   selector: "app-details-main",
@@ -20,7 +20,7 @@ export class DetailsMainComponent implements OnInit {
 
   dpConfig: IDatePickerConfig = {
     format: "DD/MM/YYYY",
-    allowMultiSelect: true,
+    allowMultiSelect: true
   };
   isDash: boolean = false;
 
@@ -35,8 +35,8 @@ export class DetailsMainComponent implements OnInit {
 
   saveButton = {
     text: "Сохранить",
-    type: "button",
-    isDetailsButton: true
+    type: "submit",
+    isDetailsButton: true,
   };
 
   deleteButton = {
@@ -45,7 +45,7 @@ export class DetailsMainComponent implements OnInit {
     isDetailsButton: true
   };
 
-  isDashSubscription: Subscription;
+  dateMask = "0d/0M/0000";
 
   detailsForm: FormGroup;
 
@@ -59,14 +59,17 @@ export class DetailsMainComponent implements OnInit {
     this.detailsForm = this.formBuilder.group({
       title: [this.props.title, [Validators.required]],
       description: [this.props.description ? this.props.description : "Описание"],
-      date: [this.dateService.getParsedDates(this.props.date), [Validators.required]]
+      dateStart: [this.dateService.getParsedDate(this.props.date[0]), [Validators.required]],
+      dateEnd: [this.dateService.getParsedDate(this.props.date[1])]
     });
     if (this.props.rating) {
       this.rating = this.props.rating;
     }
   }
   saveButtonHandler() {
-    this.saveButtonEmitter.emit(this.detailsForm);
+    if (this.detailsForm.valid) {
+      this.saveButtonEmitter.emit(this.detailsForm);
+    }
   }
   deleteButtonHandler() {
     this.deleteButtonEmitter.emit();
@@ -78,13 +81,12 @@ export class DetailsMainComponent implements OnInit {
       this.starClickEmitter.emit(id + 1);
     }
   }
-  ngOnInit() {}
-  ngOnChanges() {
+  ngOnInit() {
     this.initData();
   }
+  ngOnChanges() {
+    
+  }
   ngOnDestroy() {
-    if (typeof this.isDashSubscription !== "undefined") {
-      this.isDashSubscription.unsubscribe();
-    }
   }
 }

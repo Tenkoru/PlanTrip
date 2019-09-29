@@ -1,3 +1,5 @@
+import { DateService } from './../../shared/services/date.service';
+import { Subscription } from 'rxjs';
 import { FriendsService } from "./../friends/friends.service";
 import { DetailsService } from "./details.service";
 import { FormGroup } from "@angular/forms";
@@ -17,7 +19,7 @@ export class DetailsComponent implements OnInit {
   trip: Trip;
   trips: Trip[];
   tripId: number = +this.route.snapshot.paramMap.get("id");
-  routerSubscription = this.router.events;
+  routerSubscription: Subscription;
   friendEmail: string = "";
   starClickHandler($event: number) {
     this.trip.rating = $event;
@@ -27,10 +29,11 @@ export class DetailsComponent implements OnInit {
     this.detailsService.sendTripsData(this.trips, this.router);
   }
   updateTripData(newData: any): void {
-    this.trip.date = [];  
-    this.trip.date[0] = newData.dateStart;
+    this.trip.date[0] = this.dateService.parseDateToTimestamp(newData.dateStart);
     if (typeof newData.dateEnd !== "undefined") {
-      this.trip.date[1] = newData.dateEnd;
+      this.trip.date[1] = this.dateService.parseDateToTimestamp(newData.dateEnd);
+    } else {
+      this.trip.date[1] = 0;
     }
     this.trip.title = newData.title;
     this.trip.description = newData.description;
@@ -65,7 +68,7 @@ export class DetailsComponent implements OnInit {
   }
   checkRouterParams(): void {
     if (this.detailsService.isAtFriendDetails(this.route)) {
-      this.route.params.subscribe(routeParams => {
+      this.routerSubscription = this.route.params.subscribe(routeParams => {
         if (routeParams.id) {
           this.friendEmail = this.detailsService.getEmailFromRoute(this.route);
           this.friendsService.isFriend(this.friendEmail).subscribe((isFriend: boolean) => {
@@ -81,7 +84,7 @@ export class DetailsComponent implements OnInit {
         }
       });
     } else {
-      this.route.params.subscribe(routeParams => {
+      this.routerSubscription = this.route.params.subscribe(routeParams => {
         this.tripId = +routeParams.id;
         this.getTrips();
       });
@@ -94,9 +97,15 @@ export class DetailsComponent implements OnInit {
     private databaseService: DatabaseService,
     private userService: UserService,
     private detailsService: DetailsService,
-    private friendsService: FriendsService
+    private friendsService: FriendsService,
+    private dateService: DateService,
   ) {}
   ngOnInit() {
     this.checkRouterParams();
+  }
+  ngOnDestroy() {
+    if (typeof this.routerSubscription !== "undefined") {
+      this.routerSubscription.unsubscribe();
+    }
   }
 }
