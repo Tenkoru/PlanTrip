@@ -23,6 +23,7 @@ import { DetailsSearchComponent } from './details/details-bottom/details-search/
 import { DetailsBottomComponent } from './details/details-bottom/details-bottom.component';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgxMaskModule } from 'ngx-mask';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { NgxMaskModule } from 'ngx-mask';
     FriendsModule,
     DpDatePickerModule,
     NgxMaskModule.forRoot(),
+    NgbModalModule,
   ],
   declarations: [
     IndexComponent,

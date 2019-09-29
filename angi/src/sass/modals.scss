@@ -1,0 +1,16 @@
+.modalDelete {
+    .modal-content {
+        padding: 15px;
+    }
+    .modal__text {
+        font-size: 1.2rem;
+    }
+    .modal__buttons {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        & > * {
+            width: 49%;
+        }
+    }
+}

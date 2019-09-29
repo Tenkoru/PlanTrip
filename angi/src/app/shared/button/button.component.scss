@@ -19,6 +19,9 @@
   text-transform: lowercase;
   cursor: pointer;
   transition: all 0.3s;
+  &:focus {
+    outline-color: $inputButtonOutlineColor;
+  }
 }
 .button:hover {
   background-color: $buttonBgHoverColor;
@@ -35,6 +38,9 @@
   background-color: $authButtonBgColor;
   width: 100%;
   transition: all 0.3s;
+  &:focus {
+    outline-color: $authPasswordButtonOutlineColor;
+  }
 }
 .auth__button:hover {
   background-color: $authButtonBgHoverColor;
@@ -52,5 +58,16 @@
   margin-bottom: 12px;
   @media (max-width: $screenMobileS) {
     width: 100%;
+  }
+}
+.fullWidth {
+  width: 100%;
+}
+.modal--decline {
+  border: 2px solid $inputBorderColor;
+  background-color: #fff;
+  color: $inputBorderColor;
+  &:hover {
+    color: #fff;
   }
 }

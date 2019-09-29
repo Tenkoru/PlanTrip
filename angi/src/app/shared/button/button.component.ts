@@ -15,6 +15,8 @@ export class ButtonComponent implements OnInit {
     fade: boolean;
     isSidebar: boolean;
     isDetailsButton: boolean;
+    isModalDecline: boolean;
+    isFullWidth: boolean;
   };
   @Output() eventEmitter = new EventEmitter<void>();
 
@@ -38,6 +40,8 @@ export class ButtonComponent implements OnInit {
       "auth__button--fade": this.props.fade,
       "sidebar__new-submit": this.props.isSidebar,
       "details__button": this.props.isDetailsButton,
+      "modal--decline": this.props.isModalDecline,
+      "fullWidth": this.props.isFullWidth,
     }
   }
 
