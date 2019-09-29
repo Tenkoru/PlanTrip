@@ -1,7 +1,7 @@
-import { UserService } from 'src/app/user/user.service';
-import { DatabaseService } from './../../database/database.service';
+import { UserService } from 'src/app/shared/user/user.service';
+import { DatabaseService } from '../../shared/database/database.service';
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "src/app/authentication/auth.service";
+import { AuthService } from "src/app/auth/authentication/auth.service";
 import { Router } from "@angular/router";
 
 @Component({

@@ -1,7 +1,7 @@
 import { SidebarService } from "../sidebar.service";
 import { Router } from "@angular/router";
-import { UserService } from "./../../../user/user.service";
-import { DatabaseService } from "src/app/database/database.service";
+import { UserService } from "../../../shared/user/user.service";
+import { DatabaseService } from "src/app/shared/database/database.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
 import { IDatePickerConfig } from "ng2-date-picker";

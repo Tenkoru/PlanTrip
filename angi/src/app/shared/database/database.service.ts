@@ -1,7 +1,7 @@
-import { Friends } from "./../index/friends/friends";
+import { Friends } from "../../index/friends/friends";
 import { element } from "protractor";
 import { FormGroup } from "@angular/forms";
-import { Trip } from "./../app.trip";
+import { Trip } from "../../app.trip";
 import { AngularFirestore, Action, DocumentData } from "@angular/fire/firestore";
 import { Injectable } from "@angular/core";
 import { Observable, Subscriber } from "rxjs";

@@ -1,7 +1,7 @@
-import { UserService } from "./../../user/user.service";
+import { UserService } from "../../shared/user/user.service";
 import { SidebarService } from "./sidebar.service";
 import { Component, OnInit } from "@angular/core";
-import { DashboardService } from "src/app/services/dashboard.service";
+import { DashboardService } from "src/app/shared/services/dashboard.service";
 
 @Component({
   selector: "app-sidebar",

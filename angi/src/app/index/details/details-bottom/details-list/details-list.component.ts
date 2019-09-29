@@ -1,4 +1,4 @@
-import { DateService } from './../../../../services/date.service';
+import { DateService } from '../../../../shared/services/date.service';
 import { DetailsService } from './../../details.service';
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Place } from "../../app.place";

@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/authentication/auth.service';
+import { AuthService } from 'src/app/auth/authentication/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../sidebar.service';
 

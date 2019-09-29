@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { DashboardService } from "src/app/services/dashboard.service";
+import { DashboardService } from "src/app/shared/services/dashboard.service";
 
 @Component({
   selector: "app-dashboard-grid",

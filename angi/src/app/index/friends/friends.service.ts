@@ -1,5 +1,5 @@
-import { UserService } from "src/app/user/user.service";
-import { DatabaseService } from "./../../database/database.service";
+import { UserService } from "src/app/shared/user/user.service";
+import { DatabaseService } from "../../shared/database/database.service";
 import { Injectable } from "@angular/core";
 import { Friends } from "./friends";
 import { Friend } from "./friend";

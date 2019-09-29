@@ -1,4 +1,4 @@
-import { IndexGuard } from "./authentication/index.guard";
+import { IndexGuard } from "./auth/authentication/index.guard";
 import { LoginComponent } from "./auth/login/login.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -7,7 +7,7 @@ import { AuthComponent } from "./auth/auth.component";
 import { IndexComponent } from "./index/index.component";
 import { RegisterComponent } from "./auth/register/register.component";
 import { ResetComponent } from "./auth/reset/reset.component";
-import { AuthGuard } from "./authentication/auth.guard";
+import { AuthGuard } from "./auth/authentication/auth.guard";
 import { DashboardComponent } from "./index/dashboard/dashboard.component";
 import { DetailsComponent } from "./index/details/details.component";
 import { FriendsComponent } from "./index/friends/friends.component";

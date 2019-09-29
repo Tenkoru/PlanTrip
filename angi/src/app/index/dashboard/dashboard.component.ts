@@ -1,10 +1,10 @@
 import { FriendsService } from "./../friends/friends.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { DashboardService } from "src/app/services/dashboard.service";
+import { DashboardService } from "src/app/shared/services/dashboard.service";
 import { FilterArguments } from "./filterArguments";
 import { DashboardFilterService } from "./dashboardFilter.service";
-import { DatabaseService } from "./../../database/database.service";
-import { UserService } from "./../../user/user.service";
+import { DatabaseService } from "../../shared/database/database.service";
+import { UserService } from "../../shared/user/user.service";
 import { Trip } from "src/app/app.trip";
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";

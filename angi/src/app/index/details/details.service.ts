@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from "@angular/router";
-import { DatabaseService } from "src/app/database/database.service";
-import { UserService } from "./../../user/user.service";
+import { DatabaseService } from "src/app/shared/database/database.service";
+import { UserService } from "../../shared/user/user.service";
 import { HttpClient } from "@angular/common/http";
 import { Location } from "./app.location";
 import { Injectable } from "@angular/core";

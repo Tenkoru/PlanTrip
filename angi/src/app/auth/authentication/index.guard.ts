@@ -8,7 +8,7 @@ import {
 } from "@angular/router";
 import { Observable, from } from "rxjs";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { UserService } from "../user/user.service";
+import { UserService } from "../../shared/user/user.service";
 
 @Injectable({
   providedIn: "root"

@@ -1,9 +1,9 @@
-import { DateService } from './../../../../services/date.service';
-import { DatabaseService } from "src/app/database/database.service";
+import { DateService } from '../../../../shared/services/date.service';
+import { DatabaseService } from "src/app/shared/database/database.service";
 import { DetailsService } from "./../../../details/details.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { Trip } from "src/app/app.trip";
-import { UserService } from "src/app/user/user.service";
+import { UserService } from "src/app/shared/user/user.service";
 import { Subscription } from "rxjs";
 
 @Component({

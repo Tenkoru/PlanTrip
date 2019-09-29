@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Trip } from "../app.trip";
+import { Trip } from "../../app.trip";
 import { Subject } from "rxjs";
 import { HttpHeaders } from "@angular/common/http";
 
