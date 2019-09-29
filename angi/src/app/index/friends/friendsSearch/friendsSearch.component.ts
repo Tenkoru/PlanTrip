@@ -37,7 +37,6 @@ export class FriendsSearchComponent implements OnInit {
   }
   submit() {
     this.friendsService.trySubmitRequest(this.requestForm).subscribe(submitAnswer => {
-      console.log(submitAnswer);
       this.submitClasses.submitOk = submitAnswer.submitOk;
       this.submitClasses.submitError = submitAnswer.submitError;
       this.submitMessageText = submitAnswer.submitMessageText;

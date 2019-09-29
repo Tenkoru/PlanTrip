@@ -16,9 +16,7 @@ export class FriendsCardComponent implements OnInit {
   constructor(private friendsService: FriendsService) { }
 
   buttonHandler() {
-    this.friendsService.sendRequesAcception(this.card).subscribe(() => {
-      console.log("sendRequesAcception")
-    });
+    this.friendsService.sendRequesAcception(this.card).subscribe();
   }
 
   ngOnInit() {
