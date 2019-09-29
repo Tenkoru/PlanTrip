@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { SidebarService } from './sidebar.service';
+import { DateService } from './date.service';
 
-describe('Service: Sidebar', () => {
+describe('Service: Date', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SidebarService]
+      providers: [DateService]
     });
   });
 
-  it('should ...', inject([SidebarService], (service: SidebarService) => {
+  it('should ...', inject([DateService], (service: DateService) => {
     expect(service).toBeTruthy();
   }));
 });
