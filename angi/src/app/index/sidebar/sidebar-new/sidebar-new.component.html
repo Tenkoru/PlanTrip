@@ -5,11 +5,11 @@
         <span class="input__placeholder">{{nameText}}</span>
     </label>
     <label [ngClass]="'label sidebar__date-label'">
-        <input type="text" mask="{{dateMask}}" [dpDayPicker]="dpDateStartConfig" [ngClass]="{'input': true, 'inputFilled': newTripForm.value.dateStart}" formControlName="dateStart" required>
+        <input type="text" [dropSpecialCharacters]="false" mask="{{dateMask}}" [dpDayPicker]="dpDateStartConfig" [ngClass]="{'input': true, 'inputFilled': newTripForm.value.dateStart}" formControlName="dateStart">
         <span class="input__placeholder">{{dateStartText}}</span>
     </label>
     <label [ngClass]="'label sidebar__date-label'">
-        <input type="text" mask="{{dateMask}}" [dpDayPicker]="dpDateEndConfig" [ngClass]="{'input': true, 'inputFilled': newTripForm.value.dateEnd}" formControlName="dateEnd">
+        <input type="text" [dropSpecialCharacters]="false" mask="{{dateMask}}" [dpDayPicker]="dpDateEndConfig" [ngClass]="{'input': true, 'inputFilled': newTripForm.value.dateEnd}" formControlName="dateEnd">
         <span class="input__placeholder">{{dateEndText}}</span>
     </label>
     <label [ngClass]="'label'">

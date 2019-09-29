@@ -29,7 +29,7 @@ export class SidebarNewComponent implements OnInit {
     format: "DD/MM/YYYY",
     opens: "left"
   };
-  dateMask = "00/00/0000";
+  dateMask = "d0/M0/0000";
 
   initData() {
     this.newTripForm = this.formBuilder.group({
