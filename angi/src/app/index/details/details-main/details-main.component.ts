@@ -1,6 +1,4 @@
 import { DateService } from "../../../shared/services/date.service";
-import { Subscription } from "rxjs";
-import { DetailsService } from "./../details.service";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Trip } from "src/app/app.trip";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -20,7 +18,6 @@ export class DetailsMainComponent implements OnInit {
 
   dpConfig: IDatePickerConfig = {
     format: "DD/MM/YYYY",
-    allowMultiSelect: true
   };
   isDash: boolean = false;
 
@@ -36,7 +33,7 @@ export class DetailsMainComponent implements OnInit {
   saveButton = {
     text: "Сохранить",
     type: "submit",
-    isDetailsButton: true,
+    isDetailsButton: true
   };
 
   deleteButton = {
@@ -85,8 +82,14 @@ export class DetailsMainComponent implements OnInit {
     this.initData();
   }
   ngOnChanges() {
-    
+    if (typeof this.detailsForm !== "undefined") {
+      this.detailsForm.setValue({
+        title: this.props.title,
+        description: this.props.description ? this.props.description : "Описание",
+        dateStart: this.dateService.getParsedDate(this.props.date[0]),
+        dateEnd: this.dateService.getParsedDate(this.props.date[1])
+      });
+    }
   }
-  ngOnDestroy() {
-  }
+  ngOnDestroy() {}
 }

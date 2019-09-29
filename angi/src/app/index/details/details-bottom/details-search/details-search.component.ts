@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { FormControl } from "@angular/forms";
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from "@angular/core";
 import { MapsAPILoader } from "@agm/core";
@@ -20,10 +21,11 @@ export class DetailsSearchComponent implements OnInit {
   addButtonColor: string = "#019287";
   addButtonHoverColor: string = "#ffffff";
   isHovered: boolean = false;
-  searchControl: FormControl;
+  searchControl: FormControl = new FormControl;
 
   isInputFilled: boolean;
   inputClasses = {};
+  searchControlSubscription: Subscription;
 
   @ViewChild("search", {
     static: true
@@ -36,13 +38,9 @@ export class DetailsSearchComponent implements OnInit {
   mouseleaveListener() {
     this.isHovered = false;
   }
-  searchInputInputHandler() {
-    this.inputClasses["input--filled"] = this.searchControl.value
-      ? true
-      : false;
-  }
+
+
   apiLoader() {
-    this.searchControl = new FormControl();
     const currentComponent = this;
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(
@@ -70,6 +68,15 @@ export class DetailsSearchComponent implements OnInit {
       searchForm__input: true,
       "input--filled": this.isInputFilled
     };
+    this.searchControlSubscription = this.searchControl.valueChanges.subscribe(form => {
+      this.isInputFilled = this.inputClasses["input--filled"] = form;
+    })
     this.apiLoader();
+  }
+  ngOnDestroy() {
+    this.searchControlSubscription.unsubscribe();
+  }
+  ngOnChanges() {
+    this.searchControl.reset();
   }
 }

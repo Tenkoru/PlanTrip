@@ -1,2 +1,2 @@
-<app-details-main [isNotEditable]="friendEmail" (saveButtonEmitter)="saveButtonHandler($event)" (deleteButtonEmitter)="deleteButtonHandler()" (starClickEmitter)="starClickHandler($event)"  *ngIf="trip" [props]="trip"></app-details-main>
+<app-details-main [ngClass]="{'isFriend': friendEmail}" [isNotEditable]="friendEmail" (saveButtonEmitter)="saveButtonHandler($event)" (deleteButtonEmitter)="deleteButtonHandler()" (starClickEmitter)="starClickHandler($event)"  *ngIf="trip" [props]="trip"></app-details-main>
 <app-details-bottom [isNotEditable]="friendEmail" (updatePlaceEmitter)=updatePlaceHandler($event) *ngIf="trip" [props]="trip"></app-details-bottom>
