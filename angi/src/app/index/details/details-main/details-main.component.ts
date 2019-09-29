@@ -1,7 +1,10 @@
+import { DateService } from './../../../services/date.service';
+import { Subscription } from "rxjs";
 import { DetailsService } from "./../details.service";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Trip } from "src/app/app.trip";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { IDatePickerConfig } from 'ng2-date-picker';
 
 @Component({
   selector: "app-details-main",
@@ -14,6 +17,12 @@ export class DetailsMainComponent implements OnInit {
   @Output() starClickEmitter = new EventEmitter<number>();
   @Output() deleteButtonEmitter = new EventEmitter<any>();
   @Output() saveButtonEmitter = new EventEmitter<any>();
+
+  dpConfig: IDatePickerConfig = {
+    format: "DD/MM/YYYY",
+    allowMultiSelect: true,
+  };
+  isDash: boolean = false;
 
   star = {
     icon: "assets/icons/star.svg",
@@ -36,9 +45,11 @@ export class DetailsMainComponent implements OnInit {
     isDetailsButton: true
   };
 
+  isDashSubscription: Subscription;
+
   detailsForm: FormGroup;
 
-  constructor(private detailsService: DetailsService, private formBuilder: FormBuilder) {
+  constructor(private dateService: DateService, private formBuilder: FormBuilder) {
     this.numbers = Array(5)
       .fill(0)
       .map((x, i) => i + 1);
@@ -48,7 +59,7 @@ export class DetailsMainComponent implements OnInit {
     this.detailsForm = this.formBuilder.group({
       title: [this.props.title, [Validators.required]],
       description: [this.props.description ? this.props.description : "Описание"],
-      date: [this.detailsService.getParsedDates(this.props.date), [Validators.required]]
+      date: [this.dateService.getParsedDates(this.props.date), [Validators.required]]
     });
     if (this.props.rating) {
       this.rating = this.props.rating;
@@ -70,5 +81,10 @@ export class DetailsMainComponent implements OnInit {
   ngOnInit() {}
   ngOnChanges() {
     this.initData();
+  }
+  ngOnDestroy() {
+    if (typeof this.isDashSubscription !== "undefined") {
+      this.isDashSubscription.unsubscribe();
+    }
   }
 }

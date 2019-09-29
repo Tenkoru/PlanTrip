@@ -21,6 +21,8 @@ import { DetailsMainComponent } from './details/details-main/details-main.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailsSearchComponent } from './details/details-bottom/details-search/details-search.component';
 import { DetailsBottomComponent } from './details/details-bottom/details-bottom.component';
+import { DpDatePickerModule } from 'ng2-date-picker';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   imports: [
@@ -32,6 +34,8 @@ import { DetailsBottomComponent } from './details/details-bottom/details-bottom.
     FormsModule,
     ReactiveFormsModule,
     FriendsModule,
+    DpDatePickerModule,
+    NgxMaskModule.forRoot(),
   ],
   declarations: [
     IndexComponent,

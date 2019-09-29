@@ -8,10 +8,9 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { FriendsSearchComponent } from "./friendsSearch/friendsSearch.component";
 import { FriendsListComponent } from "./friendsList/friendsList.component";
 import { AppRoutingModule } from "src/app/app-routing.module";
-import { FriendsTripsComponent } from './friendsTrips/friendsTrips.component';
 
 @NgModule({
   imports: [CommonModule, AngularSvgIconModule, SharedModule, ReactiveFormsModule, AppRoutingModule],
-  declarations: [FriendsComponent, FriendsSearchComponent, FriendsListComponent, FriendsCardComponent, FriendsTripsComponent]
+  declarations: [FriendsComponent, FriendsSearchComponent, FriendsListComponent, FriendsCardComponent]
 })
 export class FriendsModule {}

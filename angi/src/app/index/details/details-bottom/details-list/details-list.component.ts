@@ -1,3 +1,4 @@
+import { DateService } from './../../../../services/date.service';
 import { DetailsService } from './../../details.service';
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Place } from "../../app.place";
@@ -35,10 +36,10 @@ export class DetailsListComponent implements OnInit {
   }
 
   getDate(dates: number[]): string {
-    return this.detailsService.getParsedDates(dates);
+    return this.dateService.getParsedDates(dates);
   }
 
-  constructor(private detailsService: DetailsService) {}
+  constructor(private dateService: DateService,private detailsService: DetailsService) {}
 
   ngOnInit() {}
 }

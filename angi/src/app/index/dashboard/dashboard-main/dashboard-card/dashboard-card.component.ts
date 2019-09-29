@@ -1,3 +1,4 @@
+import { DateService } from './../../../../services/date.service';
 import { DatabaseService } from "src/app/database/database.service";
 import { DetailsService } from "./../../../details/details.service";
 import { Component, OnInit, Input } from "@angular/core";
@@ -55,7 +56,7 @@ export class DashboardCardComponent implements OnInit {
   }
 
   constructor(
-    private detailsService: DetailsService,
+    private dateService: DateService,
     private userService: UserService,
     private databaseService: DatabaseService
   ) {
@@ -72,7 +73,7 @@ export class DashboardCardComponent implements OnInit {
     }
   }
   formatDates() {
-    this.dates = this.detailsService.getParsedDates(this.props.date);
+    this.dates = this.dateService.getParsedDates(this.props.date);
   }
   setNewImage() {
     if (this.props.mainImg) {

@@ -48,19 +48,20 @@
   border-color: $inputBorderColor;
 }
 .input {
-  &.ng-dirty.ng-invalid {
+  &.inputFilled.ng-invalid {
     border-color: red;
   }
 }
 .input:focus {
   outline-color: $inputBorderColor;
 }
+
 .input:focus + .input__placeholder {
   transform: translate(-15px, -45px);
   cursor: auto;
 }
 
-.ng-dirty + .input__placeholder {
+.inputFilled ~ .input__placeholder {
   transform: translate(-15px, -45px);
   cursor: auto;
 }
@@ -135,7 +136,7 @@ textarea {
     }
     outline-color: $inputBorderColor;
   }
-  &.ng-dirty + .input__placeholder {
+  &.inputFilled ~ .input__placeholder {
     transform: translate(-15px, -40px);
     cursor: auto;
   }

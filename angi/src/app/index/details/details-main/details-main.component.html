@@ -4,16 +4,16 @@
   </div>
   <div class="details__info">
     <label class="label details__info-label">
-      <input type="text" class="details__input details__subtitle" formControlName="title" readonly="isNotEditable">
+      <input type="text" class="details__input details__subtitle" formControlName="title" readonly="{{isNotEditable}}">
     </label>
     <label class="label details__info-label details__info-label--lessMb">
-      <input type="text" class="details__input details__date" formControlName="date" readonly="isNotEditable">
+      <input type="text" class="details__input details__date" [dpDayPicker]="dpConfig" formControlName="date" readonly="{{isNotEditable}}">
     </label>
     <label class="label details__info-label">
       <span class="details__description-wrapper">
         <span class="details__description">Описание</span>
       </span>
-      <textarea class="textarea details__textarea" formControlName="description" readonly="isNotEditable"></textarea>
+      <textarea class="textarea details__textarea" formControlName="description" readonly="{{isNotEditable}}"></textarea>
     </label>
   </div>
   <div class="details__controls-outer">

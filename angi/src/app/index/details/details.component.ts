@@ -27,7 +27,11 @@ export class DetailsComponent implements OnInit {
     this.detailsService.sendTripsData(this.trips, this.router);
   }
   updateTripData(newData: any): void {
-    // this.trip.date = newData.date;
+    this.trip.date = [];  
+    this.trip.date[0] = newData.dateStart;
+    if (typeof newData.dateEnd !== "undefined") {
+      this.trip.date[1] = newData.dateEnd;
+    }
     this.trip.title = newData.title;
     this.trip.description = newData.description;
   }
@@ -66,7 +70,7 @@ export class DetailsComponent implements OnInit {
           this.friendEmail = this.detailsService.getEmailFromRoute(this.route);
           this.friendsService.isFriend(this.friendEmail).subscribe((isFriend: boolean) => {
             if (isFriend) {
-              this.trip = routeParams.id;
+              this.tripId = +routeParams.id;
               this.getTrips();
             } else {
               this.router.navigate(["/index"]);
@@ -78,7 +82,7 @@ export class DetailsComponent implements OnInit {
       });
     } else {
       this.route.params.subscribe(routeParams => {
-        this.trip = routeParams.id;
+        this.tripId = +routeParams.id;
         this.getTrips();
       });
     }
