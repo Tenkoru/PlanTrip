@@ -39,8 +39,7 @@
 @media (max-width: $screenMobileXS) {
   .auth__back-arrow {
     right: auto;
-    top: auto;
-    bottom: 100%;
+    top: 0;
     left: 0;
   }
 }

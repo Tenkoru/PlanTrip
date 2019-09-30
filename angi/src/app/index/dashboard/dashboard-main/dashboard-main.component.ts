@@ -42,5 +42,6 @@ export class DashboardMainComponent implements OnInit {
 
   ngOnInit() {
     this.getGridStatus();
+    this.onResize();
   }
 }

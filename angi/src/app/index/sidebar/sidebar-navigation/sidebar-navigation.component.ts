@@ -1,3 +1,4 @@
+import { SidebarService } from './../sidebar.service';
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 
 @Component({
@@ -25,12 +26,15 @@ export class SidebarNavigationComponent implements OnInit {
     link: "",
     isSidebarLink: true
   };
+  linkClickHandler():void {
+    this.sidebarService.setSidebarStatus(false);
+  }
   createNewButtonText: string = "Создать новую поездку";
   openMenu(isOpened: boolean) {
     this.openCreateNewMenu.emit(isOpened);
   }
 
-  constructor() {}
+  constructor(private sidebarService: SidebarService) {}
 
   ngOnInit() {}
 }
