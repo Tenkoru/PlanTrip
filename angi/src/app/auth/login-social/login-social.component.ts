@@ -15,20 +15,22 @@ export class LoginSocialComponent implements OnInit {
       name: "Facebook",
       type: "button",
       className: "fb",
-      image: "assets/icons/facebook.svg"
+      image: "assets/icons/facebook.svg",
+      text: "Войти через Facebook"
     },
     {
       name: "Google",
       type: "button",
       className: "g",
-      image: "assets/icons/google-plus.svg"
+      image: "assets/icons/google-plus.svg",
+      text: "Войти через Google"
     }
   ];
   socialNames = {
     facebook: "Facebook",
     google: "Google"
   };
-  iconColor: string = "#435A59";
+  iconColor: string = "#fff";
 
 
 
