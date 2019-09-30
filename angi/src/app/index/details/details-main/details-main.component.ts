@@ -4,7 +4,7 @@ import { Trip } from "src/app/app.trip";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IDatePickerConfig } from "ng2-date-picker";
 import { AngularFireStorage } from "angularfire2/storage";
-import { first } from 'rxjs/operators';
+import { first, take } from 'rxjs/operators';
 
 @Component({
   selector: "app-details-main",
@@ -34,7 +34,7 @@ export class DetailsMainComponent implements OnInit {
     const ref = this.angularFireStorage.ref(`upload/tripImages/${randomId}`);
     const task = ref.put(event.target.files[0]).then(() => {
       ref.getDownloadURL().pipe(
-        first()
+        take(1)
       ).subscribe(url => {
         this.props.mainImg = url;
       })
@@ -42,7 +42,9 @@ export class DetailsMainComponent implements OnInit {
   }
 
   dpConfig: IDatePickerConfig = {
-    format: "DD/MM/YYYY"
+    format: "DD/MM/YYYY",
+    locale: "ru",
+    isNavHeaderBtnClickable: false,
   };
   isDash: boolean = false;
 

@@ -23,11 +23,13 @@ export class SidebarNewComponent implements OnInit {
 
   dpDateStartConfig: IDatePickerConfig = {
     format: "DD/MM/YYYY",
-    opens: "right"
+    opens: "right",
+    locale: "ru"
   };
   dpDateEndConfig: IDatePickerConfig = {
     format: "DD/MM/YYYY",
-    opens: "left"
+    opens: "left",
+    locale: "ru"
   };
   dateMask = "d0/M0/0000";
 
