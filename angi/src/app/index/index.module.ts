@@ -24,6 +24,7 @@ import { DetailsBottomComponent } from './details/details-bottom/details-bottom.
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     DpDatePickerModule,
     NgxMaskModule.forRoot(),
     NgbModalModule,
+    AngularFireStorageModule,
   ],
   declarations: [
     IndexComponent,

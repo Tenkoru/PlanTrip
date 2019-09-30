@@ -3,6 +3,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Trip } from "src/app/app.trip";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IDatePickerConfig } from "ng2-date-picker";
+import { AngularFireStorage } from "angularfire2/storage";
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: "app-details-main",
@@ -16,8 +18,31 @@ export class DetailsMainComponent implements OnInit {
   @Output() deleteButtonEmitter = new EventEmitter<any>();
   @Output() saveButtonEmitter = new EventEmitter<any>();
 
+  constructor(
+    private dateService: DateService,
+    private formBuilder: FormBuilder,
+    private angularFireStorage: AngularFireStorage
+  ) {
+    this.numbers = Array(5)
+      .fill(0)
+      .map((x, i) => i + 1);
+  }
+  uploadImage(event) {
+    const randomId = Math.random()
+      .toString(36)
+      .substring(2);
+    const ref = this.angularFireStorage.ref(`upload/tripImages/${randomId}`);
+    const task = ref.put(event.target.files[0]).then(() => {
+      ref.getDownloadURL().pipe(
+        first()
+      ).subscribe(url => {
+        this.props.mainImg = url;
+      })
+    });
+  }
+
   dpConfig: IDatePickerConfig = {
-    format: "DD/MM/YYYY",
+    format: "DD/MM/YYYY"
   };
   isDash: boolean = false;
 
@@ -27,6 +52,11 @@ export class DetailsMainComponent implements OnInit {
     filledColor: "#019287",
     size: 30
   };
+  upload = {
+    icon: "assets/icons/upload.svg",
+    color: "#ffffff",
+    size: 80,
+  }
   numbers: number[];
   rating: number = 0;
 
@@ -45,12 +75,6 @@ export class DetailsMainComponent implements OnInit {
   dateMask = "0d/0M/0000";
 
   detailsForm: FormGroup;
-
-  constructor(private dateService: DateService, private formBuilder: FormBuilder) {
-    this.numbers = Array(5)
-      .fill(0)
-      .map((x, i) => i + 1);
-  }
 
   initData() {
     this.detailsForm = this.formBuilder.group({

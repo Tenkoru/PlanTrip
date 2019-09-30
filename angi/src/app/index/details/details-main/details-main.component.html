@@ -1,5 +1,12 @@
 <form [formGroup]="detailsForm" class="details__form" (ngSubmit)="saveButtonHandler()">
   <div class="details__image">
+    <label class="imageUpload">
+      <svg-icon class="uploadIcon"
+        [src]="upload.icon"
+        [svgStyle]="{ 'width.px': upload.size, 'height.px': upload.size, 'fill': upload.color }">
+      </svg-icon>
+      <input type="file" class="details__fileInput" (change)="uploadImage($event)" accept=".png,.jpg" readonly="{{isNotEditable}}>
+    </label>
     <img [src]="props.mainImg" width="455" height="300" alt="Usa">
   </div>
   <div class="details__info">
@@ -8,7 +15,8 @@
     </label>
     <div class="details__dates">
       <label class="label details__info-label details__info-label--lessMb">
-        <input mask="{{dateMask}}" type="text" class="details__input details__date" [dpDayPicker]="dpConfig" formControlName="dateStart"
+        <input mask="{{dateMask}}" type="text" class="details__input details__date" [dpDayPicker]="dpConfig"
+          formControlName="dateStart"
           readonly="{{isNotEditable}}">
       </label>
       <label class="label details__info-label details__info-label--lessMb">
