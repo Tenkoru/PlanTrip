@@ -5,7 +5,7 @@
         [src]="upload.icon"
         [svgStyle]="{ 'width.px': upload.size, 'height.px': upload.size, 'fill': upload.color }">
       </svg-icon>
-      <input type="file" class="details__fileInput" (change)="uploadImage($event)" accept=".png,.jpg" readonly="{{isNotEditable}}"">
+      <input type="file" class="details__fileInput" (change)="uploadImage($event)" accept=".png,.jpg" readonly="{{isNotEditable}}">
     </label>
     <img [src]="props.mainImg" width="455" height="300" alt="Usa">
   </div>
