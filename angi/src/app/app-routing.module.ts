@@ -5,8 +5,6 @@ import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthComponent } from "./auth/auth.component";
 import { IndexComponent } from "./index/index.component";
-import { RegisterComponent } from "./auth/register/register.component";
-import { ResetComponent } from "./auth/reset/reset.component";
 import { AuthGuard } from "./auth/authentication/auth.guard";
 import { DashboardComponent } from "./index/dashboard/dashboard.component";
 import { DetailsComponent } from "./index/details/details.component";
@@ -23,14 +21,14 @@ const routes: Routes = [
         path: "login",
         component: LoginComponent
       },
-      {
-        path: "register",
-        component: RegisterComponent
-      },
-      {
-        path: "reset",
-        component: ResetComponent
-      },
+      // {
+      //   path: "register",
+      //   component: RegisterComponent
+      // },
+      // {
+      //   path: "reset",
+      //   component: ResetComponent
+      // },
       {
         path: "",
         redirectTo: "login",
