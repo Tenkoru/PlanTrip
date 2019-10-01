@@ -1,5 +1,6 @@
 import { ActivatedRoute, RouterState, Router, NavigationEnd } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
+import { Location } from '@angular/common';
 
 @Component({
   selector: "app-header-bottom",
@@ -11,22 +12,26 @@ export class HeaderBottomComponent implements OnInit {
   titles = {
     dashboard: "Список поездок",
     details: "Информация о поездке",
-    friends: "Друзья",
-  }
+    friends: "Друзья"
+  };
   isArrowShown = true;
   arrowProps = {
-    link: "/dashboard",
+    link: "..",
     className: "headerArrow",
-  }
+    isButton: true,
+  };
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private _location: Location) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.setTitleByUrl(event.urlAfterRedirects);
       }
     });
   }
-  setTitleByUrl(url: string) {
+  arrowClickHandler():void {
+    this._location.back();
+  }
+  setTitleByUrl(url: string): void {
     this.isArrowShown = true;
     if (url.match("dashboard")) {
       this.isArrowShown = false;
@@ -38,6 +43,5 @@ export class HeaderBottomComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }
