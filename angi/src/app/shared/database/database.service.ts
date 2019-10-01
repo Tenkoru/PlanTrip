@@ -89,13 +89,13 @@ export class DatabaseService {
             let trips = data.data();
             const tripId = this.generateId(trips);
             let newTrip: Trip;
+            const dateArr = []
+            dateArr[0] = formDataValues.dateStart;
+            dateArr[1] = formDataValues.dateEnd;
             newTrip = {
               id: tripId,
               title: formDataValues.title,
-              date: [
-                this.dateService.parseDateToTimestamp(formDataValues.dateStart),
-                this.dateService.parseDateToTimestamp(formDataValues.dateEnd)
-              ],
+              date: this.dateService.parseDatesToTimestamp(dateArr),
               description: formDataValues.description,
               mainImg: "assets/images/tripDefault.jpg",
               type: "future",

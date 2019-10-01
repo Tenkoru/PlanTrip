@@ -13,7 +13,7 @@ export class DateService {
       parsedDates[0] = +moment(dates[0], "DD/MM/YYYY").format('x');
     }
     if (dates[1]) {
-      parsedDates[1] = +moment(dates[0], "DD/MM/YYYY").format('x');
+      parsedDates[1] = +moment(dates[1], "DD/MM/YYYY").format('x');
     } else {
       parsedDates[1] = 0;
     }
