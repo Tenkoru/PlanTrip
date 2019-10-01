@@ -1,4 +1,4 @@
-<label [className]="getLabelClass()">
-  <textarea type="text" [className]="getClass()"></textarea>
-  <span class="input__placeholder">{{getText()}}</span>
+<label class="label">
+  <textarea type="text" [ngClass]="textareaClasses"></textarea>
+  <span class="input__placeholder">{{props.text}}</span>
 </label>  

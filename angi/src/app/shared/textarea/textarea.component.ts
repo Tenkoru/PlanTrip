@@ -11,25 +11,14 @@ export class TextareaComponent implements OnInit {
     type: string;
     isSidebar: boolean;
   };
+  textAreaClasses = {};
 
   constructor() {}
 
-  ngOnInit() {}
-
-  getClass(): string {
-    let className: string = "textarea";
-
-    if (this.props.isSidebar) {
-      className += " sidebar__textarea";
+  ngOnInit() {
+    this.textAreaClasses = {
+      textarea: true,
+      "sidebar__textarea": this.props.isSidebar,
     }
-    return className;
-  }
-
-  getLabelClass(): string {
-    return "label";
-  }
-
-  getText(): string {
-    return this.props.text || "";
   }
 }
