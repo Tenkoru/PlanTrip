@@ -38,10 +38,6 @@ export class LoginComponent implements OnInit {
     }
   ];
 
-  login() {
-    event.preventDefault();
-  }
-
   constructor(public authService: AuthService, public router: Router) {}
 
   ngOnInit() {}
