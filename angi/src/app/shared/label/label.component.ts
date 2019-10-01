@@ -14,14 +14,12 @@ export class LabelComponent implements OnInit {
   };
 
   inputClasses = {};
+  labelClasses = {}
 
   getText(): string {
     return this.props.text || "";
   }
 
-  getLabelClass(): string {
-    return this.props.auth ? "label auth__label" : "label";
-  }
 
   isRequred(): boolean {
     return this.props.required;
@@ -35,5 +33,9 @@ export class LabelComponent implements OnInit {
       auth__input: this.props.auth,
       "auth__input--password": this.props.password
     };
+    this.labelClasses = {
+      label: true,
+      "auth__label": this.props.auth,
+    }
   }
 }
