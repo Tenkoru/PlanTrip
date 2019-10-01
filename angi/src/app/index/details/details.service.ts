@@ -8,7 +8,7 @@ import * as moment from "moment";
 import { Place } from "./app.place";
 import { Region } from "./app.region";
 import { Observable } from "rxjs";
-import { Trip } from "src/app/app.trip";
+import { Trip } from "src/app/index/app.trip";
 
 @Injectable({
   providedIn: "root"

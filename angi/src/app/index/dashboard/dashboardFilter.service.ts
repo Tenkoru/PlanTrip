@@ -1,5 +1,5 @@
 import { FilterArguments } from "./filterArguments";
-import { Trip } from "src/app/app.trip";
+import { Trip } from "src/app/index/app.trip";
 import { Injectable } from "@angular/core";
 
 @Injectable({

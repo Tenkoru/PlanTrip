@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { FriendsService } from "./../friends/friends.service";
 import { DetailsService } from "./details.service";
 import { FormGroup } from "@angular/forms";
-import { Trip } from "./../../app.trip";
+import { Trip } from "../app.trip";
 import { DatabaseService } from "src/app/shared/database/database.service";
 import { UserService } from "../../shared/user/user.service";
 import { Component, OnInit } from "@angular/core";

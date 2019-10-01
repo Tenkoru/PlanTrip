@@ -1,6 +1,6 @@
 import { DateService } from "../../../shared/services/date.service";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { Trip } from "src/app/app.trip";
+import { Trip } from "src/app/index/app.trip";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IDatePickerConfig } from "ng2-date-picker";
 import { AngularFireStorage } from "angularfire2/storage";

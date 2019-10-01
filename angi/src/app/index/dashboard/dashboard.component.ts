@@ -5,7 +5,7 @@ import { FilterArguments } from "./filterArguments";
 import { DashboardFilterService } from "./dashboardFilter.service";
 import { DatabaseService } from "../../shared/database/database.service";
 import { UserService } from "../../shared/user/user.service";
-import { Trip } from "src/app/app.trip";
+import { Trip } from "src/app/index/app.trip";
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 

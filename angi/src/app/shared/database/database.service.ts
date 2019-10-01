@@ -1,6 +1,6 @@
 import { take, map, tap } from "rxjs/operators";
 import { FormGroup } from "@angular/forms";
-import { Trip } from "../../app.trip";
+import { Trip } from "../../index/app.trip";
 import { AngularFirestore, Action, DocumentData } from "@angular/fire/firestore";
 import { Injectable } from "@angular/core";
 import { Observable, Subscriber } from "rxjs";

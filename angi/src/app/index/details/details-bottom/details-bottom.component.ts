@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { Trip } from 'src/app/app.trip';
+import { Trip } from 'src/app/index/app.trip';
 import { Place } from '../app.place';
 
 @Component({

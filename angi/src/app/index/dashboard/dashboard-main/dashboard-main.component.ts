@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, Input } from "@angular/core";
 import { DashboardService } from "src/app/shared/services/dashboard.service";
-import { Trip } from "src/app/app.trip";
+import { Trip } from "src/app/index/app.trip";
 
 @Component({
   selector: "app-dashboard-main",
