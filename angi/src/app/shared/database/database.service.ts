@@ -1,5 +1,4 @@
-import { Friends } from "../../index/friends/friends";
-import { element } from "protractor";
+import { take, map, tap } from "rxjs/operators";
 import { FormGroup } from "@angular/forms";
 import { Trip } from "../../app.trip";
 import { AngularFirestore, Action, DocumentData } from "@angular/fire/firestore";
@@ -42,7 +41,7 @@ export class DatabaseService {
       subscriber.complete();
     });
   }
-  createUserData(userId: string) {
+  createUserData(userId: string): void {
     this.db
       .collection("users")
       .doc(userId)
@@ -84,27 +83,31 @@ export class DatabaseService {
         .collection("users")
         .doc(userId)
         .get()
-        .subscribe(data => {
-          let trips = data.data();
-          const tripId = this.generateId(trips);
-          let newTrip: Trip;
-          newTrip = {
-            id: tripId,
-            title: formDataValues.title,
-            date: [
-              this.dateService.parseDateToTimestamp(formDataValues.dateStart),
-              this.dateService.parseDateToTimestamp(formDataValues.dateEnd)
-            ],
-            description: formDataValues.description,
-            mainImg: "assets/images/tripDefault.jpg",
-            type: "future",
-            rating: 0
-          };
-          trips.trips.push(newTrip);
-          this.updateTripsData(userId, trips).subscribe(() => {
-            subscriber.next(tripId);
-          });
-        });
+        .pipe(
+          take(1),
+          tap(data => {
+            let trips = data.data();
+            const tripId = this.generateId(trips);
+            let newTrip: Trip;
+            newTrip = {
+              id: tripId,
+              title: formDataValues.title,
+              date: [
+                this.dateService.parseDateToTimestamp(formDataValues.dateStart),
+                this.dateService.parseDateToTimestamp(formDataValues.dateEnd)
+              ],
+              description: formDataValues.description,
+              mainImg: "assets/images/tripDefault.jpg",
+              type: "future",
+              rating: 0
+            };
+            trips.trips.push(newTrip);
+            this.updateTripsData(userId, trips).subscribe(() => {
+              subscriber.next(tripId);
+            });
+          })
+        )
+        .subscribe();
     });
   }
 }
