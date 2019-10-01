@@ -1,10 +1,12 @@
-import { DateService } from '../../../../shared/services/date.service';
+import { ActivatedRoute } from '@angular/router';
+import { DateService } from "../../../../shared/services/date.service";
 import { DatabaseService } from "src/app/shared/database/database.service";
 import { DetailsService } from "./../../../details/details.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { Trip } from "src/app/index/app.trip";
 import { UserService } from "src/app/shared/user/user.service";
 import { Subscription } from "rxjs";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-dashboard-card",
@@ -12,6 +14,19 @@ import { Subscription } from "rxjs";
   styleUrls: ["./dashboard-card.component.scss"]
 })
 export class DashboardCardComponent implements OnInit {
+
+  constructor(
+    private dateService: DateService,
+    private userService: UserService,
+    private databaseService: DatabaseService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+  ) {
+    this.numbers = Array(5)
+      .fill(0)
+      .map((x, i) => i + 1);
+  }
+
   @Input() props: Trip;
   @Input() tripList: Trip[];
   @Input() isGrid: boolean;
@@ -35,6 +50,20 @@ export class DashboardCardComponent implements OnInit {
   userServiceSubscription: Subscription;
   databaseSubscription: Subscription;
 
+  clickHandler(): void {
+    if (this.props.type === "future") {
+      if (this.tripsId) {
+        this.activatedRoute.params.subscribe(params => {
+          this.router.navigate([`../../details/${params.id}/${this.props.id}`], { relativeTo: this.activatedRoute} );
+        })
+      } else {
+        this.router.navigate([`../details/${this.props.id}`], { relativeTo: this.activatedRoute} );
+      }
+    }
+  }
+
+  cardClasses = {};
+
   getLinkProps(): void {
     if (this.tripsId) {
       this.linkProps.text = "Посмотреть";
@@ -53,16 +82,6 @@ export class DashboardCardComponent implements OnInit {
         .updateTripsData(user.email, { trips: this.tripList })
         .subscribe(() => {});
     });
-  }
-
-  constructor(
-    private dateService: DateService,
-    private userService: UserService,
-    private databaseService: DatabaseService
-  ) {
-    this.numbers = Array(5)
-      .fill(0)
-      .map((x, i) => i + 1);
   }
 
   setLinkPath() {
@@ -87,6 +106,10 @@ export class DashboardCardComponent implements OnInit {
     this.linkProps.isGrid = this.isGrid;
     this.setLinkPath();
     this.setNewImage();
+    this.cardClasses = {
+      "list__item card-item": true,
+      clickable: this.props.type === "future" ? true : false
+    };
   }
   ngOnDestroy() {
     if (typeof this.userServiceSubscription !== "undefined") {

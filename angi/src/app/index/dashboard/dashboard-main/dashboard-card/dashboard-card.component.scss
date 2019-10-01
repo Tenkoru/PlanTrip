@@ -1,15 +1,19 @@
 @import "variables.scss";
 
-.card-item{
+.card-item {
   display: flex;
   position: relative;
   margin-bottom: 15px;
   padding: 25px;
   border: 1px solid $inputBorderColor;
   border-radius: 4px;
+  transition: all .3s;
   @media (max-width: $screenMobile) {
     padding: 10px;
   }
+}
+.clickable {
+  cursor: pointer;
 }
 .card__inner {
   display: flex;
@@ -120,15 +124,22 @@
 }
 :host.card--grid {
   width: 33%;
+  padding-right: 5px;
+  padding-left: 5px;
   @media (max-width: $screenTabletBig) {
     width: 50%;
   }
-  .card-item{
+  .card-item {
     flex-direction: column;
-    border: none;
+    border-color: transparent;
     padding-right: 15px;
     padding-left: 15px;
     width: 100%;
+    &.clickable {
+      &:hover {
+        border-color: $inputBorderColor;
+      }
+    }
   }
   .card__image-wrapper {
     width: 100%;

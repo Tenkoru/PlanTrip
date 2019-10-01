@@ -1,4 +1,4 @@
-<li class="list__item card-item">
+<li [ngClass]="cardClasses"(click)="clickHandler()">
   <div class="card__image-wrapper">
     <img [src]="mainImg" width="330" height="270" class="card__image">
   </div>
