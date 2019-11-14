@@ -16,7 +16,7 @@ export class BackArrowComponent implements OnInit {
   @Output() buttonClickEvent = new EventEmitter<void>();
 
   image: string= "./assets/icons/backArrow.svg";
-  iconColo: string = '#435A59';
+  iconColor: string = '#435A59';
 
   getClass(): string {
     let className: string = "back-arrow ";

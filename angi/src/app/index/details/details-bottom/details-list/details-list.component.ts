@@ -22,6 +22,7 @@ export class DetailsListComponent implements OnInit {
   removeIconImage = "assets/icons/closeIcon.svg";
   dropdownIconColor = "#10645D";
   editIconsColor = "#10645D";
+  editIconsSize: 16;
 
   placeToDelete: object;
   locationToUpdate: Location;

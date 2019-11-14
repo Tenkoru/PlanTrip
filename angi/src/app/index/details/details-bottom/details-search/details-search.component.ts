@@ -22,6 +22,7 @@ export class DetailsSearchComponent implements OnInit {
   addButtonHoverColor: string = "#ffffff";
   isHovered: boolean = false;
   searchControl: FormControl = new FormControl;
+  searchIconColor: "#456462";
 
   isInputFilled: boolean;
   inputClasses = {};

@@ -9,6 +9,8 @@ import { CommonModule } from "@angular/common";
 import { AuthComponent } from "./auth.component";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { AppRoutingModule } from '../app-routing.module';
+import { RegisterComponent } from './register/register.component';
+import { ResetComponent } from './reset/reset.component';
 
 @NgModule({
   imports: [
@@ -20,8 +22,8 @@ import { AppRoutingModule } from '../app-routing.module';
   declarations: [
     AuthComponent,
     LoginComponent,
-    // RegisterComponent,
-    // ResetComponent,
+    RegisterComponent,
+    ResetComponent,
     LoginDividerComponent,
     LoginSocialComponent,
     AuthTitleComponent,

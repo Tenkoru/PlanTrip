@@ -13,6 +13,7 @@ export class DashboardFilterComponent implements OnInit {
   buttonImage: string = "assets/icons/dropdownArrow.svg";
   sortArrowImg: string = "assets/icons/backArrow.svg";
   isArrowUp: boolean;
+  iconColor: "#456462";
   filterOptions: any[] = [
     {
       text: "Сортировать по названию",

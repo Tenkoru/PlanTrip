@@ -12,6 +12,7 @@ export class DashboardSearchComponent implements OnInit {
   @Input() searchProps: FormGroup;
 
   buttonImage: string = "assets/icons/searchIcon.svg";
+  iconColor: "#456462";
 
   filterSubscription: Subscription;
 
