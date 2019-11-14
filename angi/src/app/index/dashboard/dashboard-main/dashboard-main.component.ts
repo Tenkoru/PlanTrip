@@ -23,7 +23,7 @@ export class DashboardMainComponent implements OnInit {
     this.isGrid = dashboardService.isGrid;
   }
 
-  @HostListener("window:resize", ["$event"])
+  @HostListener("window:resize", [])
   onResize() {
     if (
       window.matchMedia("(max-width: 640px)").matches &&
